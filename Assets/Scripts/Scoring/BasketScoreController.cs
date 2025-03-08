@@ -19,13 +19,13 @@ public class BasketScoreController : MonoBehaviour
     }
     private void Start()
     {
-        maxDistance = Vector2.Distance(basketPos, CamData.Instance.bottomLeftWorldPos);
+        maxDistance = Vector2.Distance(basketPos, SpawnPositionData.bottomLeftWorldPos);
         
     }
 
     private void Update()
     {
-        Vector2 ballPos = ball.newBallPos;
+        Vector2 ballPos = BallSpawner.Instance.newBallPos;
         distanceFromBasket = Vector2.Distance(ballPos, basketPos);
         float normScore = distanceFromBasket / maxDistance;
         basketScore = Mathf.RoundToInt(normScore * 100);
