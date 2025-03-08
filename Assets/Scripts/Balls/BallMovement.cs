@@ -27,7 +27,7 @@ public class BallMovement : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && ball.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
             LaunchBall(mouseWorldPos);

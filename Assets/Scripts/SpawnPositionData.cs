@@ -9,8 +9,6 @@ public abstract class SpawnPositionData : MonoBehaviour
     public static Vector2 bottomLeftWorldPos {  get; private set; }
     public static Vector2 topRightWoldPos { get; private set; }
 
-    public Vector2 minSpawnPos { get; private set; }
-
     public static float camHeight { get; private set; }
     public static float camWidth { get; private set; }
 

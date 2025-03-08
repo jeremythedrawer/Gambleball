@@ -13,7 +13,10 @@ public class ScoreTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Ball"))
         {
-            TotalScoreController.Instance.totalScore += basketScoreController.basketScore;
+            if (collision.attachedRigidbody.linearVelocityY < 0)
+            {
+                TotalScoreController.Instance.totalScore += basketScoreController.basketScore;
+            }
         }
     }
 }

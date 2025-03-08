@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &900923229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 282124339334548626, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
+  m_PrefabInstance: {fileID: 9218188822697836845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0937f43012f2b94ab145682c1d4d70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1007220430
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,9 +583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1401309515}
-  resetBallPosWidth: 0.683
-  resetBallPosHeight: 0.292
-  activeBall: {fileID: 0}
+  resetBallPosWidth: 0.814
+  resetBallPosHeight: 0.478
+  activeBall: {fileID: 900923229}
 --- !u!1001 &5836969206886592959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -589,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 739700066432756276, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 739700066432756276, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -627,6 +638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Normal Basket
       objectReference: {fileID: 0}
+    - target: {fileID: 8160471012682151766, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0143
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -643,17 +658,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 807036746448952510, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
+      propertyPath: m_Radius
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 4881382637579890293, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
       propertyPath: m_Name
       value: Normal Ball
       objectReference: {fileID: 0}
     - target: {fileID: 9143596500862442122, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.393
+      value: 1.472
       objectReference: {fileID: 0}
     - target: {fileID: 9143596500862442122, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.298
+      value: -0.227
       objectReference: {fileID: 0}
     - target: {fileID: 9143596500862442122, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
       propertyPath: m_LocalPosition.z

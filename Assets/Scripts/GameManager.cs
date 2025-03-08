@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public BallSpawner ballSpawner {  get; private set; }
     public BasketSpawner basketSpawner { get; private set; }
 
+    public int attempts { get; set; } = 0;
+
     private void OnValidate()
     {
         cam = Camera.main;
@@ -25,7 +27,13 @@ public class GameManager : MonoBehaviour
 
         SetUpSpawners();
     }
-
+    private void Update()
+    {
+        if (attempts > 3)
+        {
+            attempts = 1;
+        }
+    }
     private void SetUpSpawners()
     {
         ballSpawner = GetComponentInChildren<BallSpawner>();
