@@ -56,6 +56,7 @@ public class BallSpawner : Spawner
 
     private void SetThresholds()
     {
+        activeBallDiameter = activeBall.spriteRendererBall.bounds.size.x;
         maxResetBallPosY = (camHeight * resetBallPosHeight) + bottomLeftWorldPos.y;
         minResetBallPosY = bottomLeftWorldPos.y + activeBallDiameter;
 
@@ -144,13 +145,13 @@ public class BallSpawner : Spawner
 
         if (Application.isPlaying)
         {
-            Debug.DrawLine(bottomLeft, topLeft);
+            Debug.DrawLine(bottomLeft, topLeft, color);
             Debug.DrawLine(topLeft, topRight, color);
             Debug.DrawLine(topRight, bottomRight, color);
-            Debug.DrawLine(bottomRight, bottomLeft);
+            Debug.DrawLine(bottomRight, bottomLeft, color);
 
-            Debug.DrawLine(topMed, bottomMed);
-            Debug.DrawLine(topEasy, bottomEasy);
+            Debug.DrawLine(topMed, bottomMed, color);
+            Debug.DrawLine(topEasy, bottomEasy, color);
         }
         else
         {

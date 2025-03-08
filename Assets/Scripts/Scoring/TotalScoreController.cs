@@ -21,6 +21,6 @@ public class TotalScoreController : MonoBehaviour
 
     private void Update()
     {
-        totalScoreText.text = totalScore.ToString();
+        totalScoreText.text = "Score: " + totalScore.ToString();
     }
 }
