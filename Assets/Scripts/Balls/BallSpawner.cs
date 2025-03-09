@@ -24,8 +24,8 @@ public class BallSpawner : Spawner
 
     private float[] rangeThesholds = new float[3]; 
 
-    private float currentMinThreshold;
-    private float currentMaxThreshold;
+    public float currentMinThreshold {  get; private set; }
+    public float currentMaxThreshold { get; private set; }
 
     private int currentThresholdIndex = 0;
 
@@ -85,7 +85,7 @@ public class BallSpawner : Spawner
 
         if (ballPos.y < camBoundBottom || ballPos.x > camBoundRight)
         {
-            GameManager.Instance.attempts++;
+            GameManager.Instance.attempts--;
 
             UpdateAttemptsAndRanges();
 
@@ -107,7 +107,7 @@ public class BallSpawner : Spawner
     private void UpdateAttemptsAndRanges()
     {
 
-        if (GameManager.Instance.attempts == 3)
+        if (GameManager.Instance.attempts == 0)
         {
             currentThresholdIndex++;
             if (currentThresholdIndex < rangeThesholds.Length)

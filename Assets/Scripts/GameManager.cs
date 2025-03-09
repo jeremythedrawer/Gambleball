@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (attempts > 3)
+        if (attempts < 1)
         {
-            attempts = 1;
+            attempts = 3;
         }
     }
     private void SetUpSpawners()
