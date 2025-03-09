@@ -15,7 +15,7 @@ public class ScoreTrigger : MonoBehaviour
         {
             if (collision.attachedRigidbody.linearVelocityY < 0)
             {
-                collision.attachedRigidbody.linearVelocity *= new Vector2(1.0f, 0.25f);
+                collision.attachedRigidbody.linearVelocity *= 0.25f;
                 TotalScoreController.Instance.totalScore += basketScoreController.basketScore;
             }
         }

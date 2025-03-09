@@ -30,8 +30,11 @@ public class BallMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && ball.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
-            LaunchBall(mouseWorldPos);
-            ball.rigidBodyBall.constraints = RigidbodyConstraints2D.None;
+            if (mouseWorldPos.x > transform.position.x && mouseWorldPos.y > transform.position.y)
+            {
+                LaunchBall(mouseWorldPos);
+                ball.rigidBodyBall.constraints = RigidbodyConstraints2D.None;
+            }
         }
         else if (ball.rigidBodyBall.IsSleeping())
         {
