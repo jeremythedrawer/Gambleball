@@ -98,6 +98,7 @@ public class BallSpawner : Spawner
             }
             newBallPos = new Vector2(randomX, randomY);
             activeBall.transform.position = newBallPos;
+            activeBall.transform.eulerAngles = Vector2.zero;
             activeBall.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
 
         }
