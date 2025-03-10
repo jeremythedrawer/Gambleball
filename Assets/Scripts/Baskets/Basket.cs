@@ -8,9 +8,12 @@ public class Basket : MonoBehaviour
     public Collider2D[] colliders {  get; private set; }
     public SpriteRenderer spriteRendererBasket { get; private set; }
 
+    public ScoreTrigger scoreTrigger { get; private set; }
+
     private void Awake()
     {
         colliders = GetComponentsInChildren<Collider2D>();
         spriteRendererBasket = GetComponent<SpriteRenderer>();
+        scoreTrigger = GetComponentInChildren<ScoreTrigger>();
     }
 }

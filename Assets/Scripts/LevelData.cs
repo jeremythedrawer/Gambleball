@@ -5,16 +5,16 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     [System.Serializable]
-    public struct Levels
+    public struct Level
     {
         public Ball ball;
         public Basket basket;
 
-        public Levels(Ball ball, Basket basket)
+        public Level(Ball ball, Basket basket)
         {
             this.ball = ball;
             this.basket = basket;
         }
     }
-    public List<Levels> levels;
+    public List<Level> levels;
 }

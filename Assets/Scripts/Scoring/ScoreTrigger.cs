@@ -3,6 +3,8 @@ using UnityEngine;
 public class ScoreTrigger : MonoBehaviour
 {
     private BasketMaterial basketMaterial;
+
+    public bool playerScored {  get; set; }
     private void Awake()
     {
         basketMaterial = GetComponentInParent<BasketMaterial>();
@@ -16,6 +18,7 @@ public class ScoreTrigger : MonoBehaviour
             {
                 collision.attachedRigidbody.linearVelocity *= 0.25f;
                 basketMaterial.scoreColor = Color.green;
+                playerScored = true;
             }
         }
     }

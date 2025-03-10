@@ -7,8 +7,6 @@ public class LevelUI : MonoBehaviour
 
     private TextMeshPro levelUIText;
 
-    public int levelNumber {  get; set; }
-
     private void Awake()
     {
         if (Instance == null)
@@ -21,6 +19,7 @@ public class LevelUI : MonoBehaviour
 
     private void Update()
     {
+        int levelNumber = LevelManager.Instance.levelCount;
         levelUIText.text = "Level: " + levelNumber.ToString();
     }
 }

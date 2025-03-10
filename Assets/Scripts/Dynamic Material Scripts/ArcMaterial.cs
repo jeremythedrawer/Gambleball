@@ -12,7 +12,7 @@ public class ArcMaterial : MaterialManager
     private void Update()
     {
 
-        activeBall = GameManager.Instance.activeBall;
+        activeBall = LevelManager.Instance.activeBall;
         transform.position = activeBall.transform.position;
 
         if (Input.GetMouseButtonDown(0) || activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
