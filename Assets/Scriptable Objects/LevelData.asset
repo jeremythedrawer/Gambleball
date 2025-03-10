@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   levels:
-  - ball: {fileID: 4881382637579890293, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
-    basket: {fileID: 2334373007331414560, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
+  - ball: {fileID: 282124339334548626, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
+    basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
+  - ball: {fileID: -4366746437013694359, guid: 5fa1fa943c80e6649ae5b46ad4abeb46, type: 3}
+    basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}

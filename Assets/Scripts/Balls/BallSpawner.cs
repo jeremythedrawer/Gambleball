@@ -1,169 +1,47 @@
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BallSpawner : Spawner
 {
-    [Header("Parameters")]
-    [Range(0, 1)]
-    public float resetBallPosWidth = 0;
-    [Range(0, 1)]
-    public float resetBallPosHeight = 0;
-
-
     public static BallSpawner Instance;
-    public Ball activeBall;
 
-    public float maxResetBallPosX { get; private set; }
-    public float maxResetBallPosY { get; private set; }
-    public float minResetBallPosX { get; private set; }
-    public float minResetBallPosY { get; private set; }
+    private Ball activeBall => GameManager.Instance.activeBall;
 
     public Vector2 newBallPos { get; private set; }
 
-    private float activeBallDiameter;
-
-    private float[] rangeThesholds = new float[3]; 
-
-    public float currentMinThreshold {  get; private set; }
-    public float currentMaxThreshold { get; private set; }
-
-    private int currentThresholdIndex = 0;
-
-    private void OnDrawGizmos()
+    public void Awake()
     {
-        DrawBallResetArea(resetBallPosWidth, resetBallPosHeight, new Color(1.0f, 0.5f, 0.0f));
-    }
-
-    public override void Awake()
-    {
-        base.Awake();
-
         if (Instance == null)
         {
             Instance = this;
         }
-        SetThresholds();
+        SetActiveBallPos();
     }
-    private void Start()
+
+    private async void SetActiveBallPos()
     {
-        newBallPos = activeBall.transform.position;
-        DrawBallResetArea(resetBallPosWidth, resetBallPosHeight, new Color(1.0f, 0.5f, 0.0f));
-    }
-    private void Update()
-    {
+        while (activeBall == null || ActiveRangeController.Instance.currentMaxThreshold == 0) { await Task.Yield(); }
         ResetBallPos(activeBall.transform.position);
     }
 
-    private void SetThresholds()
+    public void ResetBallPos(Vector2 ballPos)
     {
-        activeBallDiameter = activeBall.spriteRendererBall.bounds.size.x;
-        maxResetBallPosY = (camHeight * resetBallPosHeight) + bottomLeftWorldPos.y;
-        minResetBallPosY = bottomLeftWorldPos.y + activeBallDiameter;
-
-        maxResetBallPosX = (camWidth * resetBallPosWidth) + bottomLeftWorldPos.x;
-        minResetBallPosX = bottomLeftWorldPos.x + activeBallDiameter;
-
-        float totalSpawnDistance = maxResetBallPosX - minResetBallPosX;
-
-        rangeThesholds[0] = minResetBallPosX + ((totalSpawnDistance / 3) * 2); // easy
-        rangeThesholds[1] = minResetBallPosX + (totalSpawnDistance / 3); // medium
-        rangeThesholds[2] = minResetBallPosX; // hard
-
-        //updates 3 times each lvl
-        currentMinThreshold = rangeThesholds[currentThresholdIndex];
-        currentMaxThreshold = maxResetBallPosX;
-    }
-    private void ResetBallPos(Vector2 ballPos)
-    {
-
-        Vector2 camWorldPointBottomLeft = SpawnPositionData.bottomLeftWorldPos;
-        Vector2 camWorldPointTopRight = SpawnPositionData.topRightWoldPos;
-
-        float camBoundRight = camWorldPointTopRight.x;
-        float camBoundBottom = camWorldPointBottomLeft.y;
-        float camBoundsLeft = camWorldPointBottomLeft.x;
-
-        if (ballPos.y < camBoundBottom || ballPos.x > camBoundRight)
-        {
-            GameManager.Instance.attempts--;
-
-            UpdateAttemptsAndRanges();
-
-            float randomX = 0;
-            float randomY = 0;
-            if (randomX == 0 || randomY == 0)
-            {
-                randomX = Random.Range(currentMinThreshold, currentMaxThreshold);
-                randomY = Random.Range(minResetBallPosY, maxResetBallPosY);
-            }
-            newBallPos = new Vector2(randomX, randomY);
-            activeBall.transform.position = newBallPos;
-            activeBall.transform.eulerAngles = Vector2.zero;
-            activeBall.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
-
-        }
+        newBallPos = GetNewBallPos();
+        activeBall.transform.position = newBallPos;
+        activeBall.transform.eulerAngles = Vector2.zero;
+        activeBall.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
-    private void UpdateAttemptsAndRanges()
+    public Vector2 GetNewBallPos()
     {
-
-        if (GameManager.Instance.attempts == 0)
+        Vector2 newBallPos = new Vector2();
+        float randomX = 0;
+        float randomY = 0;
+        if (randomX == 0 || randomY == 0)
         {
-            currentThresholdIndex++;
-            if (currentThresholdIndex < rangeThesholds.Length)
-            {
-                currentMinThreshold = rangeThesholds[currentThresholdIndex];
-                currentMaxThreshold = rangeThesholds[currentThresholdIndex - 1];
-            }
-            else
-            {
-                currentThresholdIndex = 0;
-                currentMinThreshold = rangeThesholds[currentThresholdIndex];
-                currentMaxThreshold = maxResetBallPosX;
-            }
+            randomX = Random.Range(ActiveRangeController.Instance.currentMinThreshold, ActiveRangeController.Instance.currentMaxThreshold);
+            randomY = Random.Range(ActiveRangeController.Instance.minResetBallPosY, ActiveRangeController.Instance.maxResetBallPosY);
         }
-    }
-    private void DrawBallResetArea(float resetPosWidth, float resetPosHeight, Color color)
-    {
-        activeBallDiameter = activeBall.spriteRendererBall.sprite.bounds.size.x;
-        Vector2 viewportbottomLeft = cam.ViewportToWorldPoint(Vector2.zero);
-        
-        float minHardLine = activeBallDiameter;
-        float minMedLine = resetPosWidth / 3;
-        float minEasyLine = minMedLine * 2;
-
-        Vector2 topLeft = cam.ViewportToWorldPoint(new Vector2(0, resetPosHeight)) + new Vector3(minHardLine, 0);
-        Vector2 bottomLeft = cam.ViewportToWorldPoint(new Vector2 (0, 0)) + new Vector3(minHardLine, activeBallDiameter);
-        Vector2 topRight = cam.ViewportToWorldPoint(new Vector2(resetPosWidth, resetPosHeight));
-        Vector2 bottomRight = cam.ViewportToWorldPoint(new Vector3(resetPosWidth, 0)) + new Vector3(0, activeBallDiameter);
-
-
-        Vector2 topMed = cam.ViewportToWorldPoint(new Vector2(minMedLine, resetPosHeight));
-        Vector2 bottomMed = cam.ViewportToWorldPoint(new Vector2(minMedLine, 0)) + new Vector3(0, activeBallDiameter);
-
-        Vector2 topEasy = cam.ViewportToWorldPoint(new Vector2(minEasyLine, resetPosHeight));
-        Vector2 bottomEasy = cam.ViewportToWorldPoint(new Vector2(minEasyLine, 0)) + new Vector3(0, activeBallDiameter);
-
-        if (Application.isPlaying)
-        {
-            Debug.DrawLine(bottomLeft, topLeft, color);
-            Debug.DrawLine(topLeft, topRight, color);
-            Debug.DrawLine(topRight, bottomRight, color);
-            Debug.DrawLine(bottomRight, bottomLeft, color);
-
-            Debug.DrawLine(topMed, bottomMed, color);
-            Debug.DrawLine(topEasy, bottomEasy, color);
-        }
-        else
-        {
-            Gizmos.color = color;
-            Gizmos.DrawLine(bottomLeft, topLeft);
-            Gizmos.DrawLine(topLeft, topRight);
-            Gizmos.DrawLine(topRight, bottomRight);
-            Gizmos.DrawLine(bottomRight, bottomLeft);
-
-            Gizmos.DrawLine(topMed, bottomMed);
-            Gizmos.DrawLine(topEasy, bottomEasy);
-        }
+       return newBallPos = new Vector2(randomX, randomY);
     }
 }

@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Basket : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Parameters")]
+    public Sprite spriteBasket;
 
-    // Update is called once per frame
-    void Update()
+    public Collider2D[] colliders {  get; private set; }
+    public SpriteRenderer spriteRendererBasket { get; private set; }
+
+    private void Awake()
     {
-        
+        colliders = GetComponentsInChildren<Collider2D>();
+        spriteRendererBasket = GetComponent<SpriteRenderer>();
     }
 }

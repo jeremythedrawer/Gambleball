@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25955665111bcee40b7d29f39a801e05
+guid: 0e699f42c9344554a82763ee8b1e7046
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8589514813983374982
-    second: spr_normalHoop_0
+      213: -3571858184455322475
+    second: spr_spikyBall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_normalHoop_0
+      name: spr_spikyBall_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 60
-      alignment: 9
-      pivot: {x: 0.9547491, y: 0.3996415}
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a71c09f29c9ebc880800000000000000
-      internalID: -8589514813983374982
+      spriteID: 594087fd7e53e6ec0800000000000000
+      internalID: -3571858184455322475
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b39516a51b8ffda4c87388141cb3b485
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spr_normalHoop_0: -8589514813983374982
+      spr_spikyBall_0: -3571858184455322475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

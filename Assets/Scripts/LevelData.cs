@@ -7,10 +7,10 @@ public class LevelData : ScriptableObject
     [System.Serializable]
     public struct Levels
     {
-        public Object ball;
-        public Object basket;
+        public Ball ball;
+        public Basket basket;
 
-        public Levels(Object ball, Object basket)
+        public Levels(Ball ball, Basket basket)
         {
             this.ball = ball;
             this.basket = basket;

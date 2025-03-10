@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Spawner : SpawnPositionData
+public abstract class Spawner : MonoBehaviour
 {
 
 }

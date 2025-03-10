@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArcController : MonoBehaviour
+public class ArcMaterial : MaterialManager
 {
     private Ball activeBall;
 
@@ -12,7 +12,7 @@ public class ArcController : MonoBehaviour
     private void Update()
     {
 
-        activeBall = GameManager.Instance.ballSpawner.activeBall;
+        activeBall = GameManager.Instance.activeBall;
         transform.position = activeBall.transform.position;
 
         if (Input.GetMouseButtonDown(0) || activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)

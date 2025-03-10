@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class ScoreTrigger : MonoBehaviour
 {
-    private BasketScoreController basketScoreController;
-
+    private BasketMaterial basketMaterial;
     private void Awake()
     {
-        basketScoreController = transform.parent.GetComponentInChildren<BasketScoreController>();
+        basketMaterial = GetComponentInParent<BasketMaterial>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +15,7 @@ public class ScoreTrigger : MonoBehaviour
             if (collision.attachedRigidbody.linearVelocityY < 0)
             {
                 collision.attachedRigidbody.linearVelocity *= 0.25f;
-                TotalScoreController.Instance.totalScore += basketScoreController.basketScore;
+                basketMaterial.scoreColor = Color.green;
             }
         }
     }
