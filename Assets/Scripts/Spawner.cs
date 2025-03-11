@@ -7,14 +7,18 @@ public abstract class Spawner : MonoBehaviour
 
     protected void InstantiateLevelDataObjects<T>(List<T> list, Transform thisTransform) where T : Component
     {
+        HashSet<System.Type> existingTypes = new HashSet<System.Type>();
+
         foreach (LevelData.Level level in LevelManager.Instance.levelData.levels)
         {
             T prefab = typeof(T) == typeof(Ball) ? level.ball as T : level.basket as T;
-            if (prefab != null)
+
+            if (prefab != null && !existingTypes.Contains(prefab.GetType()))
             {
                 T spawnedPrefab = Instantiate(prefab, thisTransform);
                 spawnedPrefab.gameObject.SetActive(false);
                 list.Add(spawnedPrefab);
+                existingTypes.Add(prefab.GetType());
             }
         }
     }

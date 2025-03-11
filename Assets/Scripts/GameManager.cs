@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         activeRangeController = BallRange.Instance;
     }
 
-    private void OutOfBounds()
+    public void OutOfBounds()
     {
         attempts--;
         activeRangeController.UpdatePos();

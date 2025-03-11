@@ -37,7 +37,7 @@ public class BallRange : LevelObjectRange
     {
         if (Instance == null) Instance = this;
 
-        while (LevelManager.Instance.activeBall == null) { await Task.Yield(); }
+        while (LevelManager.Instance == null) { await Task.Yield(); }
 
         await SetUpThresholds();
         await SetUpInitTransform();
@@ -94,6 +94,7 @@ public class BallRange : LevelObjectRange
 
     public void UpdatePos()
     {
+        Debug.Log(GameManager.Instance.attempts);
         if (GameManager.Instance.attempts >= 0 && LevelManager.Instance.activeBasket.scoreTrigger.playerScored)
         {
             currentMinThresholdIndex--;
@@ -120,6 +121,7 @@ public class BallRange : LevelObjectRange
         }
         else if (GameManager.Instance.attempts == 0)
         {
+            Debug.Log("Reset Game");
             currentMinThresholdIndex = 2;
             currentMinThreshold = rangeThesholds[currentMinThresholdIndex];
             currentMaxThreshold = rangeThesholds[3];
@@ -127,6 +129,8 @@ public class BallRange : LevelObjectRange
             float newPosX = currentMinThreshold;
             Instance.transform.position = new Vector2(newPosX, posY);
             GameManager.Instance.attempts = 3;
+            LevelManager.Instance.levelCount = 0;
+            LevelManager.Instance.SetNextLevel();
 
         }
     }

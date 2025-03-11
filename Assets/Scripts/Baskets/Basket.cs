@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Basket : MonoBehaviour
@@ -12,7 +13,7 @@ public class Basket : MonoBehaviour
 
     private void Awake()
     {
-        colliders = GetComponentsInChildren<Collider2D>();
+        colliders = GetComponentsInChildren<Collider2D>().Where(col => !col.isTrigger).ToArray();
         spriteRendererBasket = GetComponent<SpriteRenderer>();
         scoreTrigger = GetComponentInChildren<ScoreTrigger>();
     }

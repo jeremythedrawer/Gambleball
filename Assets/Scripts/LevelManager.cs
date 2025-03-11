@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
     public Basket activeBasket { get; private set; }
 
 
+
+
     private void OnValidate()
     {
         SetUp();
@@ -35,8 +37,23 @@ public class LevelManager : MonoBehaviour
         if(activeBall != null) activeBall.gameObject.SetActive(false);
         if (activeBasket != null) activeBasket.gameObject.SetActive(false);
 
-        activeBall = BallSpawner.Instance.allBalls[levelCount - 1];
-        activeBasket = BasketSpawner.Instance.allBaskets[levelCount - 1];
+        foreach (Ball ball in BallSpawner.Instance.allBalls)
+        {
+            if (levelData.levels[levelCount - 1].ball.GetType() == ball.GetType())
+            {
+                activeBall = ball;
+                break;
+            }
+        }
+
+        foreach (Basket basket in BasketSpawner.Instance.allBaskets)
+        {
+            if (levelData.levels[levelCount - 1].basket.GetType() == basket.GetType())
+            {
+                activeBasket = basket;
+                break;
+            }
+        }
 
         activeBall.gameObject.SetActive(true);
         activeBasket.gameObject.SetActive(true);
