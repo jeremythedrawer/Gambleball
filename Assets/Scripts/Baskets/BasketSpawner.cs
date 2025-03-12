@@ -20,7 +20,14 @@ public class BasketSpawner : Spawner
     private async void SetNewBasketPos()
     {
         while (activeBasket == null) { await Task.Yield(); }
-        newPos = GetNewPos(basketRange.minSpawnPos.x, basketRange.maxSpawnPos.x, basketRange.minSpawnPos.y, basketRange.maxSpawnPos.y);
+        newPos = GetNewPos
+        (
+            basketRange.minSpawnPos.x, 
+            basketRange.maxSpawnPos.x, 
+            basketRange.minSpawnPos.y, 
+            basketRange.maxSpawnPos.y
+        );
+
         activeBasket.transform.position = newPos;
     }
 }

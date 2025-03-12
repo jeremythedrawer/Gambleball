@@ -179,4 +179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteBall: {fileID: -3571858184455322475, guid: 0e699f42c9344554a82763ee8b1e7046, type: 3}
-  weight: 0.5
+  weight: 0.6
+  bounciness: 0
+  spin: 15

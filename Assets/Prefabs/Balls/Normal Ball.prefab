@@ -168,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteBall: {fileID: -2364853858140463892, guid: 3a559fd9fed06bc4589cd990f86d7b68, type: 3}
   weight: 0.5
+  bounciness: 0.5
+  spin: 10
 --- !u!114 &1656042239338376425
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,8 @@ public class SpikyBall : Ball
     public bool isStuck {  get; private set; }
     private void Update()
     {
-        if (activeBasket.colliders.Any(col => circleColliderBall.IsTouching(col)) && rigidBodyBall.constraints != RigidbodyConstraints2D.FreezeAll)
+        if (activeBasket.colliders.Any(col => circleColliderBall.IsTouching(col)) && 
+            rigidBodyBall.constraints != RigidbodyConstraints2D.FreezeAll)
         {
             isStuck = true;
             rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;

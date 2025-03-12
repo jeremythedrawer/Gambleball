@@ -26,7 +26,14 @@ public class BallSpawner : Spawner
 
     public void ResetBallPos(Vector2 ballPos)
     {
-        newPos = GetNewPos(ballRange.currentMinThreshold, ballRange.currentMaxThreshold, ballRange.minResetPosY, ballRange.maxResetPosY);
+        newPos = GetNewPos
+        (   
+            ballRange.currentMinThreshold, 
+            ballRange.currentMaxThreshold, 
+            ballRange.minResetPosY, 
+            ballRange.maxResetPosY
+        );
+
         activeBall.transform.position = newPos;
         activeBall.transform.eulerAngles = Vector2.zero;
         activeBall.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;

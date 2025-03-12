@@ -18,7 +18,8 @@ public class ScoreTrigger : MonoBehaviour
         {
             Vector2 contactPoint = collision.ClosestPoint(triggerCollider.bounds.center);
 
-            enteredFromTop = contactPoint.y > triggerCollider.bounds.center.y && collision.attachedRigidbody.linearVelocityY < 0;
+            enteredFromTop = contactPoint.y > triggerCollider.bounds.center.y && 
+                             collision.attachedRigidbody.linearVelocityY < 0;
         }
     }
 
@@ -28,7 +29,8 @@ public class ScoreTrigger : MonoBehaviour
         {
             Vector2 contactPoint = collision.ClosestPoint(triggerCollider.bounds.center);
 
-            if (contactPoint.y < triggerCollider.bounds.center.y && collision.attachedRigidbody.linearVelocityY < 0)
+            if (contactPoint.y < triggerCollider.bounds.center.y && 
+                collision.attachedRigidbody.linearVelocityY < 0)
             {
                 collision.attachedRigidbody.linearVelocity *= 0.25f;
                 basketMaterial.scoreColor = Color.green;

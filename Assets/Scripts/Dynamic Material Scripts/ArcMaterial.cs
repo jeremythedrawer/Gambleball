@@ -15,13 +15,14 @@ public class ArcMaterial : MaterialManager
         activeBall = LevelManager.Instance.activeBall;
         transform.position = activeBall.transform.position;
 
-        if (Input.GetMouseButtonDown(0) || activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
+        if (Input.GetMouseButtonDown(0) || 
+        activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             topRight = GameManager.Instance.cam.ScreenToWorldPoint(Input.mousePosition);
         }
         else if (activeBall.rigidBodyBall.linearVelocity.y < 0)
         {
-            topRight = Vector2.zero;
+            topRight = activeBall.transform.position;
         }
         width = Mathf.Max(topRight.x - transform.position.x, 0);
         height = Mathf.Max(topRight.y - transform.position.y, 0);

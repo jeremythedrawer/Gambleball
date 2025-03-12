@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        outOfBounds = activeBall.transform.position.y < ScreenRangeData.bottomLeftWorldPos.y || activeBall.transform.position.x > ScreenRangeData.topRightWoldPos.x;
+        outOfBounds =   activeBall.transform.position.y < ScreenRangeData.bottomLeftWorldPos.y ||  
+                        activeBall.transform.position.x > ScreenRangeData.topRightWoldPos.x;
 
         if (outOfBounds)
         {

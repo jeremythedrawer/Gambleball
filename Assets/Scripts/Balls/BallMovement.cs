@@ -33,7 +33,6 @@ public class BallMovement : MonoBehaviour
             if (mouseWorldPos.x > transform.position.x && mouseWorldPos.y > transform.position.y)
             {
                 LaunchBall(mouseWorldPos);
-                ball.rigidBodyBall.constraints = RigidbodyConstraints2D.None;
             }
         }
         else if (ball.rigidBodyBall.IsSleeping())
@@ -44,6 +43,7 @@ public class BallMovement : MonoBehaviour
     }
     private void LaunchBall(Vector2 mouseInputPos)
     {
+        ball.rigidBodyBall.constraints = RigidbodyConstraints2D.None;
         float currentHeight = ball.rigidBodyBall.position.y;
 
         if (mouseInputPos.y <= currentHeight) return; // only recognises inputs above the ball
@@ -57,5 +57,6 @@ public class BallMovement : MonoBehaviour
         float initialHorizontalVelocity = horizontalDistance / timeToPeak;
 
         ball.rigidBodyBall.linearVelocity = new Vector2(initialHorizontalVelocity, initialVerticalVelocity);
+        ball.rigidBodyBall.angularVelocity = ball.spin * 100;
     }
 } 
