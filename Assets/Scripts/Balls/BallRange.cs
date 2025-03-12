@@ -6,6 +6,7 @@ public class BallRange : LevelObjectRange
     public static BallRange Instance { get; private set; }
 
     private Ball activeBall => LevelManager.Instance.activeBall;
+    
     private Camera cam => GameManager.Instance.cam;
 
 

@@ -19,3 +19,5 @@ MonoBehaviour:
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
   - ball: {fileID: -4366746437013694359, guid: 5fa1fa943c80e6649ae5b46ad4abeb46, type: 3}
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
+  - ball: {fileID: -4366746437013694359, guid: 5fa1fa943c80e6649ae5b46ad4abeb46, type: 3}
+    basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}

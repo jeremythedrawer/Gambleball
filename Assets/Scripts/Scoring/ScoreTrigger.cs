@@ -6,7 +6,7 @@ public class ScoreTrigger : MonoBehaviour
     private BoxCollider2D triggerCollider;
     public bool playerScored {  get; set; }
     private bool enteredFromTop;
-    private void Awake()
+    private void Start()
     {
         basketMaterial = GetComponentInParent<BasketMaterial>();
         triggerCollider = GetComponent<BoxCollider2D>();

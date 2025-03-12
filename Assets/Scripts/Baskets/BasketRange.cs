@@ -15,7 +15,7 @@ public class BasketRange : LevelObjectRange
         DrawBasketResetArea(resetPosWidth, resetPosHeight, new Color(0.0f, 0.5f, 1.0f));
     }
 
-    private void Awake()
+    private void Start()
     {
         if (Instance == null) Instance = this;
 

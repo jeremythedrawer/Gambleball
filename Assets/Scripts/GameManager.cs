@@ -20,10 +20,22 @@ public class GameManager : MonoBehaviour
 
     private void OnValidate()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         SetUp();
     }
 
     private void Awake()
+    {
+  
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+    private void Start()
     {
         SetUp();
     }
@@ -41,11 +53,6 @@ public class GameManager : MonoBehaviour
     }
     private void SetUp()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
         cam = Camera.main;
         ballSpawner = GetComponentInChildren<BallSpawner>();
         basketSpawner = GetComponentInChildren<BasketSpawner>();

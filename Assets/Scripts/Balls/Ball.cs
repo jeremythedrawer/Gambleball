@@ -8,9 +8,9 @@ public class Ball : MonoBehaviour
     public float weight;
     public float bounciness = 0.5f;
     public float spin = 5;
-    public Rigidbody2D rigidBodyBall {  get; private set; }
-    public CircleCollider2D circleColliderBall { get; private set; }
-    public SpriteRenderer spriteRendererBall { get; private set; }
+    public Rigidbody2D rigidBodyBall;
+    public CircleCollider2D circleColliderBall;
+    public SpriteRenderer spriteRendererBall;
 
     private void OnValidate()
     {
@@ -18,11 +18,15 @@ public class Ball : MonoBehaviour
         
     }
 
-    public virtual void Awake()
+    public virtual void Start()
     {
         SetUpBall();
     }
 
+    private void OnEnable()
+    {
+        rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
     private async void SetUpBall()
     {
         rigidBodyBall = GetComponent<Rigidbody2D>();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "LevelData", menuName = "Game/LevelData")]
 public class LevelData : ScriptableObject
@@ -18,3 +19,4 @@ public class LevelData : ScriptableObject
     }
     public List<Level> levels;
 }
+

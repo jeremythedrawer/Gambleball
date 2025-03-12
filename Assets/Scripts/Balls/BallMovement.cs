@@ -15,6 +15,10 @@ public class BallMovement : MonoBehaviour
         ball = GetComponent<Ball>();
     }
 
+    private void OnEnable()
+    {
+        ball.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
     private void Start()
     {
         gravity *= ball.weight;

@@ -12,11 +12,10 @@ public static class ScreenRangeData
     public static Vector2 topRightWoldPos { get; private set; }
 
 
-    public static async void SetUpScreenBounds()
+    public static void SetUpScreenBounds()
     {
         cam = GameManager.Instance.cam;
 
-        while (cam == null) { await Task.Yield(); }
         camHeight = cam.orthographicSize * 2;
         camWidth = camHeight * cam.aspect;
         bottomLeftWorldPos = (Vector2)cam.transform.position - new Vector2(camWidth / 2, camHeight / 2);

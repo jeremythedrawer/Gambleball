@@ -9,30 +9,35 @@ public class LevelManager : MonoBehaviour
     public int levelCount {  get; set; }
     public Ball activeBall { get; private set; }
     public Basket activeBasket { get; private set; }
-
-
-
-
     private void OnValidate()
     {
         SetUp();
     }
+
     private void Awake()
     {
         SetUp();
+        
+    }
+    private void Start()
+    {
+        SetNextLevel();   
     }
     private void SetUp()
     {
         if (Instance == null) Instance = this;
     }
-
-    private void Start()
-    {
-        SetNextLevel();   
-    }
     public void SetNextLevel()
     {
-        levelCount++;
+        if (levelCount == levelData.levels.Count)
+        {
+            levelCount = 1;
+        }
+        else
+        {
+            levelCount++;
+
+        }
 
         if(activeBall != null) activeBall.gameObject.SetActive(false);
         if (activeBasket != null) activeBasket.gameObject.SetActive(false);
@@ -56,6 +61,7 @@ public class LevelManager : MonoBehaviour
         }
 
         activeBall.gameObject.SetActive(true);
+       // activeBall.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
         activeBasket.gameObject.SetActive(true);
     }
 }

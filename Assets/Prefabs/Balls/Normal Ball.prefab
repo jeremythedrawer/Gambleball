@@ -170,6 +170,9 @@ MonoBehaviour:
   weight: 0.5
   bounciness: 0.5
   spin: 10
+  rigidBodyBall: {fileID: 3873897948939823312}
+  circleColliderBall: {fileID: 807036746448952510}
+  spriteRendererBall: {fileID: 3015306518159986885}
 --- !u!114 &1656042239338376425
 MonoBehaviour:
   m_ObjectHideFlags: 0

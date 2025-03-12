@@ -5,7 +5,7 @@ public class AttemptsTracker : MonoBehaviour
 {
     private TextMeshPro attemptsText;
 
-    private void Awake()
+    private void Start()
     {
         attemptsText = GetComponent<TextMeshPro>();
     }

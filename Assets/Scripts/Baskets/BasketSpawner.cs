@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -13,13 +14,23 @@ public class BasketSpawner : Spawner
     {
         if (Instance == null) Instance = this;
 
-        InstantiateLevelDataObjects<Basket>(allBaskets, this.transform);
-        SetNewBasketPos();
     }
 
-    private async void SetNewBasketPos()
+    private void Start()
     {
-        while (activeBasket == null) { await Task.Yield(); }
+        InstantiateLevelDataObjects<Basket>(allBaskets, this.transform);
+        SetNewBasketPos();
+        
+    }
+    private void SetNewBasketPos()
+    {
+        StartCoroutine(SettingBasketPos());
+    }
+
+    private IEnumerator SettingBasketPos()
+    {
+        yield return new WaitUntil(()=> activeBasket != null);
+        yield return new WaitUntil(() => basketRange.minSpawnPos.x != 0);
         newPos = GetNewPos
         (
             basketRange.minSpawnPos.x, 
@@ -29,5 +40,6 @@ public class BasketSpawner : Spawner
         );
 
         activeBasket.transform.position = newPos;
+
     }
 }
