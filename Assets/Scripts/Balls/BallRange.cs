@@ -10,13 +10,13 @@ public class BallRange : LevelObjectRange
     private Camera cam => GameManager.Instance.cam;
 
 
-    private float[] rangeThesholds = new float[4];
-    public float currentMinThreshold { get; private set; }
-    public float currentMaxThreshold { get; private set; }
+    public float[] rangeThesholds { get; set; } = new float[4];
+    public float currentMinThreshold { get; set; }
+    public float currentMaxThreshold { get; set; }
 
-    public int currentMinThresholdIndex { get; private set; } = 2;
+    public int currentMinThresholdIndex { get; set; } = 2;
 
-    private float posY;
+    public float posY { get; set; }
     private float activeBallDiameter;
 
     private void OnDrawGizmos()
@@ -122,18 +122,23 @@ public class BallRange : LevelObjectRange
         }
         else if (GameManager.Instance.attempts == 0)
         {
-            Debug.Log("Reset Game");
-            currentMinThresholdIndex = 2;
-            currentMinThreshold = rangeThesholds[currentMinThresholdIndex];
-            currentMaxThreshold = rangeThesholds[3];
+            ResetBallRange();
 
-            float newPosX = currentMinThreshold;
-            Instance.transform.position = new Vector2(newPosX, posY);
             GameManager.Instance.attempts = 3;
-            LevelManager.Instance.levelCount = 0;
+            LevelManager.Instance.currentLevelIndex = 0;
             LevelManager.Instance.SetNextLevel();
 
         }
+    }
+    public void ResetBallRange()
+    {
+
+        currentMinThresholdIndex = 2;
+        currentMinThreshold = rangeThesholds[currentMinThresholdIndex];
+        currentMaxThreshold = rangeThesholds[3];
+
+        float newPosX = currentMinThreshold;
+        transform.position = new Vector2(newPosX, posY);
     }
 
     private void DrawBallResetArea(float resetPosWidth, float resetPosHeight, Color color)

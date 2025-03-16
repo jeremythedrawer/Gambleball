@@ -19,7 +19,7 @@ public class LevelUI : MonoBehaviour
 
     private void Update()
     {
-        int levelNumber = LevelManager.Instance.levelCount;
+        int levelNumber = LevelManager.Instance.currentLevelIndex;
         levelUIText.text = "Level: " + levelNumber.ToString();
     }
 }
