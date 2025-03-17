@@ -80,10 +80,18 @@ public class GameManager : MonoBehaviour
         ballRange.ResetBallRange();
         ballSpawner.ResetBallPos(activeBall.transform.position);
 
-        activeBasket.backboardRB.gameObject.transform.localPosition = activeBasket.backboardStartPos;
-        activeBasket.backboardRB.gameObject.transform.eulerAngles = Vector2.zero;
-        // Reapply constraints
-        activeBasket.backboardRB.constraints = RigidbodyConstraints2D.FreezeAll;
+        ResetBackboard();
+
         attempts = 3;
+    }
+
+    public void ResetBackboard()
+    {
+        if (activeBasket.backboardRB.gameObject.transform.localPosition.y != activeBasket.backboardStartPos.y)
+        {
+            activeBasket.backboardRB.gameObject.transform.localPosition = activeBasket.backboardStartPos;
+            activeBasket.backboardRB.gameObject.transform.eulerAngles = Vector2.zero;
+            activeBasket.backboardRB.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 }

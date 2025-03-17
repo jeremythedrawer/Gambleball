@@ -33,7 +33,7 @@ public class ScoreTrigger : MonoBehaviour
             collision.attachedRigidbody.linearVelocityY < 0)
             {
                 collision.attachedRigidbody.linearVelocity *= 0.25f;
-                basketMaterial.scoreColor = Color.green;
+                BasketMaterial.scoreColor = Color.green;
                 playerScored = true;
             }
 

@@ -22,7 +22,7 @@ public class BasketSpawner : Spawner
         SetNewBasketPos();
         
     }
-    private void SetNewBasketPos()
+    public void SetNewBasketPos()
     {
         StartCoroutine(SettingBasketPos());
     }

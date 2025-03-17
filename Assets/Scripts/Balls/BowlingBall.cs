@@ -15,9 +15,12 @@ public class BowlingBall : Ball
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, detectionRadius, backboardLayer);
 
-        if (hit != null && hit.attachedRigidbody == backboard && rigidBodyBall.linearVelocityX > smashBackboardThreshold)
+        if (hit != null && hit.attachedRigidbody == backboard)
         {
-            backboard.constraints = RigidbodyConstraints2D.None;
+            if (rigidBodyBall.linearVelocityX > smashBackboardThreshold)
+            {
+                backboard.constraints = RigidbodyConstraints2D.None;
+            }
         }
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class BasketMaterial : MaterialManager
 {
-    public Color scoreColor {  get; set; } = Color.white;
+    public static Color scoreColor {  get; set; } = Color.white;
     private float lerpTime = 0.5f;
 
     private MaterialPropertyBlock mpb;

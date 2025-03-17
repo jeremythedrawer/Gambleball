@@ -51,6 +51,7 @@ public class LevelManager : MonoBehaviour
         }
 
         SetActiveLevelObjects();
+        GameManager.Instance.ResetBackboard();
     }
 
     public void SetKeycodeLevel(int numberInput)
@@ -88,5 +89,7 @@ public class LevelManager : MonoBehaviour
 
         activeBall.gameObject.SetActive(true);
         activeBasket.gameObject.SetActive(true);
+
+        BasketSpawner.Instance.SetNewBasketPos();
     }
 }
