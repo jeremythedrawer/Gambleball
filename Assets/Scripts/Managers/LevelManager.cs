@@ -89,17 +89,4 @@ public class LevelManager : MonoBehaviour
         activeBall.gameObject.SetActive(true);
         activeBasket.gameObject.SetActive(true);
     }
-
-    private void ResetBallRange()
-    {
-        BallRange ballRange = BallRange.Instance;
-        ballRange.currentMinThresholdIndex = 2;
-        ballRange.currentMinThreshold = ballRange.rangeThesholds[ballRange.currentMinThresholdIndex];
-        ballRange.currentMaxThreshold = ballRange.rangeThesholds[3];
-
-        float newPosX = ballRange.currentMinThreshold;
-        ballRange.transform.position = new Vector2(newPosX, ballRange.posY);
-        activeBasket.scoreTrigger.playerScored = false;
-        GameManager.Instance.attempts = 3;
-    }
 }

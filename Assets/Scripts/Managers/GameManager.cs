@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public Basket activeBasket => LevelManager.Instance.activeBasket;
 
     public Camera cam {  get; private set; }
-    public BallRange activeRangeController { get; private set; }
+    public BallRange ballRange { get; private set; }
     public BallSpawner ballSpawner {  get; private set; }
     public BasketSpawner basketSpawner { get; private set; }
 
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
         {
             OutOfBounds();
         }
+        if (attempts == 0)
+        {
+            ResetGame();
+        }
+
     }
     private void SetUp()
     {
@@ -56,13 +61,26 @@ public class GameManager : MonoBehaviour
         ballSpawner = GetComponentInChildren<BallSpawner>();
         basketSpawner = GetComponentInChildren<BasketSpawner>();
         ScreenRangeData.SetUpScreenBounds();
-        activeRangeController = BallRange.Instance;
+        ballRange = BallRange.Instance;
     }
 
     public void OutOfBounds()
     {
+        Debug.Log("out of bounds");
         attempts--;
-        activeRangeController.UpdatePos();
+        ballRange.UpdatePos();
         ballSpawner.ResetBallPos(activeBall.transform.position);
+    }
+
+    public void ResetGame()
+    {
+        Debug.Log("reset game");
+        PointsUI.Instance.pointsCount = 0;
+        LevelManager.Instance.currentLevelIndex = 0;
+        LevelManager.Instance.SetNextLevel();
+
+        ballRange.ResetBallRange();
+        ballSpawner.ResetBallPos(activeBall.transform.position);
+        attempts = 3;
     }
 }
