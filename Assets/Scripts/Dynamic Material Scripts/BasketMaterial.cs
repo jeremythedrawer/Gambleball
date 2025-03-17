@@ -4,20 +4,39 @@ public class BasketMaterial : MaterialManager
 {
     public Color scoreColor {  get; set; } = Color.white;
     private float lerpTime = 0.5f;
+
+    private MaterialPropertyBlock mpb;
+    private static readonly int scoreColorID = Shader.PropertyToID("_ScoreColor");
     public override void Start()
     {
         base.Start();
+        mpb = new MaterialPropertyBlock();
     }
 
+    private void OnEnable()
+    {
+        scoreColor = Color.white;
+        UpdateMaterial();
+    }
     private void Update()
     {
-        material.SetColor("_ScoreColor", scoreColor);
+        UpdateMaterial();
+
         if (scoreColor == Color.green)
         {
             StartCoroutine(ChangingColorToWhite());
         }
     }
 
+    private void UpdateMaterial()
+    {
+        if (material != null)
+        {
+            objectRenderer.GetPropertyBlock(mpb);
+            mpb.SetColor(scoreColorID, scoreColor);
+            objectRenderer.SetPropertyBlock(mpb);
+        }
+    }
     private IEnumerator ChangingColorToWhite()
     {
         float elapsedTime = 0;

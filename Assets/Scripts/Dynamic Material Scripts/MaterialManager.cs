@@ -3,11 +3,11 @@ using UnityEngine;
 public abstract class MaterialManager : MonoBehaviour
 {
     protected Material material;
-
+    protected Renderer objectRenderer;
     public virtual void Start()
     {
-        Renderer renderer = GetComponent<Renderer>();
+        objectRenderer = GetComponent<Renderer>();
 
-        material = renderer.material;    
+        material = objectRenderer.material;    
     }
 }

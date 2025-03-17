@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
 
     public void OutOfBounds()
     {
-        Debug.Log("out of bounds");
         attempts--;
         ballRange.UpdatePos();
         ballSpawner.ResetBallPos(activeBall.transform.position);
@@ -74,13 +73,17 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        Debug.Log("reset game");
         PointsUI.Instance.pointsCount = 0;
         LevelManager.Instance.currentLevelIndex = 0;
         LevelManager.Instance.SetNextLevel();
 
         ballRange.ResetBallRange();
         ballSpawner.ResetBallPos(activeBall.transform.position);
+
+        activeBasket.backboardRB.gameObject.transform.localPosition = activeBasket.backboardStartPos;
+        activeBasket.backboardRB.gameObject.transform.eulerAngles = Vector2.zero;
+        // Reapply constraints
+        activeBasket.backboardRB.constraints = RigidbodyConstraints2D.FreezeAll;
         attempts = 3;
     }
 }
