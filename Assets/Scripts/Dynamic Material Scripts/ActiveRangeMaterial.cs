@@ -2,31 +2,43 @@ using UnityEngine;
 
 public class ActiveRangeMaterial : MaterialManager
 {
-    private Vector3 color;
-
+    public static Color color { get; set; }
+    public static readonly int colorId = Shader.PropertyToID("_Color");
     public override void Start()
     {
         base.Start();
-        color = new Vector3(0, 1, 0);
+        color = Color.green;
     }
 
     private void Update()
     {
+        UpdateMaterial();
+
         int attempts = GameManager.Instance.attempts;
 
         if (attempts == 3)
         {
-            color = new Vector3(0,1,0);
+            color = Color.green;
         }
         else if (attempts == 2)
         {
-            color = new Vector3(1,1,0);
+            color = Color.yellow;
         }
         else
         {
-            color = new Vector3(1,0,0);
+            color = Color.red;
         }
 
         material.SetVector("_Color", color);
+    }
+
+    public override void UpdateMaterial()
+    {
+        if (material != null)
+        {
+            objectRenderer.GetPropertyBlock(mpb);
+            mpb.SetColor(colorId, color);
+            objectRenderer.SetPropertyBlock(mpb);
+        }
     }
 }

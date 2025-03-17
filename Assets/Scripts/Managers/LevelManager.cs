@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     public LevelData levelData;
     public static LevelManager Instance { get; private set; }
 
-    public int currentLevelIndex {  get; set; }
+    public int currentLevelIndex { get; set; } = 0;
     public Ball activeBall { get; private set; }
     public Basket activeBasket { get; private set; }
     private void OnValidate()
@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
-        SetNextLevel();   
+        SetActiveLevelObjects();
     }
 
     private void Update()
@@ -40,14 +40,16 @@ public class LevelManager : MonoBehaviour
     }
     public void SetNextLevel()
     {
-        if (currentLevelIndex == levelData.levels.Count) // to loop to start
+
+        if (currentLevelIndex == levelData.levels.Count - 1) // to loop to start
         {
             currentLevelIndex = 1;
         }
         else
         {
             currentLevelIndex++;
-
+            PointsUI.Instance.gameObject.SetActive(true);
+            ArcMaterial.tutorialMode = false;
         }
 
         SetActiveLevelObjects();
@@ -62,6 +64,8 @@ public class LevelManager : MonoBehaviour
         BallRange.Instance.ResetBallRange();
         BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
         GameManager.Instance.attempts = 3;
+        PointsUI.Instance.pointsCount = 0;
+        ArcMaterial.tutorialMode = false;
     }
 
     private void SetActiveLevelObjects()
@@ -71,7 +75,7 @@ public class LevelManager : MonoBehaviour
 
         foreach (Ball ball in BallSpawner.Instance.allBalls)
         {
-            if (levelData.levels[currentLevelIndex - 1].ball.GetType() == ball.GetType())
+            if (levelData.levels[currentLevelIndex].ball.GetType() == ball.GetType())
             {
                 activeBall = ball;
                 break;
@@ -80,7 +84,7 @@ public class LevelManager : MonoBehaviour
 
         foreach (Basket basket in BasketSpawner.Instance.allBaskets)
         {
-            if (levelData.levels[currentLevelIndex - 1].basket.GetType() == basket.GetType())
+            if (levelData.levels[currentLevelIndex].basket.GetType() == basket.GetType())
             {
                 activeBasket = basket;
                 break;

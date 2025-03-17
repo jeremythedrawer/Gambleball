@@ -29,7 +29,11 @@ public class ScoreTrigger : MonoBehaviour
         {
             Vector2 contactPoint = collision.ClosestPoint(triggerCollider.bounds.center);
 
-            if (contactPoint.y < triggerCollider.bounds.center.y && 
+            bool exitedBottom = contactPoint.y < triggerCollider.bounds.min.y;
+            bool exitedLeft = contactPoint.x < triggerCollider.bounds.min.x;
+            bool exitedRight = contactPoint.x > triggerCollider.bounds.max.x;
+
+            if ((exitedBottom || exitedRight || exitedRight) && 
             collision.attachedRigidbody.linearVelocityY < 0)
             {
                 collision.attachedRigidbody.linearVelocity *= 0.25f;

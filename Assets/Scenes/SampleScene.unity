@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetPosWidth: 0.98
-  resetPosHeight: 0.76
+  resetPosHeight: 0.655
 --- !u!4 &659805182
 Transform:
   m_ObjectHideFlags: 0

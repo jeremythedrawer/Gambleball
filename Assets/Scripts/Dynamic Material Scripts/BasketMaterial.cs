@@ -2,15 +2,13 @@ using UnityEngine;
 using System.Collections;
 public class BasketMaterial : MaterialManager
 {
-    public static Color scoreColor {  get; set; } = Color.white;
     private float lerpTime = 0.5f;
 
-    private MaterialPropertyBlock mpb;
+    public static Color scoreColor {  get; set; } = Color.white;
     private static readonly int scoreColorID = Shader.PropertyToID("_ScoreColor");
     public override void Start()
     {
         base.Start();
-        mpb = new MaterialPropertyBlock();
     }
 
     private void OnEnable()
@@ -28,7 +26,7 @@ public class BasketMaterial : MaterialManager
         }
     }
 
-    private void UpdateMaterial()
+    public override void UpdateMaterial()
     {
         if (material != null)
         {

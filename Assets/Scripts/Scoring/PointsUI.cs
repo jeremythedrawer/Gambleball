@@ -15,10 +15,13 @@ public class PointsUI : MonoBehaviour
         {
             Instance = this;
         }
-
         pointsUIText = GetComponent<TextMeshPro>();
     }
 
+    private void Start()
+    {
+        gameObject.SetActive(false);      
+    }
     private void Update()
     {
         if (LevelManager.Instance.activeBasket.scoreTrigger.playerScored)
@@ -34,6 +37,6 @@ public class PointsUI : MonoBehaviour
             hasScoredFlag = false;
         }
 
-        pointsUIText.text = "Total Points " + pointsCount.ToString();
+        pointsUIText.text = "Total Points: " + pointsCount.ToString();
     }
 }
