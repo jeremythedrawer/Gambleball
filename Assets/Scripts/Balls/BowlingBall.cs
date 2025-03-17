@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class BowlingBall : Ball
 {
+    public float backboardDetectionRaduis = 0.1f;
     private Rigidbody2D backboard => LevelManager.Instance.activeBasket.backboardRB;
-    public float detectionRadius = 0.1f;
     public float smashBackboardThreshold = 6f;
     public LayerMask backboardLayer;
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         DetectBackboardHit();
     }
 
     private void DetectBackboardHit()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, detectionRadius, backboardLayer);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, backboardDetectionRaduis, backboardLayer);
 
         if (hit != null && hit.attachedRigidbody == backboard)
         {
@@ -24,9 +25,10 @@ public class BowlingBall : Ball
         }
     }
 
-    private void OnDrawGizmos()
+    public override void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        base.OnDrawGizmos();
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, backboardDetectionRaduis);
     }
 }

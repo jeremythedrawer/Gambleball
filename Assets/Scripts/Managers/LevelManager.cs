@@ -61,6 +61,7 @@ public class LevelManager : MonoBehaviour
         currentLevelIndex = numberInput + 1;
 
         SetActiveLevelObjects();
+        GameManager.Instance.ResetBackboard();
         BallRange.Instance.ResetBallRange();
         BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
         GameManager.Instance.attempts = 3;

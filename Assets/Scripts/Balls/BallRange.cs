@@ -95,7 +95,7 @@ public class BallRange : LevelObjectRange
 
     public void UpdatePos()
     {
-        if (GameManager.Instance.attempts >= 0 && LevelManager.Instance.activeBasket.scoreTrigger.playerScored)
+        if (GameManager.Instance.attempts >= 0 && activeBall.playerScored)
         {
             currentMinThresholdIndex--;
             currentMaxThreshold = Mathf.Max(currentMaxThreshold, 0);
@@ -116,7 +116,7 @@ public class BallRange : LevelObjectRange
 
             float newPosX = currentMinThreshold;
             Instance.transform.position = new Vector2(newPosX, posY);
-            LevelManager.Instance.activeBasket.scoreTrigger.playerScored = false;
+            activeBall.playerScored = false;
             GameManager.Instance.attempts = 3;
         }
     }

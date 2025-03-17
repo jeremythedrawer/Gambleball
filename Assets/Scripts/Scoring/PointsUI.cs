@@ -9,6 +9,7 @@ public class PointsUI : MonoBehaviour
     public int pointsCount {  get; set; }
     private bool hasScoredFlag;
 
+    private Ball activeBall => LevelManager.Instance.activeBall;
     private void Awake()
     {
         if (Instance == null)
@@ -24,7 +25,7 @@ public class PointsUI : MonoBehaviour
     }
     private void Update()
     {
-        if (LevelManager.Instance.activeBasket.scoreTrigger.playerScored)
+        if (activeBall.playerScored)
         {
             if (!hasScoredFlag)
             {

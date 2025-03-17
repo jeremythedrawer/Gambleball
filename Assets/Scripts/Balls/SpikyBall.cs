@@ -7,7 +7,13 @@ public class SpikyBall : Ball
     private Basket activeBasket => LevelManager.Instance.activeBasket;
 
     public bool isStuck {  get; private set; }
-    private void Update()
+    public override void Update()
+    {
+        base.Update();
+        DetectBasketCollision();
+    }
+
+    private void DetectBasketCollision()
     {
         if (activeBasket.colliders.Any(col => circleColliderBall.IsTouching(col)) && 
             rigidBodyBall.constraints != RigidbodyConstraints2D.FreezeAll)
@@ -17,7 +23,6 @@ public class SpikyBall : Ball
             StartCoroutine(ResettingPos());
         }
     }
-
     private IEnumerator ResettingPos()
     {
         yield return new WaitForSeconds(1);

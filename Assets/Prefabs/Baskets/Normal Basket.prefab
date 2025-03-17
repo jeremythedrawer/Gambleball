@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8160471012682151766}
   - component: {fileID: 2197707486637373390}
   - component: {fileID: 1813017137978851455}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Score Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 1368073612227416976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1629, y: -0.0744, z: 0}
+  m_LocalPosition: {x: -0.1629, y: -0.125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,7 +167,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.22, y: 0.13}
+  m_Size: {x: 0.22, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &2334373007331414560
 GameObject:

@@ -182,10 +182,11 @@ MonoBehaviour:
   weight: 1.15
   bounciness: 0.1
   spin: 1
+  scoreDetectionRaduis: 0.06
   rigidBodyBall: {fileID: 3873897948939823312}
   circleColliderBall: {fileID: 807036746448952510}
   spriteRendererBall: {fileID: 3015306518159986885}
-  detectionRadius: 0.13
+  backboardDetectionRaduis: 0.12
   smashBackboardThreshold: 4
   backboardLayer:
     serializedVersion: 2
