@@ -41,7 +41,7 @@ public class ArcMaterial : MaterialManager
         {
             topRight = activeBall.transform.position;
         }
-        width = Mathf.Max(topRight.x - transform.position.x, 0);
+        width = topRight.x - transform.position.x;
         height = Mathf.Max(topRight.y - transform.position.y, 0);
 
         transform.localScale = new Vector2( width, height );

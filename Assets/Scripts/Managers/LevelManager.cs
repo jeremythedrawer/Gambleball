@@ -6,7 +6,6 @@ public class LevelManager : MonoBehaviour
     [Header("References")]
     public LevelData levelData;
     public static LevelManager Instance { get; private set; }
-
     public int currentLevelIndex { get; set; } = 0;
     public Ball activeBall { get; private set; }
     public Basket activeBasket { get; private set; }
@@ -27,12 +26,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        int activeInput = Array.FindIndex(InputManager.Instance.numberInputs, input => input);
-
-        if (activeInput >= 0)
-        {
-            SetKeycodeLevel(activeInput);
-        }
+        SetKeycodeLevel();
     }
     private void SetUp()
     {
@@ -56,17 +50,25 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.ResetBackboard();
     }
 
-    public void SetKeycodeLevel(int numberInput)
+    public void SetKeycodeLevel()
     {
-        currentLevelIndex = numberInput + 1;
+        int activeInput = Array.FindIndex(InputManager.Instance.numberInputs, input => input);
 
-        SetActiveLevelObjects();
-        GameManager.Instance.ResetBackboard();
-        BallRange.Instance.ResetBallRange();
-        BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
-        GameManager.Instance.attempts = 3;
-        PointsUI.Instance.pointsCount = 0;
-        ArcMaterial.tutorialMode = false;
+        if (activeInput >= 0)
+        {
+            currentLevelIndex = activeInput + 1;
+
+            SetActiveLevelObjects();
+            GameManager.Instance.ResetBackboard();
+            BallRange.Instance.ResetBallRange();
+            BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
+            GameManager.Instance.attempts = 3;
+            PointsUI.Instance.pointsCount = 0;
+            ArcMaterial.tutorialMode = false;
+
+            BirdSpawner.Instance.spawnedBird.gameObject.SetActive(false);
+            BirdSpawner.Instance.spawnedBird.gameObject.SetActive(true);
+        }
     }
 
     private void SetActiveLevelObjects()
@@ -96,5 +98,7 @@ public class LevelManager : MonoBehaviour
         activeBasket.gameObject.SetActive(true);
 
         BasketSpawner.Instance.SetNewBasketPos();
+
+        BirdSpawner.Instance.SpawnBird(currentLevelIndex, levelData);
     }
 }
