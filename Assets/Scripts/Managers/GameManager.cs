@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
         {
             OutOfBounds();
         }
-        if (attempts == 0)
+
+        if (attempts == 0 || InputManager.Instance.resetInput)
         {
             ResetGame();
         }
@@ -67,7 +68,11 @@ public class GameManager : MonoBehaviour
     public void OutOfBounds()
     {
         attempts--;
+
         ballRange.UpdatePos();
+        activeBall.playerScored = false;
+        activeBall.playerHitBird = false;
+
         ballSpawner.ResetBallPos(activeBall.transform.position);
     }
 
@@ -80,9 +85,16 @@ public class GameManager : MonoBehaviour
         ballRange.ResetBallRange();
         ballSpawner.ResetBallPos(activeBall.transform.position);
 
-        ResetBackboard();
-
         attempts = 3;
+
+        PointsUI.Instance.gameObject.SetActive(true);
+
+        PointsUI.Instance.pointsCount = 0;
+        ArcMaterial.tutorialMode = false;
+
+        BirdSpawner.Instance.spawnedBird.ResetBird();
+        activeBall.playerHitBird = false;
+        BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
     }
 
     public void ResetBackboard()

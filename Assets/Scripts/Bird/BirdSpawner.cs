@@ -26,12 +26,18 @@ public class BirdSpawner : Spawner
         spawnedBird.gameObject.SetActive(false);
     }
 
-    public void SpawnBird(int currentLevelIndex, LevelData levelData)
+    public void CheckToSpawnBird(int currentLevelIndex, LevelData levelData)
     {
         if (levelData.levels[currentLevelIndex].spawnBird)
         {
+            spawnedBird.gameObject.SetActive(false);
             spawnedBird.transform.position = SetBirdPos();
             spawnedBird.gameObject.SetActive(true);
+        }
+        else if (spawnedBird.isActiveAndEnabled)
+        {
+            spawnedBird.gameObject.SetActive(false);
+
         }
     }
 

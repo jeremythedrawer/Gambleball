@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour
 
     public bool[] numberInputs = new bool[9];
 
+    public bool resetInput => Input.GetKeyDown(KeyCode.R);
+
     private void Awake()
     {
         if (Instance == null)
@@ -20,7 +22,6 @@ public class InputManager : MonoBehaviour
         for (int i = 0; i < numberInputs.Length; i++)
         {
             numberInputs[i] = Input.GetKeyDown(KeyCode.Alpha1 + i);
-        }
-        
+        }     
     }
 }

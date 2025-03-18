@@ -34,7 +34,6 @@ public class LevelManager : MonoBehaviour
     }
     public void SetNextLevel()
     {
-
         if (currentLevelIndex == levelData.levels.Count - 1) // to loop to start
         {
             currentLevelIndex = 1;
@@ -45,7 +44,6 @@ public class LevelManager : MonoBehaviour
             PointsUI.Instance.gameObject.SetActive(true);
             ArcMaterial.tutorialMode = false;
         }
-
         SetActiveLevelObjects();
         GameManager.Instance.ResetBackboard();
     }
@@ -57,17 +55,17 @@ public class LevelManager : MonoBehaviour
         if (activeInput >= 0)
         {
             currentLevelIndex = activeInput + 1;
+            PointsUI.Instance.gameObject.SetActive(false);
 
+            PointsUI.Instance.pointsCount = 0;
             SetActiveLevelObjects();
             GameManager.Instance.ResetBackboard();
             BallRange.Instance.ResetBallRange();
             BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
             GameManager.Instance.attempts = 3;
-            PointsUI.Instance.pointsCount = 0;
             ArcMaterial.tutorialMode = false;
 
-            BirdSpawner.Instance.spawnedBird.gameObject.SetActive(false);
-            BirdSpawner.Instance.spawnedBird.gameObject.SetActive(true);
+            activeBall.playerHitBird = false;
         }
     }
 
@@ -99,6 +97,6 @@ public class LevelManager : MonoBehaviour
 
         BasketSpawner.Instance.SetNewBasketPos();
 
-        BirdSpawner.Instance.SpawnBird(currentLevelIndex, levelData);
+        BirdSpawner.Instance.CheckToSpawnBird(currentLevelIndex, levelData);
     }
 }

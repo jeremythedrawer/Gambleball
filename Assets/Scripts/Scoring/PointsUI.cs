@@ -7,7 +7,7 @@ public class PointsUI : MonoBehaviour
 
     private TextMeshPro pointsUIText;
     public int pointsCount {  get; set; }
-    private bool hasScoredFlag;
+    public bool hasScoredFlag { get; set; }
 
     private Ball activeBall => LevelManager.Instance.activeBall;
     private void Awake()
@@ -25,19 +25,30 @@ public class PointsUI : MonoBehaviour
     }
     private void Update()
     {
-        if (activeBall.playerScored)
+        TallyPoints();
+        pointsUIText.text = "Total Points: " + pointsCount.ToString();
+    }
+
+    private void TallyPoints()
+    {
+        if (!hasScoredFlag && (activeBall.playerScored || activeBall.playerHitBird))
         {
-            if (!hasScoredFlag)
+            if (activeBall.playerScored)
             {
-                pointsCount++;
+                if (!activeBall.playerHitBird)
+                {
+                    pointsCount++;
+                }
+                else
+                {
+                    pointsCount += 5;
+                }
                 hasScoredFlag = true;
             }
         }
-        else
+        else if (hasScoredFlag && !activeBall.playerScored)
         {
             hasScoredFlag = false;
         }
-
-        pointsUIText.text = "Total Points: " + pointsCount.ToString();
     }
 }

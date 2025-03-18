@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
     public float weight;
     public float bounciness = 0.5f;
     public float spin = 5;
-    public float scoreDetectionRaduis = 0.1f;
+    public float scoreDetectionRadius = 0.1f;
 
     public Rigidbody2D rigidBodyBall;
     public CircleCollider2D circleColliderBall;
@@ -17,8 +17,10 @@ public class Ball : MonoBehaviour
 
     private Collider2D activeBasketScoreTrigger => LevelManager.Instance.activeBasket.scoreTrigger.triggerCollider;
     private LayerMask scoreTriggerLayer;
+    private LayerMask birdLayer;
     private bool enteredFromTop;
     public bool playerScored {  get; set; }
+    public bool playerHitBird { get; set; }
     private void OnValidate()
     {
         spriteRendererBall = GetComponent<SpriteRenderer>();
@@ -29,16 +31,20 @@ public class Ball : MonoBehaviour
     {
         SetUpBall();
         scoreTriggerLayer = 1 << LayerMask.NameToLayer("Score Trigger");
+        birdLayer = 1 << LayerMask.NameToLayer("Bird");
     }
 
     private void OnEnable()
     {
         rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
+        playerScored = false;
+        playerHitBird = false;
     }
 
     public virtual void Update()
     {
         DetectIfScored();
+        DetectBirdHit();
     }
     private async void SetUpBall()
     {
@@ -72,15 +78,15 @@ public class Ball : MonoBehaviour
 
     private void DetectIfScored()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRaduis, scoreTriggerLayer);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRadius, scoreTriggerLayer);
 
         if (hit != null)
         {
-            Vector2 triggerCenter = hit.bounds.center;
+            Vector2 scoreTriggerMaxBounds = hit.bounds.max;
 
             if (!enteredFromTop)
             {
-                enteredFromTop = transform.position.y > triggerCenter.y;
+                enteredFromTop = transform.position.y > scoreTriggerMaxBounds.y;
             }
         }
         else if (enteredFromTop)
@@ -101,9 +107,16 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void DetectBirdHit()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRadius, birdLayer);
+
+        if (hit != null) playerHitBird = true;
+    }
+
     public virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, scoreDetectionRaduis);
+        Gizmos.DrawWireSphere(transform.position, scoreDetectionRadius);
     }
 }

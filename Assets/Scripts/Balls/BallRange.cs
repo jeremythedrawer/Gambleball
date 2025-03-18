@@ -116,7 +116,6 @@ public class BallRange : LevelObjectRange
 
             float newPosX = currentMinThreshold;
             Instance.transform.position = new Vector2(newPosX, posY);
-            activeBall.playerScored = false;
             GameManager.Instance.attempts = 3;
         }
     }
