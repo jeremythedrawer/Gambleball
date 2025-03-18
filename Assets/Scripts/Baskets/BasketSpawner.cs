@@ -40,6 +40,7 @@ public class BasketSpawner : Spawner
         );
 
         activeBasket.transform.position = newPos;
+        activeBasket.scoreTrigger.SetUp();
 
     }
 }

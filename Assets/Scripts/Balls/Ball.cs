@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class Ball : MonoBehaviour
     public CircleCollider2D circleColliderBall;
     public SpriteRenderer spriteRendererBall;
 
-    private Collider2D activeBasketScoreTrigger => LevelManager.Instance.activeBasket.scoreTrigger.triggerCollider;
+    private ScoreTrigger activeBasketScoreTrigger => LevelManager.Instance.activeBasket.scoreTrigger;
     private LayerMask scoreTriggerLayer;
     private LayerMask birdLayer;
     private bool enteredFromTop;
@@ -80,25 +81,16 @@ public class Ball : MonoBehaviour
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRadius, scoreTriggerLayer);
 
-        if (hit != null)
+        if (hit != null && !enteredFromTop)
         {
-            Vector2 scoreTriggerMaxBounds = hit.bounds.max;
-
-            if (!enteredFromTop)
-            {
-                enteredFromTop = transform.position.y > scoreTriggerMaxBounds.y;
-            }
+            enteredFromTop = transform.position.y > activeBasketScoreTrigger.worldPoints[0].y;
         }
         else if (enteredFromTop)
         {
-            if (transform.position.x < activeBasketScoreTrigger.bounds.min.x || 
-                transform.position.x > activeBasketScoreTrigger.bounds.max.x || 
-                transform.position.y < activeBasketScoreTrigger.bounds.min.y)
+            if (transform.position.y < activeBasketScoreTrigger.worldPoints[3].y)
             {
-                if (rigidBodyBall.linearVelocityY < 0)
+                if (transform.position.x > activeBasketScoreTrigger.worldPoints[2].x)
                 {
-                    rigidBodyBall.linearVelocityY *= 0.25f;
-
                     if (!playerHitBird)
                     {
                         PlusScoreMaterial.usePlusOne = true;
@@ -115,9 +107,13 @@ public class Ball : MonoBehaviour
                         PlusScoreMaterial.alpha = 1;
                     }
                     playerScored = true;
+                    enteredFromTop = false;
+                }
+                else
+                {
+                    enteredFromTop = false;
                 }
             }
-            enteredFromTop = false;
         }
     }
 

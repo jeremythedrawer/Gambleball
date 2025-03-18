@@ -92,8 +92,11 @@ public class GameManager : MonoBehaviour
         PointsUI.Instance.pointsCount = 0;
         ArcMaterial.tutorialMode = false;
 
-        BirdSpawner.Instance.spawnedBird.ResetBird();
-        activeBall.playerHitBird = false;
+        if (BirdSpawner.Instance.spawnedBird.isActiveAndEnabled)
+        {
+            BirdSpawner.Instance.spawnedBird.ResetBird();
+            activeBall.playerHitBird = false;
+        }
         BallSpawner.Instance.ResetBallPos(activeBall.transform.position);
     }
 

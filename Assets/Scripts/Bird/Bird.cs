@@ -27,9 +27,12 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
-        currentAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        UpdatePos();
-        BirdDead();
+        if (gameObject.activeSelf)
+        {
+            currentAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            UpdatePos();
+            BirdDead();
+        }
     }
 
     private void UpdatePos()
