@@ -179,10 +179,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteBall: {fileID: -5702090796171239805, guid: 36e1a790003fbf742bfe38e5bb85de04, type: 3}
-  weight: 1
+  weight: 0.9
   bounciness: 0.1
   spin: 1
-  scoreDetectionRadius: 0.05
+  scoreDetectionRadius: 0.065
   rigidBodyBall: {fileID: 3873897948939823312}
   circleColliderBall: {fileID: 807036746448952510}
   spriteRendererBall: {fileID: 3015306518159986885}

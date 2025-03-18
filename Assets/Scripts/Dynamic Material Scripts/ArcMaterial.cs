@@ -37,7 +37,7 @@ public class ArcMaterial : MaterialManager
         {
             topRight = GameManager.Instance.cam.ScreenToWorldPoint(Input.mousePosition);
         }
-        else if (activeBall.rigidBodyBall.linearVelocity.y < 0)
+        else if (activeBall.rigidBodyBall.linearVelocity.y <= 0)
         {
             topRight = activeBall.transform.position;
         }
