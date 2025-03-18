@@ -99,7 +99,21 @@ public class Ball : MonoBehaviour
                 {
                     rigidBodyBall.linearVelocityY *= 0.25f;
 
-                    BasketMaterial.scoreColor = Color.green;
+                    if (!playerHitBird)
+                    {
+                        PlusScoreMaterial.usePlusOne = true;
+                        BasketMaterial.scoreColor = Color.green;
+                    }
+                    else
+                    {
+                        PlusScoreMaterial.usePlusOne = false;
+                        BasketMaterial.scoreColor = Color.yellow;
+                    }
+
+                    if (LevelManager.Instance.currentLevelIndex > 0)
+                    {
+                        PlusScoreMaterial.alpha = 1;
+                    }
                     playerScored = true;
                 }
             }

@@ -1,9 +1,10 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 public class BasketMaterial : MaterialManager
 {
     private float lerpTime = 0.5f;
 
+    private Ball activeBall => LevelManager.Instance.activeBall;
     public static Color scoreColor {  get; set; } = Color.white;
     private static readonly int scoreColorID = Shader.PropertyToID("_ScoreColor");
     public override void Start()
@@ -20,7 +21,7 @@ public class BasketMaterial : MaterialManager
     {
         UpdateMaterial();
 
-        if (scoreColor == Color.green)
+        if (scoreColor == Color.green || scoreColor == Color.yellow)
         {
             StartCoroutine(ChangingColorToWhite());
         }
