@@ -4,8 +4,6 @@ public class BallMovement : MonoBehaviour
 { 
     private Ball ball;
 
-    private Camera cam => GameManager.Instance.cam;
-
     private float gravity = 9.8f;
     private Vector2 mouseWorldPos;
     private float timeToPeak;
@@ -33,7 +31,7 @@ public class BallMovement : MonoBehaviour
     {
         if (InputManager.Instance.leftMouseButtonDown && ball.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
-            mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mouseWorldPos.y > transform.position.y)
             {
                 LaunchBall(mouseWorldPos);

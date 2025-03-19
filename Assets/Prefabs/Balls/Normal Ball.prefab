@@ -171,6 +171,7 @@ MonoBehaviour:
   bounciness: 0.5
   spin: 10
   scoreDetectionRadius: 0.055
+  birdDetectRadius: 0.08
   rigidBodyBall: {fileID: 3873897948939823312}
   circleColliderBall: {fileID: 807036746448952510}
   spriteRendererBall: {fileID: 3015306518159986885}

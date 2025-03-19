@@ -11,12 +11,14 @@ public class Ball : MonoBehaviour
     public float bounciness = 0.5f;
     public float spin = 5;
     public float scoreDetectionRadius = 0.1f;
+    public float birdDetectRadius = 0.2f;
 
     public Rigidbody2D rigidBodyBall;
     public CircleCollider2D circleColliderBall;
     public SpriteRenderer spriteRendererBall;
 
-    private ScoreTrigger activeBasketScoreTrigger => LevelManager.Instance.activeBasket.scoreTrigger;
+    private ScoreTrigger activeBasketScoreTrigger => GameManager.Instance.activeBasket.scoreTrigger;
+
     private LayerMask scoreTriggerLayer;
     private LayerMask birdLayer;
     private bool enteredFromTop;
@@ -102,7 +104,7 @@ public class Ball : MonoBehaviour
                         BasketMaterial.scoreColor = Color.yellow;
                     }
 
-                    if (LevelManager.Instance.currentLevelIndex > 0)
+                    if (GameManager.Instance.currentLevelIndex > 0)
                     {
                         PlusScoreMaterial.alpha = 1;
                     }
@@ -119,14 +121,16 @@ public class Ball : MonoBehaviour
 
     private void DetectBirdHit()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRadius, birdLayer);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, birdDetectRadius, birdLayer);
 
         if (hit != null) playerHitBird = true;
     }
+
 
     public virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, scoreDetectionRadius);
+        Gizmos.DrawWireSphere(transform.position, birdDetectRadius);
     }
 }

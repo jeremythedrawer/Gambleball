@@ -9,13 +9,13 @@ public abstract class Spawner : MonoBehaviour
     {
         HashSet<System.Type> existingTypes = new HashSet<System.Type>();
 
-        foreach (LevelData.Level level in LevelManager.Instance.levelData.levels)
+        foreach (LevelData.Level level in GameManager.Instance.levelData.levels)
         {
             T prefab = typeof(T) == typeof(Ball) ? level.ball as T : level.basket as T;
 
             if (prefab != null && !existingTypes.Contains(prefab.GetType()))
             {
-                T spawnedPrefab = Instantiate(prefab, thisTransform);
+                T spawnedPrefab = Instantiate(prefab, thisTransform, true);
                 spawnedPrefab.gameObject.SetActive(false);
                 list.Add(spawnedPrefab);
                 existingTypes.Add(prefab.GetType());

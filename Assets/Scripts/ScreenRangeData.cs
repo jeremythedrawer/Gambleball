@@ -14,7 +14,7 @@ public static class ScreenRangeData
 
     public static void SetUpScreenBounds()
     {
-        cam = GameManager.Instance.cam;
+        cam = Camera.main;
 
         camHeight = cam.orthographicSize * 2;
         camWidth = camHeight * cam.aspect;

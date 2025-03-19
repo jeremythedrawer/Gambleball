@@ -10,7 +10,6 @@ public class SlowBallTrigger : MonoBehaviour
         {
             if (Mathf.Abs(collision.attachedRigidbody.linearVelocity.magnitude) > maxVelocity)
             {
-                Debug.Log(collision.attachedRigidbody.linearVelocity.magnitude);
                 collision.attachedRigidbody.linearVelocity = collision.attachedRigidbody.linearVelocity.normalized * maxVelocity;
             }
         }

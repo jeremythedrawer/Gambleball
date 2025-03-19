@@ -8,7 +8,7 @@ public class BirdSpawner : Spawner
     
     public Bird spawnedBird { get; private set; }
 
-    private Basket activeBasket => LevelManager.Instance.activeBasket;
+    private Basket activeBasket => GameManager.Instance.activeBasket;
     private void Awake()
     {
         if (Instance == null)
@@ -21,7 +21,7 @@ public class BirdSpawner : Spawner
 
     private void InstantiateBird()
     {
-        Bird bird = LevelManager.Instance.levelData.bird;
+        Bird bird = GameManager.Instance.levelData.bird;
         spawnedBird = Instantiate(bird, this.transform);
         spawnedBird.gameObject.SetActive(false);
     }

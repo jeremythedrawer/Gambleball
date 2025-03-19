@@ -3,7 +3,7 @@ using UnityEngine;
 public class ArcMaterial : MaterialManager
 {
     public static ArcMaterial Instance { get; private set; }
-    private Ball activeBall;
+    private Ball activeBall => GameManager.Instance.activeBall;
 
     private float width;
     private float height;
@@ -28,14 +28,12 @@ public class ArcMaterial : MaterialManager
     private void Update()
     {
         UpdateMaterial();
-
-        activeBall = LevelManager.Instance.activeBall;
         transform.position = activeBall.transform.position;
 
         if (Input.GetMouseButtonDown(0) || 
         activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
-            topRight = GameManager.Instance.cam.ScreenToWorldPoint(Input.mousePosition);
+            topRight = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if (activeBall.rigidBodyBall.linearVelocity.y <= 0)
         {

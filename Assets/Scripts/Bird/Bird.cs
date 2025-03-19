@@ -13,7 +13,7 @@ public class Bird : MonoBehaviour
 
     private string deadAnimState = "dead";
     private string flyingAnimState = "flying";
-    private Ball activeBall => LevelManager.Instance.activeBall;
+    private Ball activeBall => GameManager.Instance.activeBall;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -77,7 +77,11 @@ public class Bird : MonoBehaviour
     }
     public void ResetBird()
     {
-        animator.Play(flyingAnimState, 0, 0);
+        if (gameObject.activeInHierarchy)
+        {
+            animator.Play(flyingAnimState, 0, 0);
+        }
         rigidbodyBird.constraints = RigidbodyConstraints2D.FreezeAll;
+        transform.eulerAngles = Vector2.zero;
     }
 }

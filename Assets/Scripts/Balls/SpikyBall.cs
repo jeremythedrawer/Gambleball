@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpikyBall : Ball
 {
-    private Basket activeBasket => LevelManager.Instance.activeBasket;
+    private Basket activeBasket => GameManager.Instance.activeBasket;
 
     public bool isStuck {  get; private set; }
     public override void Update()
@@ -26,7 +26,7 @@ public class SpikyBall : Ball
     private IEnumerator ResettingPos()
     {
         yield return new WaitForSeconds(1);
-        GameManager.Instance.OutOfBounds();
+        GameManager.Instance.HandleOutOfBounds();
         isStuck = false;
     }
 }

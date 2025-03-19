@@ -9,13 +9,10 @@ public class PointsUI : MonoBehaviour
     public int pointsCount {  get; set; }
     public bool hasScoredFlag { get; set; }
 
-    private Ball activeBall => LevelManager.Instance.activeBall;
+    private Ball activeBall => GameManager.Instance.activeBall;
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        if (Instance == null) Instance = this;
         pointsUIText = GetComponent<TextMeshPro>();
     }
 
@@ -28,7 +25,6 @@ public class PointsUI : MonoBehaviour
         TallyPoints();
         pointsUIText.text = "Total Points: " + pointsCount.ToString();
     }
-
     private void TallyPoints()
     {
         if (!hasScoredFlag && (activeBall.playerScored || activeBall.playerHitBird))
@@ -50,5 +46,10 @@ public class PointsUI : MonoBehaviour
         {
             hasScoredFlag = false;
         }
+    }
+
+    public void ResetGame()
+    {
+        pointsCount = 0;
     }
 }
