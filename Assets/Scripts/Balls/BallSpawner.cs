@@ -91,7 +91,7 @@ public class BallSpawner : Spawner
         currentMinThresholdIndex--;
         currentMaxThreshold = Mathf.Max(currentMaxThreshold, 0);
 
-        if (currentMinThresholdIndex >= 0 && GameManager.Instance.attempts > 0)
+        if (currentMinThresholdIndex >= 0 && GameManager.Instance.attempts > 0 && !InputManager.Instance.resetInput)
         {
             currentMinThreshold = rangeThesholds[currentMinThresholdIndex];
             currentMaxThreshold = rangeThesholds[currentMinThresholdIndex + 1];

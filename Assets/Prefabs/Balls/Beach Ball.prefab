@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteBall: {fileID: -5690756662023716847, guid: 5cb65ad58af0d414b8f8aa02bb174d33, type: 3}
   weight: 0.2
-  bounciness: 0.8
+  bounciness: 0.7
   spin: 5
   scoreDetectionRadius: 0.07
   birdDetectRadius: 0.1

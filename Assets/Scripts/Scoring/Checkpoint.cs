@@ -1,16 +1,22 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private SpriteRenderer spriteRenderer;
+
+    public float maxXPoint {  get; private set; }
+    private void Awake()
     {
-        
+        SetUp();
     }
 
-    // Update is called once per frame
-    void Update()
+    private async void SetUp()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        while (spriteRenderer == null) await Task.Yield();
+
+        maxXPoint = spriteRenderer.size.x * 1.5f;
     }
 }

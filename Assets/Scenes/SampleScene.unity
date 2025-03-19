@@ -291,6 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 375457301}
+  - component: {fileID: 375457302}
   m_Layer: 0
   m_Name: CheckPoint UI
   m_TagString: Untagged
@@ -307,12 +308,25 @@ Transform:
   m_GameObject: {fileID: 375457300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.449, y: 1.469, z: -0.0006750003}
+  m_LocalPosition: {x: -0.435, y: 1.469, z: -0.0006750003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375457302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375457300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60aacfda6183fd848bc6157f7b794721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointPrefab: {fileID: 8033211366710855474, guid: 00d4dd825ce2c094b8c53185fa10f4cd, type: 3}
 --- !u!1 &553820236
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,37 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73464d6c2f938ae4aab6cd8882fb2b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &722689370
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 722689371}
-  m_Layer: 0
-  m_Name: Checkpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &722689371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722689370}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.806, y: 1.45, z: 0.0009451299}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007220430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,5 +1405,4 @@ SceneRoots:
   - {fileID: 129189496}
   - {fileID: 375457301}
   - {fileID: 1627717747}
-  - {fileID: 722689371}
   - {fileID: 1144135583}

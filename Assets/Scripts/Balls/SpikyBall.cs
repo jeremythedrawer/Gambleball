@@ -25,8 +25,10 @@ public class SpikyBall : Ball
     }
     private IEnumerator ResettingPos()
     {
+        ArcMaterial.Instance.gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
         GameManager.Instance.HandleOutOfBounds();
+        ArcMaterial.Instance.gameObject.SetActive(true);
         isStuck = false;
     }
 }

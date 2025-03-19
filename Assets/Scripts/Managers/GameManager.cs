@@ -36,10 +36,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         CheckOutOfBounds();
-        HandleGameReset();
+        HandleGameResetInput();
         SetKeycodeLevel();
     }
-    private void HandleGameReset()
+    private void HandleGameResetInput()
     {
         if (InputManager.Instance.resetInput)
         {
@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
             SkipTutorial();
             ResetBird();
             ResetBackboard();
+            BallSpawner.Instance.UpdatePos();
+            BallSpawner.Instance.ResetActiveBallPos();
         }
     }
 
@@ -97,8 +99,8 @@ public class GameManager : MonoBehaviour
             {
                 if (lastCheckpointIndex == -1) HeartsUI.Instance.ResetHearts();
 
+                CheckpointsUI.Instance.SetNextCheckpointActive();
                 lastCheckpointIndex = currentLevelIndex;
-                //TODO: include checkpoint sprite
             }
         }
 
@@ -119,6 +121,8 @@ public class GameManager : MonoBehaviour
         lastCheckpointIndex = -1;
         PointsUI.Instance.ResetGame();
         HeartsUI.Instance.HideHearts();
+        CheckpointsUI.Instance.HideCheckpoints();
+        SetActiveBallAndBasket();
     }
     private void SetActiveBallAndBasket()
     {
