@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class PlusScoreMaterial : MaterialManager
 {
-    public static bool usePlusOne { get; set; } = true;
+    public bool usePlusOne { get; set; } = true;
     private static readonly int usePlusOneID = Shader.PropertyToID("_usePlusOne");
 
-    public static float alpha { get; set; }
+    public float alpha { get; set; }
     private static readonly int alphaID = Shader.PropertyToID("_alpha");
 
-    public static float vertOffset { get; set; }
+    public float vertOffset { get; set; }
     private static readonly int vertOffsetID = Shader.PropertyToID("_vertexOffset");
 
     private float lerpTime = 0.5f;

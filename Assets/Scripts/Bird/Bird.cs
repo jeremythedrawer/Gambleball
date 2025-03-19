@@ -5,6 +5,8 @@ public class Bird : MonoBehaviour
 {
     public float speed;
 
+    public PlusScoreMaterial plusScoreMaterial {  get; private set; } 
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidbodyBird;
     private Animator animator;
@@ -19,6 +21,7 @@ public class Bird : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidbodyBird = GetComponent<Rigidbody2D>();
+        plusScoreMaterial = GetComponentInChildren <PlusScoreMaterial>();
     }
     private void OnEnable()
     {

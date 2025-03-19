@@ -95,18 +95,18 @@ public class Ball : MonoBehaviour
                 {
                     if (!playerHitBird)
                     {
-                        PlusScoreMaterial.usePlusOne = true;
+                        GameManager.Instance.activeBasket.plugScoreMaterial.usePlusOne = true;
                         BasketMaterial.scoreColor = Color.green;
                     }
                     else
                     {
-                        PlusScoreMaterial.usePlusOne = false;
+                        GameManager.Instance.activeBasket.plugScoreMaterial.usePlusOne = false;
                         BasketMaterial.scoreColor = Color.yellow;
                     }
 
                     if (GameManager.Instance.currentLevelIndex > 0)
                     {
-                        PlusScoreMaterial.alpha = 1;
+                        GameManager.Instance.activeBasket.plugScoreMaterial.alpha = 1;
                     }
                     playerScored = true;
                     enteredFromTop = false;
@@ -123,7 +123,12 @@ public class Ball : MonoBehaviour
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, birdDetectRadius, birdLayer);
 
-        if (hit != null) playerHitBird = true;
+        if (hit != null)
+        { 
+            playerHitBird = true;
+            BirdSpawner.Instance.spawnedBird.plusScoreMaterial.usePlusOne = true;
+            BirdSpawner.Instance.spawnedBird.plusScoreMaterial.alpha = 1;
+        } 
     }
 
 

@@ -84,7 +84,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ZWrite: 0
-    - _alpha: 1
+    - _alpha: 0
     - _usePlusOne: 1
     - _vertexOffset: 0
     m_Colors:

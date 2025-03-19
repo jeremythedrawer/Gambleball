@@ -12,12 +12,14 @@ public class Basket : MonoBehaviour
     public Vector2 backboardStartPos { get; private set; }
     public ScoreTrigger scoreTrigger { get; private set; }
 
+    public PlusScoreMaterial plugScoreMaterial { get; private set; }
+
     public virtual void OnEnable()
     {
         colliders = GetComponentsInChildren<Collider2D>().Where(col => !col.isTrigger).ToArray();
         backboardRB = GetComponentInChildren<Rigidbody2D>();
         scoreTrigger = GetComponentInChildren<ScoreTrigger>();
-
+        plugScoreMaterial = GetComponentInChildren<PlusScoreMaterial>();
         if (backboardStartPos == Vector2.zero)
         {
             backboardStartPos = backboardRB.transform.localPosition;

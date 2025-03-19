@@ -41,8 +41,13 @@ public class PointsUI : MonoBehaviour
                 }
                 hasScoredFlag = true;
             }
+            else if (activeBall.playerHitBird)
+            {
+                pointsCount++;
+                hasScoredFlag = true;
+            }
         }
-        else if (hasScoredFlag && !activeBall.playerScored)
+        else if (hasScoredFlag && !activeBall.playerScored && !activeBall.playerHitBird)
         {
             hasScoredFlag = false;
         }
