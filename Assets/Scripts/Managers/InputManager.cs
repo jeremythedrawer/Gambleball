@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     {
         for (int i = 0; i < numberInputs.Length; i++)
         {
-            numberInputs[i] = Input.GetKeyDown(KeyCode.Alpha1 + i);
+            numberInputs[i] = Input.GetKeyDown(KeyCode.Alpha0 + i);
         }     
     }
 }

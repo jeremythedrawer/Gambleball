@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int levelCount { get; private set; } = 0;
 
     public int currentLevelIndex { get; private set; } = 0;
-    public int lastCheckpointIndex { get; private set; } = 1;
+    public int lastCheckpointIndex { get; private set; } = -1;
 
     private void OnValidate()
     {
@@ -67,9 +67,10 @@ public class GameManager : MonoBehaviour
 
         if (attempts == 0)
         {
-            if (HeartsUI.Instance.heartsLeft > 0 && lastCheckpointIndex != 1)
+            if (HeartsUI.Instance.heartsLeft > 1 && lastCheckpointIndex != -1)
             {
                 currentLevelIndex = lastCheckpointIndex;
+                HeartsUI.Instance.LooseHeart();
             }
             else
             {
@@ -92,22 +93,33 @@ public class GameManager : MonoBehaviour
             ResetBackboard();
             SetActiveBallAndBasket();
 
+            if (levelData.levels[currentLevelIndex].checkpoint)
+            {
+                if (lastCheckpointIndex == -1) HeartsUI.Instance.ResetHearts();
+
+                lastCheckpointIndex = currentLevelIndex;
+                //TODO: include checkpoint sprite
+            }
         }
+
         if (activeBall.playerScored)
         {
             attempts = 3;
             activeBall.playerScored = false;
         }
+
         if (activeBall.playerHitBird) activeBall.playerHitBird = false;
+
         BallSpawner.Instance.ResetActiveBallPos();
     }
 
     private void ResetGame()
     {
         currentLevelIndex = 1;
+        lastCheckpointIndex = -1;
         PointsUI.Instance.ResetGame();
+        HeartsUI.Instance.HideHearts();
     }
-
     private void SetActiveBallAndBasket()
     {
         if (activeBall != null) activeBall.gameObject.SetActive(false);

@@ -8,7 +8,7 @@ public class SlowBallTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            if (Mathf.Abs(collision.attachedRigidbody.linearVelocity.magnitude) > maxVelocity)
+            if (Mathf.Abs(collision.attachedRigidbody.linearVelocityX) > maxVelocity)
             {
                 collision.attachedRigidbody.linearVelocity = collision.attachedRigidbody.linearVelocity.normalized * maxVelocity;
             }

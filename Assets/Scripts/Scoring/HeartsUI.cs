@@ -4,7 +4,7 @@ public class HeartsUI : MonoBehaviour
 {
     public static HeartsUI Instance { get; private set; }
 
-    private SpriteRenderer[] hearts = new SpriteRenderer[3];
+    private HeartsMaterial[] hearts = new HeartsMaterial[3];
 
     public int heartsLeft { get; private set; } = 3;
 
@@ -14,18 +14,13 @@ public class HeartsUI : MonoBehaviour
     }
     private void Start()
     {
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            hearts[i] = GetComponentInChildren<SpriteRenderer>();
-        }
-
-        gameObject.SetActive(false);
+        hearts = GetComponentsInChildren<HeartsMaterial>();
     }
 
     public void LooseHeart()
     {
         heartsLeft--;
-        hearts[heartsLeft].gameObject.SetActive(false);
+        hearts[heartsLeft].lifeLost = true;
     }
 
     public void ResetHearts()
@@ -33,9 +28,17 @@ public class HeartsUI : MonoBehaviour
         heartsLeft = 3;
         for (int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].gameObject.SetActive(true);
+            hearts[i].lifeLost = false;
+            hearts[i].ShowHeart();
         }
+    }
 
-        gameObject.SetActive(false);
+    public void HideHearts()
+    {
+        heartsLeft = 3;
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].alpha = 0;
+        }
     }
 }
