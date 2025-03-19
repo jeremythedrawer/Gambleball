@@ -182,7 +182,7 @@ MonoBehaviour:
   weight: 0.6
   bounciness: 0
   spin: 15
-  scoreDetectionRadius: 0.035
+  scoreDetectionRadius: 0.05
   birdDetectRadius: 0.07
   rigidBodyBall: {fileID: 3873897948939823312}
   circleColliderBall: {fileID: 807036746448952510}

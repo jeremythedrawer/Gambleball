@@ -26,10 +26,6 @@ MonoBehaviour:
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
     spawnBird: 0
     checkpoint: 0
-  - ball: {fileID: -4366746437013694359, guid: 5fa1fa943c80e6649ae5b46ad4abeb46, type: 3}
-    basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
-    spawnBird: 0
-    checkpoint: 0
   - ball: {fileID: 4818143148602484054, guid: 0dc5c540d89c6a1418bade40216b64d8, type: 3}
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
     spawnBird: 0
@@ -38,19 +34,19 @@ MonoBehaviour:
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
     spawnBird: 1
     checkpoint: 0
-  - ball: {fileID: 4818143148602484054, guid: 0dc5c540d89c6a1418bade40216b64d8, type: 3}
-    basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
-    spawnBird: 1
-    checkpoint: 0
   - ball: {fileID: -4366746437013694359, guid: 5fa1fa943c80e6649ae5b46ad4abeb46, type: 3}
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
-    spawnBird: 1
+    spawnBird: 0
     checkpoint: 0
   - ball: {fileID: -6971479622727980255, guid: e9578729f67508e4c89d882865e6d150, type: 3}
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
     spawnBird: 1
-    checkpoint: 1
-  - ball: {fileID: 282124339334548626, guid: 7b9e624f2ad217e40bfdbd6819daf3e7, type: 3}
+    checkpoint: 0
+  - ball: {fileID: 4818143148602484054, guid: 0dc5c540d89c6a1418bade40216b64d8, type: 3}
     basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
-    spawnBird: 0
+    spawnBird: 1
+    checkpoint: 1
+  - ball: {fileID: -4366746437013694359, guid: 5fa1fa943c80e6649ae5b46ad4abeb46, type: 3}
+    basket: {fileID: 2801591560467054924, guid: 0a18ae2c75501ae409eeb5bc06e5c4f8, type: 3}
+    spawnBird: 1
     checkpoint: 0

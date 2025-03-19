@@ -22,11 +22,12 @@ public class GameManager : MonoBehaviour
 
     private void OnValidate()
     {
-        ScreenRangeData.SetUpScreenBounds();
+       ScreenRangeData.SetUpScreenBounds();
     }
 
     private void Awake()
     {
+        ScreenRangeData.SetUpScreenBounds();
         if (Instance == null) Instance = this;
     }
     private void Start()
@@ -43,12 +44,13 @@ public class GameManager : MonoBehaviour
     {
         if (InputManager.Instance.resetInput)
         {
-            ResetGame();
-            SkipTutorial();
+            ResetGame(0);
             ResetBird();
             ResetBackboard();
             BallSpawner.Instance.UpdatePos();
             BallSpawner.Instance.ResetActiveBallPos();
+            PointsUI.Instance.gameObject.SetActive(false);
+            ArcMaterial.tutorialMode = true;
         }
     }
 
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                ResetGame();
+                ResetGame(1);
             }
 
             attempts = 3;
@@ -115,9 +117,9 @@ public class GameManager : MonoBehaviour
         BallSpawner.Instance.ResetActiveBallPos();
     }
 
-    private void ResetGame()
+    private void ResetGame(int levelIndex)
     {
-        currentLevelIndex = 1;
+        currentLevelIndex = levelIndex;
         lastCheckpointIndex = -1;
         PointsUI.Instance.ResetGame();
         HeartsUI.Instance.HideHearts();
