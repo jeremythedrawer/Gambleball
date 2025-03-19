@@ -9,7 +9,7 @@ public class HeartsMaterial : MaterialManager
     public float alpha { get;  set; } = 0;
     private static readonly int alphaId = Shader.PropertyToID("_alpha");
 
-    private float dissappearTime = 2f;
+    private float appearTime = 3f;
     private float currentTime;
     public override void Start()
     {
@@ -41,7 +41,7 @@ public class HeartsMaterial : MaterialManager
         while (t <= 1)
         {
             currentTime += Time.deltaTime;
-            t = currentTime / dissappearTime;
+            t = currentTime / appearTime;
             alpha = Mathf.Lerp(0, 1, t);
             yield return null;
         }

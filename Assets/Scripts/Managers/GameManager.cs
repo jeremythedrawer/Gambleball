@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     public bool outOfBounds { get; private set; }
 
-    public int levelCount { get; private set; } = 0;
-
     public int currentLevelIndex { get; private set; } = 0;
     public int lastCheckpointIndex { get; private set; } = -1;
 
@@ -89,7 +87,14 @@ public class GameManager : MonoBehaviour
         }
         else if (activeBall.playerScored && BallSpawner.Instance.currentMinThresholdIndex == 2)
         {
-            currentLevelIndex++;
+            if (currentLevelIndex != levelData.levels.Count - 1)
+            {
+                currentLevelIndex++;
+            }
+            else
+            {
+                currentLevelIndex = 1;
+            }
             attempts = 3;
 
             SkipTutorial();
