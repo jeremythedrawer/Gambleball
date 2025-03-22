@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class HeartsMaterial : MaterialManager
 {
-    public bool lifeLost {  get; set; }
-    private static readonly int lifeLostId = Shader.PropertyToID("_lifeLost");
+    public int attemptsLeft { get; set; } = 3;
+    private static readonly int attemptsLeftId = Shader.PropertyToID("_attemptsLeft");
 
     public float alpha { get;  set; } = 0;
     private static readonly int alphaId = Shader.PropertyToID("_alpha");
@@ -24,7 +24,7 @@ public class HeartsMaterial : MaterialManager
         if (material != null)
         {
             objectRenderer.GetPropertyBlock(mpb);
-            mpb.SetInt(lifeLostId, lifeLost ? 1 : 0);
+            mpb.SetInt(attemptsLeftId, attemptsLeft);
             mpb.SetFloat(alphaId, alpha);
             objectRenderer.SetPropertyBlock(mpb);
         }

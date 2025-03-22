@@ -64,9 +64,17 @@ public class GameManager : MonoBehaviour
 
     public void HandleOutOfBounds()
     {
-        if (attempts > 0 && !activeBall.playerScored) attempts--;
-        if (attempts == 0 || activeBall.playerScored) BallSpawner.Instance.UpdatePos();
+        if (attempts > 0 && !activeBall.playerScored)
+        {
+            attempts--;
+            HeartsUI.Instance.LooseAttempt();
+        }
 
+        if (attempts == 0 || activeBall.playerScored)
+        {
+            BallSpawner.Instance.UpdatePos();
+            HeartsUI.Instance.ReplenishHearts();
+        }
         if (attempts == 0)
         {
             if (HeartsUI.Instance.heartsLeft > 1 && lastCheckpointIndex != -1)
@@ -96,7 +104,6 @@ public class GameManager : MonoBehaviour
                 currentLevelIndex = 1;
             }
             attempts = 3;
-
             SkipTutorial();
             ResetBird();
             ResetBackboard();
@@ -108,6 +115,11 @@ public class GameManager : MonoBehaviour
 
                 CheckpointsUI.Instance.SetNextCheckpointActive();
                 lastCheckpointIndex = currentLevelIndex;
+            }
+
+            if (currentLevelIndex == 1)
+            {
+                HeartsUI.Instance.ShowOneHeart();
             }
         }
 
@@ -128,6 +140,7 @@ public class GameManager : MonoBehaviour
         lastCheckpointIndex = -1;
         PointsUI.Instance.ResetGame();
         HeartsUI.Instance.HideHearts();
+        HeartsUI.Instance.ShowOneHeart();
         CheckpointsUI.Instance.HideCheckpoints();
         SetActiveBallAndBasket();
     }

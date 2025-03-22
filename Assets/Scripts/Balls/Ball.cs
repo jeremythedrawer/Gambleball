@@ -10,6 +10,8 @@ public class Ball : MonoBehaviour
     public float spin = 5;
     public float scoreDetectionRadius = 0.1f;
     public float birdDetectRadius = 0.2f;
+    [Range(0f, 1f)]
+    public float weightFactor = 0.85f;
 
     public Rigidbody2D rigidBodyBall;
     public CircleCollider2D circleColliderBall;

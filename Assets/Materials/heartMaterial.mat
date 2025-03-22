@@ -76,8 +76,10 @@ Material:
     - _QueueOffset: 0
     - _ZWrite: 0
     - _alpha: 1
+    - _attemptsLeft: 0
     - _lifeLost: 0
     - _lostLife: 0
+    - _totalAttempts: 3
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

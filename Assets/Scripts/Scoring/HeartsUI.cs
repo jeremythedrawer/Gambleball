@@ -17,10 +17,15 @@ public class HeartsUI : MonoBehaviour
         hearts = GetComponentsInChildren<HeartsMaterial>();
     }
 
+
+    public void LooseAttempt()
+    {
+        hearts[heartsLeft - 1].attemptsLeft--;
+    }
     public void LooseHeart()
     {
         heartsLeft--;
-        hearts[heartsLeft].lifeLost = true;
+        hearts[heartsLeft].attemptsLeft = 0;
     }
 
     public void ResetHearts()
@@ -28,15 +33,35 @@ public class HeartsUI : MonoBehaviour
         heartsLeft = 3;
         for (int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].lifeLost = false;
-            hearts[i].ShowHeart();
+            if (hearts[i].alpha != 1)
+            {
+                hearts[i].attemptsLeft = 3;
+                hearts[i].ShowHeart();
+            }
         }
     }
 
+    public void ShowOneHeart()
+    {
+        heartsLeft = 1;
+        hearts[0].ShowHeart();
+        hearts[0].attemptsLeft = 3;
+    }
+
+    public void ReplenishHearts()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if ( hearts[i].attemptsLeft > 0)
+            {
+                hearts[i].attemptsLeft = 3;
+            }
+        }
+    }
     public void HideHearts()
     {
         heartsLeft = 3;
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 1; i < hearts.Length; i++)
         {
             hearts[i].alpha = 0;
         }

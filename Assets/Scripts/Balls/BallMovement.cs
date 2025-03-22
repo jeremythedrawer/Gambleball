@@ -50,10 +50,10 @@ public class BallMovement : MonoBehaviour
 
         if (mouseInputPos.y <= currentHeight) return; // only recognises inputs above the ball
 
-        timeToPeak = Mathf.Sqrt(2 * (mouseInputPos.y - currentHeight) / gravity); 
+        timeToPeak = Mathf.Sqrt(2 * (mouseInputPos.y - currentHeight) / gravity);
         // -> Using y = y0 + v0t - 0.5gt^2 which is displacement equation for vertical motion which turns into t=squareroot(2(y-y0)/g)
-
-        float initialVerticalVelocity = gravity * timeToPeak;
+        float adjustedWeight = Mathf.Lerp(1.5f - ball.weight, 1f, ball.weightFactor);
+        float initialVerticalVelocity = (gravity * timeToPeak) * adjustedWeight;
 
         float horizontalDistance = mouseInputPos.x - ball.rigidBodyBall.position.x;
         float initialHorizontalVelocity = horizontalDistance / timeToPeak;
