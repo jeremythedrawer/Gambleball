@@ -82,7 +82,6 @@ public class Ball : MonoBehaviour
     private void DetectIfScored()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRadius, scoreTriggerLayer);
-
         if (hit != null && !enteredFromTop)
         {
             enteredFromTop = transform.position.y > activeBasketScoreTrigger.worldPoints[0].y;

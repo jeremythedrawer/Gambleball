@@ -1109,7 +1109,7 @@ Transform:
   m_GameObject: {fileID: 1579005896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.766, y: -0.41, z: -0.0009451277}
+  m_LocalPosition: {x: 1.997, y: -0.48, z: -0.0009451277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1127,8 +1127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e861dd127efd7c479ece297c71e282e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetPosWidth: 0.944
-  resetPosHeight: 0.796
+  resetPosWidth: 0.912
+  resetPosHeight: 0.7
   allBaskets: []
 --- !u!1001 &1627717747
 PrefabInstance:
@@ -1248,7 +1248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199b377835fd6ed4da60b5bfef1b5e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberInputs: 000000000000000000
 --- !u!1 &1933525479
 GameObject:
   m_ObjectHideFlags: 0

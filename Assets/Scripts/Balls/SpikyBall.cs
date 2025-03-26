@@ -16,7 +16,7 @@ public class SpikyBall : Ball
     private void DetectBasketCollision()
     {
         if (activeBasket.colliders.Any(col => circleColliderBall.IsTouching(col)) && 
-            rigidBodyBall.constraints != RigidbodyConstraints2D.FreezeAll)
+            rigidBodyBall.constraints != RigidbodyConstraints2D.FreezeAll && !isStuck)
         {
             isStuck = true;
             rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;

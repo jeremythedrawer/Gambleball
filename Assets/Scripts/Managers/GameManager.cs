@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int currentLevelIndex { get; private set; } = 0;
     public int lastCheckpointIndex { get; private set; } = -1;
 
+    private bool playerIsCheating;
+
     private void OnValidate()
     {
        ScreenRangeData.SetUpScreenBounds();
@@ -37,7 +39,8 @@ public class GameManager : MonoBehaviour
         ScreenWrapBall();
         CheckOutOfBounds();
         HandleGameResetInput();
-        SetKeycodeLevel();
+        SkipLevel();
+        QuitGame();
     }
     private void HandleGameResetInput()
     {
@@ -63,7 +66,7 @@ public class GameManager : MonoBehaviour
     }
     private void ScreenWrapBall()
     {
-        if (activeBasket.GetType() == typeof(WrappingBasket))
+        if (activeBasket.GetType() == typeof(WrappingBasket) || activeBasket.GetType() == typeof(WrappingMovingBasket))
         {
             ArrowMaterial.onOff = true;
             if (activeBall.transform.position.x > ScreenRangeData.topRightWoldPos.x)
@@ -88,6 +91,12 @@ public class GameManager : MonoBehaviour
         {
             BallSpawner.Instance.UpdatePos();
             HeartsUI.Instance.ReplenishHearts();
+
+            if (playerIsCheating)
+            {
+                ResetGame(0);
+                playerIsCheating = false;
+            }
         }
         if (attempts == 0)
         {
@@ -153,7 +162,10 @@ public class GameManager : MonoBehaviour
         lastCheckpointIndex = -1;
         PointsUI.Instance.ResetGame();
         HeartsUI.Instance.HideHearts();
-        HeartsUI.Instance.ShowOneHeart();
+        if (levelIndex > 0)
+        {
+            HeartsUI.Instance.ShowOneHeart();
+        }
         CheckpointsUI.Instance.HideCheckpoints();
         SetActiveBallAndBasket();
     }
@@ -184,17 +196,27 @@ public class GameManager : MonoBehaviour
         activeBasket.gameObject.SetActive(true);
 
         BasketSpawner.Instance.SetNewBasketPos();
-
         BirdSpawner.Instance.CheckToSpawnBird(currentLevelIndex, levelData);
     }
-    public void SetKeycodeLevel()
-    {
-        int activeInput = Array.FindIndex(InputManager.Instance.numberInputs, input => input);
 
-        if (activeInput >= 0)
+    private void QuitGame()
+    {
+        if (InputManager.Instance.quitInput) Application.Quit();
+    }
+    public void SkipLevel()
+    {
+        if (InputManager.Instance.nextLevelInput)
         {
+            playerIsCheating = true;
             attempts = 3;
-            currentLevelIndex = activeInput;
+            if (currentLevelIndex != levelData.levels.Count - 1)
+            {
+                currentLevelIndex ++;
+            }
+            else
+            {
+                currentLevelIndex = 0;
+            }
             PointsUI.Instance.gameObject.SetActive(false);
             PointsUI.Instance.ResetGame();
             SetActiveBallAndBasket();

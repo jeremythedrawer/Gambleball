@@ -37,14 +37,17 @@ public class BasketSpawner : Spawner
     public async void SetNewBasketPos()
     {
         while (activeBasket == null) {  await Task.Yield(); }
-        bool isWrappingBasket = activeBasket is WrappingBasket;
+        bool isWrappingBasket = activeBasket is WrappingBasket || activeBasket is WrappingMovingBasket;
 
         BasketRangePoints points = isWrappingBasket ? basketRangePointsArray[1] : basketRangePointsArray[0];
 
         newPos = GetNewPos(points.topLeft.x, points.bottomRight.x, points.bottomRight.y, points.topLeft.y);
-
         activeBasket.transform.position = newPos;
         activeBasket.scoreTrigger.SetUp();
+        if (activeBasket.isMoving)
+        {
+            activeBasket.MoveBasket(newPos);
+        }
     }
 
     private void SetBasketRangePointsArray()

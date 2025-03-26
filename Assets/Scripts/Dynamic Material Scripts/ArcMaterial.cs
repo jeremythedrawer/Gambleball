@@ -30,8 +30,8 @@ public class ArcMaterial : MaterialManager
         UpdateMaterial();
         transform.position = activeBall.transform.position;
 
-        if (Input.GetMouseButtonDown(0) || 
-        activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
+        if ((Input.GetMouseButtonDown(0) && activeBall.rigidBodyBall.linearVelocity.magnitude == 0) || 
+            activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             topRight = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
