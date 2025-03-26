@@ -13,7 +13,6 @@ public class BasketSpawner : Spawner
 
     public static BasketSpawner Instance { get; private set; }
     private Basket activeBasket => GameManager.Instance.activeBasket;
-    private BasketRange basketRange => BasketRange.Instance;
     public List<Basket> allBaskets = new List<Basket>();
 
     private struct BasketRangePoints
@@ -38,7 +37,7 @@ public class BasketSpawner : Spawner
     public async void SetNewBasketPos()
     {
         while (activeBasket == null) {  await Task.Yield(); }
-        bool isWrappingBasket = activeBasket.GetType() == typeof(WrappingBasket);
+        bool isWrappingBasket = activeBasket is WrappingBasket;
 
         BasketRangePoints points = isWrappingBasket ? basketRangePointsArray[1] : basketRangePointsArray[0];
 

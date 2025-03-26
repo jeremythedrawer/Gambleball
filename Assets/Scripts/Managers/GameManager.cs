@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        ScreenWrapBall();
         CheckOutOfBounds();
         HandleGameResetInput();
         SetKeycodeLevel();
@@ -54,14 +55,27 @@ public class GameManager : MonoBehaviour
 
     private void CheckOutOfBounds()
     {
-        outOfBounds =   activeBall.transform.position.y < ScreenRangeData.bottomLeftWorldPos.y ||  
-                        activeBall.transform.position.x > ScreenRangeData.topRightWoldPos.x;
+        outOfBounds = activeBall.transform.position.y < ScreenRangeData.bottomLeftWorldPos.y;
         if (outOfBounds)
         {
             HandleOutOfBounds();
         }
     }
-
+    private void ScreenWrapBall()
+    {
+        if (activeBasket.GetType() == typeof(WrappingBasket))
+        {
+            ArrowMaterial.onOff = true;
+            if (activeBall.transform.position.x > ScreenRangeData.topRightWoldPos.x)
+            {
+                activeBall.transform.position = new Vector2(ScreenRangeData.bottomLeftWorldPos.x, activeBall.transform.position.y);
+            }
+        }
+        else
+        {
+            ArrowMaterial.onOff = false;
+        }
+    }
     public void HandleOutOfBounds()
     {
         if (attempts > 0 && !activeBall.playerScored)
@@ -133,7 +147,6 @@ public class GameManager : MonoBehaviour
 
         BallSpawner.Instance.ResetActiveBallPos();
     }
-
     private void ResetGame(int levelIndex)
     {
         currentLevelIndex = levelIndex;
