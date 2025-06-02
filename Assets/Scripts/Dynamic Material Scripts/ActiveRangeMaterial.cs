@@ -4,6 +4,7 @@ public class ActiveRangeMaterial : MaterialManager
 {
     public static Color color { get; set; }
     public static readonly int colorId = Shader.PropertyToID("_Color");
+ 
     public override void Start()
     {
         base.Start();

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: arrowMaterial
+  m_Name: m_arrows
   m_Shader: {fileID: -6465566751694194690, guid: f0881a55ce2a1de44b23c716ee6dbe5e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -80,7 +80,7 @@ Material:
     - _onOff: 1
     - _row_count: 3
     - _spaceBetween: 0.47
-    - _speed: 1.3
+    - _speed: 0
     - _wdith: 0.14
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

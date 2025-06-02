@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: arcMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: ee3e9145b136e7a44aec7b564ca53f4b, type: 3}
+  m_Name: m_range
+  m_Shader: {fileID: -6465566751694194690, guid: 600a2f6fd8e20594ba9f66144405deec, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -54,17 +54,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BorderThickness: 0.472
     - _EnableExternalAlpha: 0
+    - _Float: 0.11
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TutorialMode: 1
+    - _Size: 0.482
+    - _Thickness: 1
+    - _Thikness: 0.12
     - _ZWrite: 0
+    - _offset: 0.93
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4625385205633185631
+--- !u!114 &2491496158490358866
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

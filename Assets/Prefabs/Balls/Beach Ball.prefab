@@ -85,7 +85,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.18, y: 0.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -184,6 +184,7 @@ MonoBehaviour:
   spin: 5
   scoreDetectionRadius: 0.07
   birdDetectRadius: 0.1
+  weightFactor: 0.85
   rigidBodyBall: {fileID: 3873897948939823312}
   circleColliderBall: {fileID: 807036746448952510}
   spriteRendererBall: {fileID: 3015306518159986885}
