@@ -80,7 +80,7 @@ Material:
     - _onOff: 1
     - _row_count: 3
     - _spaceBetween: 0.47
-    - _speed: 0
+    - _speed: 1
     - _wdith: 0.14
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
