@@ -6,7 +6,7 @@ public class HeartsMaterial : MaterialManager
     public int attemptsLeft { get; set; } = 3;
     private static readonly int attemptsLeftId = Shader.PropertyToID("_attemptsLeft");
 
-    public float alpha { get;  set; } = 0;
+    public float alpha { get;  set; } = 1;
     private static readonly int alphaId = Shader.PropertyToID("_alpha");
 
     private float appearTime = 3f;

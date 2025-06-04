@@ -76,7 +76,7 @@ Material:
     - _QueueOffset: 0
     - _ZWrite: 0
     - _alpha: 1
-    - _attemptsLeft: 0
+    - _attemptsLeft: 3
     - _lifeLost: 0
     - _lostLife: 0
     - _totalAttempts: 3

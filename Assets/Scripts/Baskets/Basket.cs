@@ -14,6 +14,10 @@ public class Basket : MonoBehaviour
     public PlusScoreMaterial plusScoreMaterial;
     public ScoreTrigger scoreTrigger;
 
+    [Header("Bounds")]
+    public Transform topRight;
+    public Transform bottomLeft;
+
 
     public Vector2 backboardStartPos { get; private set; }
 
@@ -28,6 +32,10 @@ public class Basket : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        BallSpawner.onOutOfBounds += ResetBasketPos;
+    }
     public void MoveBasket(Vector2 middlePos)
     {
         StartCoroutine(MovingBasket(middlePos));
@@ -47,10 +55,33 @@ public class Basket : MonoBehaviour
         }
     }
 
-    private void ResetBackboard()
+    private void ResetBackboard() //TODO: Reset basket
     {
         backboardRB.gameObject.transform.localPosition = backboardStartPos;
         backboardRB.gameObject.transform.eulerAngles = Vector2.zero;
         backboardRB.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    private void ResetBasketPos()
+    {
+        transform.position = NewPos(bottomLeft.position, topRight.position);
+    }
+    protected Vector2 NewPos(Vector2 minPos, Vector2 maxPos)
+    {
+        float randomX = Random.Range(minPos.x, maxPos.x);
+        float randomY = Random.Range(minPos.y, maxPos.y);
+        return new Vector2(randomX, randomY);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Vector3 bottomRight = new Vector3(topRight.position.x, bottomLeft.position.y);
+        Vector3 topLeft = new Vector3(bottomLeft.position.x, topRight.position.y);
+        Gizmos.DrawLine(bottomLeft.position, bottomRight);
+        Gizmos.DrawLine(bottomRight, topRight.position);
+        Gizmos.DrawLine(topRight.position, topLeft);
+        Gizmos.DrawLine(topLeft, bottomLeft.position);
     }
 }
