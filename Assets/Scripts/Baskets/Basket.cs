@@ -1,31 +1,27 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class Basket : MonoBehaviour
 {
     [Header("Parameters")]
-    public Sprite spriteBasket;
     public bool isMoving;
     [Range(0f, 1f)]
     public float moveScale;
-    public Collider2D[] colliders {  get; private set; }
-    public Rigidbody2D backboardRB {  get; private set; }
+
+    [Header("References")]
+    public Collider2D[] colliders;
+    public Rigidbody2D backboardRB;
+    public PlusScoreMaterial plusScoreMaterial;
+    public ScoreTrigger scoreTrigger;
+
 
     public Vector2 backboardStartPos { get; private set; }
-    public ScoreTrigger scoreTrigger { get; private set; }
-
-    public PlusScoreMaterial plugScoreMaterial { get; private set; }
 
     private float elepsedTime;
     private float minMovingHeight;
     private float maxMovingHeight;
-    public virtual void OnEnable()
+    public void Start()
     {
-        colliders = GetComponentsInChildren<Collider2D>().Where(col => !col.isTrigger).ToArray();
-        backboardRB = GetComponentInChildren<Rigidbody2D>();
-        scoreTrigger = GetComponentInChildren<ScoreTrigger>();
-        plugScoreMaterial = GetComponentInChildren<PlusScoreMaterial>();
         if (backboardStartPos == Vector2.zero)
         {
             backboardStartPos = backboardRB.transform.localPosition;
@@ -49,5 +45,12 @@ public class Basket : MonoBehaviour
             transform.position = new Vector2 (transform.position.x, yPos);
             yield return null;
         }
+    }
+
+    private void ResetBackboard()
+    {
+        backboardRB.gameObject.transform.localPosition = backboardStartPos;
+        backboardRB.gameObject.transform.eulerAngles = Vector2.zero;
+        backboardRB.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

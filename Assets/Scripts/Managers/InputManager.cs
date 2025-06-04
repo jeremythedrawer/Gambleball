@@ -13,4 +13,14 @@ public class InputManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
     }
+
+    private void Update()
+    {
+        QuitGame();
+    }
+
+    private void QuitGame()
+    {
+        if (quitInput) Application.Quit();
+    }
 }

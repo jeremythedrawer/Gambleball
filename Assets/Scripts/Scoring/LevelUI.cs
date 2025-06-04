@@ -19,21 +19,7 @@ public class LevelUI : MonoBehaviour
 
     private void Update()
     {
-        int levelNumber = GameManager.Instance.currentLevelIndex;
+        int levelNumber = LevelManager.instance.currentLevelIndex + 1;
         levelUIText.text = "Level: " + levelNumber.ToString();
-    }
-
-    private void UpdateLevelUIText()
-    {
-        int levelNumber = GameManager.Instance.currentLevelIndex;
-
-        if (levelNumber > 0)
-        {
-            levelUIText.text = "Level: " + levelNumber.ToString();
-        }
-        else
-        {
-            levelUIText.text = "Level: Tutorial";
-        }
     }
 }

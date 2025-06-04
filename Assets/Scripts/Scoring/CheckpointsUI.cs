@@ -20,7 +20,7 @@ public class CheckpointsUI : MonoBehaviour
 
     private void InstantiateCheckpoints()
     {
-        foreach (LevelData.Level level in GameManager.Instance.levelData.levels)
+        foreach (LevelData.Level level in LevelManager.instance.levelData.levels)
         {
             if (level.checkpoint)
             {

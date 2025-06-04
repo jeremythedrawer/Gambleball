@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class ScoreTrigger : MonoBehaviour
 {
-    public PolygonCollider2D triggerCollider {  get; private set; }
+    public PolygonCollider2D triggerCollider;
     public Vector2[] worldPoints {  get; private set; }
-
-    private Basket basket;
-
-    private void Start()
-    {
-        basket = GetComponentInParent<Basket>();
-    }
 
     private void Update()
     {
@@ -18,7 +11,6 @@ public class ScoreTrigger : MonoBehaviour
     }
     public void SetUp()
     {
-        triggerCollider = GetComponent<PolygonCollider2D>();
         UpdateWorldPoints();
     }
 

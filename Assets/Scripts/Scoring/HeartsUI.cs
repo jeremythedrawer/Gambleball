@@ -6,7 +6,7 @@ public class HeartsUI : MonoBehaviour
 
     private HeartsMaterial[] hearts = new HeartsMaterial[3];
 
-    public int heartsLeft { get; private set; } = 3;
+    private int heartsLeft = 3;
 
     private void Awake()
     {
@@ -17,53 +17,52 @@ public class HeartsUI : MonoBehaviour
         hearts = GetComponentsInChildren<HeartsMaterial>();
     }
 
-
-    public void LooseAttempt()
+    private void OnEnable()
     {
-        hearts[heartsLeft - 1].attemptsLeft--;
+        BallSpawner.onOutOfBounds += UpdateHearts;
     }
-    public void LooseHeart()
+    private void UpdateHearts()
     {
-        heartsLeft--;
-        hearts[heartsLeft].attemptsLeft = 0;
-    }
+        TrackHeartsLeft();
 
-    public void ResetHearts()
-    {
-        heartsLeft = 3;
-        for (int i = 0; i < hearts.Length; i++)
+        if (StatsManager.instance.attemptsLeft > 0 && !BallSpawner.instance.activeBall.playerScored)
         {
-            if (hearts[i].alpha != 1)
+            hearts[heartsLeft - 1].attemptsLeft--; // Loose attempt on current heart
+        }
+        else if (StatsManager.instance.attemptsLeft == 0 || !BallSpawner.instance.activeBall.playerScored) //Replenish Hearts
+        {
+            for (int i = 0; i < hearts.Length; i++)
             {
-                hearts[i].attemptsLeft = 3;
-                hearts[i].ShowHeart();
+                if (hearts[i].attemptsLeft > 0)
+                {
+                    hearts[i].attemptsLeft = 3;
+                }
+            }
+        }
+        else if (StatsManager.instance.attemptsLeft == 0 && heartsLeft > 1) // loose heart
+        {
+            heartsLeft--;
+            hearts[heartsLeft].attemptsLeft = 0;
+        }
+        else // reset hearts
+        {
+            heartsLeft = 3;
+            for (int i = 0; i < hearts.Length; i++)
+            {
+                if (hearts[i].alpha != 1)
+                {
+                    hearts[i].attemptsLeft = 3;
+                    hearts[i].ShowHeart();
+                }
             }
         }
     }
 
-    public void ShowOneHeart()
+    private void TrackHeartsLeft()
     {
-        heartsLeft = 1;
-        hearts[0].ShowHeart();
-        hearts[0].attemptsLeft = 3;
-    }
-
-    public void ReplenishHearts()
-    {
-        for (int i = 0; i < hearts.Length; i++)
+        if (StatsManager.instance.attemptsLeft % 3 == 0)
         {
-            if ( hearts[i].attemptsLeft > 0)
-            {
-                hearts[i].attemptsLeft = 3;
-            }
-        }
-    }
-    public void HideHearts()
-    {
-        heartsLeft = 3;
-        for (int i = 1; i < hearts.Length; i++)
-        {
-            hearts[i].alpha = 0;
+            heartsLeft--;
         }
     }
 }

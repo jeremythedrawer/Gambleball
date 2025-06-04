@@ -1,38 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Spawner : MonoBehaviour
 {
     public Vector2 newPos { get; protected set; }
 
-    protected void InstantiateLevelDataObjects<T>(List<T> list, Transform thisTransform) where T : Component
+    protected Vector2 NewPos(Vector2 minPos, Vector2 maxPos)
     {
-        HashSet<System.Type> existingTypes = new HashSet<System.Type>();
-
-        foreach (LevelData.Level level in GameManager.Instance.levelData.levels)
-        {
-            T prefab = typeof(T) == typeof(Ball) ? level.ball as T : level.basket as T;
-
-            if (prefab != null && !existingTypes.Contains(prefab.GetType()))
-            {
-                T spawnedPrefab = Instantiate(prefab, thisTransform, true);
-                spawnedPrefab.gameObject.SetActive(false);
-                list.Add(spawnedPrefab);
-                existingTypes.Add(prefab.GetType());
-            }
-        }
-    }
-
-    protected Vector2 GetNewPos(float randomMinX, float randomMaxX, float randomMinY, float randomMaxY)
-    {
-        Vector2 newPos = new Vector2();
-        float randomX = 0;
-        float randomY = 0;
-        if (randomX == 0 || randomY == 0)
-        {
-            randomX = Random.Range(randomMinX, randomMaxX);
-            randomY = Random.Range(randomMinY, randomMaxY);
-        }
+        float randomX = Random.Range(minPos.x, maxPos.x);
+        float randomY = Random.Range(minPos.y, maxPos.y);
         return newPos = new Vector2(randomX, randomY);
     }
 }

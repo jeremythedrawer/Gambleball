@@ -56,9 +56,11 @@ Material:
     - _Bloom: 0.58
     - _BoxBlur: 0.0007
     - _EnableExternalAlpha: 0
+    - _Float: -48.98
     - _ZWrite: 0
+    - _bloom: 0.93
     - _brightness: 0.1
-    - _chromaticAberationIntensity: 0.0014
+    - _chromaticAberationIntensity: 0.00128
     - _cyanToRed: -0.1
     - _greenToMagenta: 0
     - _magentaToGreen: 0
@@ -66,12 +68,15 @@ Material:
     - _redToCyan: -0.03
     - _scale: 0.88
     - _scanLineFallOff: 2.37
+    - _scanLineScale: 3.22
     - _scanLine_width: 0.52
     - _vidnetteWidth: 141.09
-    - _warpOffset: 3.83
+    - _vignetteWidth: 68.01
+    - _warpOffset: 6.22
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0.43596473, g: 0.81242377, b: 0.9150943, a: 0}
+    - _Tint: {r: 0, g: 0, b: 0, a: 0}
+    - _vignetteColor: {r: 0.021938415, g: 0.114419535, b: 0.2735849, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

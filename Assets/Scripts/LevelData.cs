@@ -11,14 +11,10 @@ public class LevelData : ScriptableObject
     public struct Level
     {
         public Ball ball;
-        public Basket basket;
-        public bool spawnBird;
         public bool checkpoint;
         public Level(Ball ball, Basket basket, bool spawnBird, bool checkpoint)
         {
             this.ball = ball;
-            this.basket = basket;
-            this.spawnBird = spawnBird;
             this.checkpoint = checkpoint;
         }
     }

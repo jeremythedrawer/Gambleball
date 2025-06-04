@@ -4,7 +4,6 @@ public class BowlingBall : Ball
 {
     [Header("Bowling Ball Parameters")]
     public float backboardDetectionRaduis = 0.1f;
-    private Rigidbody2D backboard => GameManager.Instance.activeBasket.backboardRB;
     public float smashBackboardThreshold = 6f;
     public LayerMask backboardLayer;
     public override void Update()
@@ -21,7 +20,7 @@ public class BowlingBall : Ball
         {
             if (rigidBodyBall.linearVelocityX > smashBackboardThreshold)
             {
-                backboard.constraints = RigidbodyConstraints2D.None;
+                basket.backboardRB.constraints = RigidbodyConstraints2D.None;
             }
         }
     }

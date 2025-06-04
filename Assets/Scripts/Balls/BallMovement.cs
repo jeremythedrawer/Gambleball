@@ -31,11 +31,6 @@ public class BallMovement : MonoBehaviour
     {
         if (InputManager.Instance.leftMouseButtonDown && ball.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
         {
-            if (ball.GetType() == typeof(SpikyBall))
-            {
-                SpikyBall spikyBall = ball as SpikyBall;
-                if (spikyBall.isStuck) return;
-            }
             mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mouseWorldPos.y > transform.position.y)
             {

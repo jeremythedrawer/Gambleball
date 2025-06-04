@@ -2488,10 +2488,10 @@
     "m_Guid": {
         "m_GuidSerialized": "e752c618-35aa-4193-b2cf-afbffcf688fe"
     },
-    "m_Name": "plusFiveTexture",
+    "m_Name": "plusThreeTexture",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "plusFiveTexture",
-    "m_DefaultReferenceName": "_plusFiveTexture",
+    "m_RefNameGeneratedByDisplayName": "plusThreeTexture",
+    "m_DefaultReferenceName": "_plusThreeTexture",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2502,7 +2502,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"a36dc29c19438e74f91f2211aab44cd2\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"7ef6b3f1a2104c64ab597da197d1c152\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -2609,10 +2609,10 @@
     "m_Guid": {
         "m_GuidSerialized": "181ff9ff-89e0-4534-aa78-87040eb1574c"
     },
-    "m_Name": "plusOneTexture",
+    "m_Name": "plusTwoTexture",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "plusOneTexture",
-    "m_DefaultReferenceName": "_plusOneTexture",
+    "m_RefNameGeneratedByDisplayName": "plusTwoTexture",
+    "m_DefaultReferenceName": "_plusTwoTexture",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2623,7 +2623,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"8702e9e159f339f409b34b78e766ec97\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"e3fa19f0bd58bcd488e877c9309337b3\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -2760,7 +2760,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "e6634794da8b4ed2819eb926a255a206",
     "m_Id": 0,
-    "m_DisplayName": "plusOneTexture",
+    "m_DisplayName": "plusTwoTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2873,7 +2873,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "f1c2f524cd5f4647acb33f76b05afbd3",
     "m_Id": 0,
-    "m_DisplayName": "plusFiveTexture",
+    "m_DisplayName": "plusThreeTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

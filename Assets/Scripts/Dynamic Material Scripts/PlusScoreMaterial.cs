@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlusScoreMaterial : MaterialManager
 {
-    public bool usePlusOne { get; set; } = true;
-    private static readonly int usePlusOneID = Shader.PropertyToID("_usePlusOne");
+    public bool usePlusTwo { get; set; } = true;
+    private static readonly int usePlusTwoID = Shader.PropertyToID("_usePlusTwo");
 
     public float alpha { get; set; }
     private static readonly int alphaID = Shader.PropertyToID("_alpha");
@@ -38,7 +38,7 @@ public class PlusScoreMaterial : MaterialManager
         if (material != null)
         {
             objectRenderer.GetPropertyBlock(mpb);
-            mpb.SetInt(usePlusOneID, usePlusOne ? 1 : 0);
+            mpb.SetInt(usePlusTwoID, usePlusTwo ? 1 : 0);
             mpb.SetFloat(alphaID, alpha);
             mpb.SetFloat(vertOffsetID, vertOffset);
             objectRenderer.SetPropertyBlock(mpb);

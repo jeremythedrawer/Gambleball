@@ -1,90 +1,93 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    [Header("Parameters")]
     public float speed;
+    public int[] levelsToSpawn;
 
-    public PlusScoreMaterial plusScoreMaterial {  get; private set; } 
+    [Header("References")]
+    public SpriteRenderer spriteRenderer;
+    public Rigidbody2D body;
+    public Animator animator;
+    public Basket basket;
 
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rigidbodyBird;
-    private Animator animator;
+    [Header("Start and End Points")]
+    public Transform bottomLeftTransform;
+    public Transform topRightTransform;
+
+    private Transform chosenTransform;
+
     private AnimatorStateInfo currentAnimStateInfo;
-    private bool flyingForwards;
+
+    private Vector2 moveDirection;
 
     private string deadAnimState = "dead";
     private string flyingAnimState = "flying";
-    private Ball activeBall => GameManager.Instance.activeBall;
-    private void Awake()
+
+    private bool isDead;
+    private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        rigidbodyBird = GetComponent<Rigidbody2D>();
-        plusScoreMaterial = GetComponentInChildren <PlusScoreMaterial>();
-    }
-    private void OnEnable()
-    {
-        flyingForwards = transform.position.x < ScreenRangeData.bottomLeftWorldPos.x;
+        SetBirdPos();
     }
 
     private void Update()
     {
-        if (gameObject.activeSelf)
+        currentAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        UpdatePos();
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
         {
-            currentAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            UpdatePos();
-            BirdDead();
+            Dead();
         }
     }
 
     private void UpdatePos()
     {
-        float moveDirection = flyingForwards ? 1 : -1;
-        spriteRenderer.flipX = flyingForwards;
-        transform.position += Vector3.right * moveDirection * speed * Time.deltaTime;
+        if(levelsToSpawn.Any(level => level == LevelManager.instance.currentLevelIndex + 1))
+        {
+            transform.position += (Vector3)moveDirection * speed * Time.deltaTime;
 
-        if (flyingForwards)
-        {
-            if (transform.position.x > ScreenRangeData.topRightWoldPos.x ||
-            transform.position.y < ScreenRangeData.bottomLeftWorldPos.y)
+            if  ((chosenTransform == bottomLeftTransform && transform.position.x > topRightTransform.position.x) || 
+                (!chosenTransform == bottomLeftTransform && transform.position.x < bottomLeftTransform.position.x) || 
+                transform.position.y < bottomLeftTransform.position.y)
             {
                 ResetBird();
-                gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            if (transform.position.x < ScreenRangeData.bottomLeftWorldPos.x || 
-            transform.position.y < ScreenRangeData.bottomLeftWorldPos.y)
-            {
-                ResetBird();
-                gameObject.SetActive(false);
             }
         }
     }
 
-    private void BirdDead()
+
+    private void Dead()
     {
-        if (activeBall.playerHitBird && !currentAnimStateInfo.IsName(deadAnimState))
-        {
-            animator.Play(deadAnimState, 0, 0);
-            StartCoroutine(RemovingConstraints());
-        }
+        animator.Play(deadAnimState, 0, 0);
+        StartCoroutine(SettingBodyToDynamic());
     }
 
-    private IEnumerator RemovingConstraints()
+    private IEnumerator SettingBodyToDynamic()
     {
         yield return new WaitForSeconds(0.2f);
-        rigidbodyBird.constraints = RigidbodyConstraints2D.None;
+        body.bodyType = RigidbodyType2D.Dynamic;
     }
-    public void ResetBird()
+    private void ResetBird()
     {
-        if (gameObject.activeInHierarchy)
-        {
-            animator.Play(flyingAnimState, 0, 0);
-        }
-        rigidbodyBird.constraints = RigidbodyConstraints2D.FreezeAll;
+        animator.Play(flyingAnimState, 0, 0);
+        body.bodyType = RigidbodyType2D.Kinematic;
         transform.eulerAngles = Vector2.zero;
+        SetBirdPos();
+    }
+
+    private void SetBirdPos()
+    {
+        float randomY = Random.Range(basket.transform.position.y, topRightTransform.position.y);
+        chosenTransform = Random.value < 0.5f ? bottomLeftTransform : topRightTransform;
+
+        transform.position = new Vector3(chosenTransform.position.x, randomY, 0);
+        spriteRenderer.flipX = chosenTransform == bottomLeftTransform;
+        moveDirection = chosenTransform == bottomLeftTransform ? Vector2.right : Vector2.left;
     }
 }
