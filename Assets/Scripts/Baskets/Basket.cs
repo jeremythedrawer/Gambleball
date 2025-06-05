@@ -55,7 +55,7 @@ public class Basket : MonoBehaviour
         }
     }
 
-    private void ResetBackboard() //TODO: Reset basket
+    private void ResetBackboard()
     {
         backboardRB.gameObject.transform.localPosition = backboardStartPos;
         backboardRB.gameObject.transform.eulerAngles = Vector2.zero;

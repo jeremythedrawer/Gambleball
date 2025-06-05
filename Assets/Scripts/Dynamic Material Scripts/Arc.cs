@@ -12,12 +12,12 @@ public class Arc : MonoBehaviour
     {
         transform.position = activeBall.transform.position;
 
-        if ((Input.GetMouseButtonDown(0) && activeBall.rigidBodyBall.linearVelocity.magnitude == 0) || 
-            activeBall.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
+        if ((Input.GetMouseButtonDown(0) && activeBall.body.linearVelocity.magnitude == 0) || 
+            activeBall.body.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             topRight = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        else if (activeBall.rigidBodyBall.linearVelocity.y <= 0)
+        else if (activeBall.body.linearVelocity.y <= 0)
         {
             topRight = activeBall.transform.position;
         }

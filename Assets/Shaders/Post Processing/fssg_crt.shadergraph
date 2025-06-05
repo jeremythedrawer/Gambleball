@@ -1263,15 +1263,15 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": -96.00013732910156,
-            "y": 1952.0
+            "x": -1439.999755859375,
+            "y": 1947.0
         },
         "m_Blocks": []
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": -106.00016784667969,
-            "y": 2133.0
+            "x": -1449.9998779296875,
+            "y": 2128.0
         },
         "m_Blocks": [
             {
@@ -1393,8 +1393,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -7084.99951171875,
-            "y": 1518.9998779296875,
+            "x": -7086.99951171875,
+            "y": 1525.9998779296875,
             "width": 128.0,
             "height": 94.0
         }
@@ -2219,9 +2219,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1111.0,
-            "y": 2260.0,
-            "width": 208.00006103515626,
+            "x": -1733.0,
+            "y": 2112.0,
+            "width": 208.0,
             "height": 302.0
         }
     },
@@ -2960,7 +2960,7 @@
     "m_ObjectId": "34f86354e54244d5b2db332a7e1727ed",
     "m_Title": "Quantized Screen Coordinates",
     "m_Position": {
-        "x": -7990.0,
+        "x": -7990.00048828125,
         "y": 1326.0
     }
 }
@@ -5880,8 +5880,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -6783.99951171875,
-            "y": 1384.9998779296875,
+            "x": -6780.0,
+            "y": 1469.0,
             "width": 128.0,
             "height": 101.0
         }
@@ -6665,7 +6665,7 @@
     "m_Title": "Scan Lines",
     "m_Position": {
         "x": -4263.0,
-        "y": 797.0
+        "y": 796.9999389648438
     }
 }
 

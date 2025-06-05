@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
 
 
     [Header("References")]
-    public Rigidbody2D rigidBodyBall;
+    public Rigidbody2D body;
     public CircleCollider2D circleColliderBall;
     public SpriteRenderer spriteRendererBall;
     public Basket basket;
@@ -26,7 +26,8 @@ public class Ball : MonoBehaviour
 
     private LayerMask scoreTriggerLayer;
     private bool enteredFromTop;
-    public bool playerScored {  get; set; }
+    public bool inBasket {  get; private set; }
+    public bool playerScored { get; set; }
     public bool outOfBounds { get; private set; }
     public virtual void Start()
     {
@@ -36,10 +37,14 @@ public class Ball : MonoBehaviour
 
     private void OnEnable()
     {
-        rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
-        playerScored = false;
+        body.constraints = RigidbodyConstraints2D.FreezeAll;
+        inBasket = false;
     }
 
+    private void OnDisable()
+    {
+        outOfBounds = false;
+    }
     public virtual void Update()
     {
         DetectIfScored();
@@ -47,7 +52,7 @@ public class Ball : MonoBehaviour
     }
     private void SetUpBall()
     {
-        rigidBodyBall.gravityScale = weight;
+        body.gravityScale = weight;
         spriteRendererBall.sprite = spriteBall;
         circleColliderBall.sharedMaterial.bounciness = bounciness;
     }
@@ -60,7 +65,7 @@ public class Ball : MonoBehaviour
         if (hit != null && !enteredFromTop)
         {
             enteredFromTop = transform.position.y > basket.scoreTrigger.worldPoints[0].y;
-            playerScored = false;
+            inBasket = false;
         }
         else if (enteredFromTop)
         {
@@ -70,13 +75,14 @@ public class Ball : MonoBehaviour
 
                 basket.plusScoreMaterial.alpha = 1;
 
+                inBasket = true;
                 playerScored = true;
                 enteredFromTop = false;
             }
         }
         else
         {
-            playerScored = false;
+            inBasket = false;
         }
     }
 

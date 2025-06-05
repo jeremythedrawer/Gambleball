@@ -6,7 +6,7 @@ public class HeartsUI : MonoBehaviour
 
     private HeartsMaterial[] hearts = new HeartsMaterial[3];
 
-    private int heartsLeft = 3;
+    private int currentHeartIndex = 2;
 
     private void Awake()
     {
@@ -19,7 +19,8 @@ public class HeartsUI : MonoBehaviour
 
     private void OnEnable()
     {
-        BallSpawner.onOutOfBounds += UpdateHearts;
+        BallSpawner.onPlayerNotScored += PlayerDidntScore;
+        BallSpawner.onPlayerScored += ReplenishCurrentHeart;
     }
     private void UpdateHearts()
     {
@@ -27,7 +28,7 @@ public class HeartsUI : MonoBehaviour
 
         if (StatsManager.instance.attemptsLeft > 0 && !BallSpawner.instance.activeBall.playerScored)
         {
-            hearts[heartsLeft - 1].attemptsLeft--; // Loose attempt on current heart
+            hearts[currentHeartIndex - 1].attemptsLeft--; // Loose attempt on current heart
         }
         else if (StatsManager.instance.attemptsLeft == 0 || !BallSpawner.instance.activeBall.playerScored) //Replenish Hearts
         {
@@ -39,14 +40,14 @@ public class HeartsUI : MonoBehaviour
                 }
             }
         }
-        else if (StatsManager.instance.attemptsLeft == 0 && heartsLeft > 1) // loose heart
+        else if (StatsManager.instance.attemptsLeft == 0 && currentHeartIndex > 1) // loose heart
         {
-            heartsLeft--;
-            hearts[heartsLeft].attemptsLeft = 0;
+            currentHeartIndex--;
+            hearts[currentHeartIndex].attemptsLeft = 0;
         }
         else // reset hearts
         {
-            heartsLeft = 3;
+            currentHeartIndex = 3;
             for (int i = 0; i < hearts.Length; i++)
             {
                 if (hearts[i].alpha != 1)
@@ -58,11 +59,53 @@ public class HeartsUI : MonoBehaviour
         }
     }
 
+    private void PlayerDidntScore()
+    {
+        if (currentHeartIndex == 0 && hearts[currentHeartIndex].attemptsLeft == 1)
+        {
+            ResetHearts();
+        }
+        else
+        {
+            LooseAttempt();
+
+            if (hearts[currentHeartIndex].attemptsLeft == 0)
+            {
+                hearts[currentHeartIndex].alpha = 0;
+                LooseHeart();
+            }
+        }
+    }
+
+    private void LooseHeart()
+    {
+        currentHeartIndex--;
+    }
+    private void LooseAttempt()
+    {
+        hearts[currentHeartIndex].attemptsLeft--;;
+    }
+
+    private void ReplenishCurrentHeart()
+    {
+        hearts[currentHeartIndex].attemptsLeft = 3;
+    }
+
+    private void ResetHearts()
+    {
+        currentHeartIndex = 2;
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].alpha = 0;
+            hearts[i].attemptsLeft = 3;
+            hearts[i].ShowHeart();
+        }
+    }
     private void TrackHeartsLeft()
     {
         if (StatsManager.instance.attemptsLeft % 3 == 0)
         {
-            heartsLeft--;
+            currentHeartIndex--;
         }
     }
 }

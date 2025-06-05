@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9143596500862442122
 Transform:
   m_ObjectHideFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.393, y: -1.298, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3964444, y: 1.3680001, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,7 +128,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7677aa3f99caabd49b23151cd96d7e05, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -184,9 +184,12 @@ MonoBehaviour:
   spin: 1
   scoreDetectionRadius: 0.065
   birdDetectRadius: 0.08
-  rigidBodyBall: {fileID: 3873897948939823312}
+  weightFactor: 0.85
+  body: {fileID: 3873897948939823312}
   circleColliderBall: {fileID: 807036746448952510}
   spriteRendererBall: {fileID: 3015306518159986885}
+  basket: {fileID: 0}
+  outOfBoundsTransform: {fileID: 0}
   backboardDetectionRaduis: 0.15
   smashBackboardThreshold: 4
   backboardLayer:

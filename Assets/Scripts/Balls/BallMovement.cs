@@ -15,7 +15,7 @@ public class BallMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        ball.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
+        ball.body.constraints = RigidbodyConstraints2D.FreezeAll;
     }
     private void Start()
     {
@@ -29,7 +29,7 @@ public class BallMovement : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (InputManager.Instance.leftMouseButtonDown && ball.rigidBodyBall.constraints == RigidbodyConstraints2D.FreezeAll)
+        if (InputManager.Instance.leftMouseButtonDown && ball.body.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mouseWorldPos.y > transform.position.y)
@@ -37,16 +37,16 @@ public class BallMovement : MonoBehaviour
                 LaunchBall(mouseWorldPos);
             }
         }
-        else if (ball.rigidBodyBall.IsSleeping())
+        else if (ball.body.IsSleeping())
         {
-            ball.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
-            ball.rigidBodyBall.linearVelocity = Vector2.zero;
+            ball.body.constraints = RigidbodyConstraints2D.FreezeAll;
+            ball.body.linearVelocity = Vector2.zero;
         }
     }
     private void LaunchBall(Vector2 mouseInputPos)
     {
-        ball.rigidBodyBall.constraints = RigidbodyConstraints2D.None;
-        float currentHeight = ball.rigidBodyBall.position.y;
+        ball.body.constraints = RigidbodyConstraints2D.None;
+        float currentHeight = ball.body.position.y;
 
         if (mouseInputPos.y <= currentHeight) return; // only recognises inputs above the ball
 
@@ -55,10 +55,10 @@ public class BallMovement : MonoBehaviour
         float adjustedWeight = Mathf.Lerp(1.5f - ball.weight, 1f, ball.weightFactor);
         float initialVerticalVelocity = (gravity * timeToPeak) * adjustedWeight;
 
-        float horizontalDistance = mouseInputPos.x - ball.rigidBodyBall.position.x;
+        float horizontalDistance = mouseInputPos.x - ball.body.position.x;
         float initialHorizontalVelocity = horizontalDistance / timeToPeak;
 
-        ball.rigidBodyBall.linearVelocity = new Vector2(initialHorizontalVelocity, initialVerticalVelocity);
-        ball.rigidBodyBall.angularVelocity = ball.spin * 100;
+        ball.body.linearVelocity = new Vector2(initialHorizontalVelocity, initialVerticalVelocity);
+        ball.body.angularVelocity = ball.spin * 100;
     }
 } 

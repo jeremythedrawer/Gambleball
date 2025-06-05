@@ -18,7 +18,7 @@ public class BowlingBall : Ball
 
         if (hit != null)
         {
-            if (rigidBodyBall.linearVelocityX > smashBackboardThreshold)
+            if (body.linearVelocityX > smashBackboardThreshold)
             {
                 basket.backboardRB.constraints = RigidbodyConstraints2D.None;
             }

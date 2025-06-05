@@ -13,7 +13,11 @@ public class BallSpawner : Spawner
     public Ball activeBall;
 
     public static event Action onOutOfBounds;
-    public static event Action onScore;
+    public static event Action onPlayerScored;
+    public static event Action onPlayerNotScored;
+
+    public static event Action onInBasket;
+
     public void Awake()
     {
         if (instance == null) instance = this;
@@ -30,11 +34,21 @@ public class BallSpawner : Spawner
         {
             onOutOfBounds?.Invoke();
             SetActiveBall();
+
+            if (activeBall.playerScored)
+            {
+                onPlayerScored?.Invoke();
+                activeBall.playerScored = false;
+            }
+            else
+            {
+                onPlayerNotScored?.Invoke();
+            }
         }
 
-        if (activeBall.playerScored)
+        if (activeBall.inBasket)
         {
-            onScore?.Invoke();
+            onInBasket?.Invoke();
         }
     }
 
@@ -58,7 +72,7 @@ public class BallSpawner : Spawner
     {
         activeBall.transform.position = NewPos(bottomLeft.position, topRight.position);
         activeBall.transform.eulerAngles = Vector2.zero;
-        activeBall.rigidBodyBall.constraints = RigidbodyConstraints2D.FreezeAll;
+        activeBall.body.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     private void OnDrawGizmos()
