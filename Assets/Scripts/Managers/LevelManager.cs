@@ -16,17 +16,20 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        BallSpawner.onOutOfBounds += SetLevelIndex;
+        BallSpawner.onPlayerScored += IncreaseLevelIndex;
+        BallSpawner.onPlayerNotScored += SetToLastCheckpoint;
     }
-    public void SetLevelIndex()
+
+    private void IncreaseLevelIndex()
+    {
+        currentLevelIndex++;
+    }
+
+    private void SetToLastCheckpoint()
     {
         if (StatsManager.instance.attemptsLeft == 0)
         {
             currentLevelIndex = lastCheckpointIndex;
-        }
-        else if (StatsManager.instance.successfulAttempts % 3 == 0)
-        {
-            currentLevelIndex++;
         }
     }
 }

@@ -18,23 +18,20 @@ public class StatsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        BallSpawner.onOutOfBounds += UpdateAttempts;
+        BallSpawner.onPlayerNotScored += UpdateAttempts;
         BallSpawner.onInBasket += PlayerScored;
     }
 
     private void UpdateAttempts()
     {
-        if (!BallSpawner.instance.activeBall.inBasket)
+        if (attemptsLeft > 0)
         {
-            if (attemptsLeft > 0)
-            {
-                attemptsLeft--;
-            }
-            else
-            {
-                attemptsLeft = 9;
-                successfulAttempts = 0;
-            }
+            attemptsLeft--;
+        }
+        else
+        {
+            attemptsLeft = 9;
+            successfulAttempts = 0;
         }
     }
 
