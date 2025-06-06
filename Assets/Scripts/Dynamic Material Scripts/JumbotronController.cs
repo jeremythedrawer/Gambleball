@@ -16,13 +16,13 @@ public class JumbotronController : MonoBehaviour
 
     private void ChooseSign()
     {
-        if (StatsManager.instance.fromDowntown)
-        {
-            fromDowntown.onOff = true;
-        }
-        else if (StatsManager.instance.onFire)
+        if (StatsManager.instance.onFire)
         {
             onFire.onOff = true;
+        }
+        else if (StatsManager.instance.fromDowntown)
+        {
+            fromDowntown.onOff = true;
         }
     }
 }

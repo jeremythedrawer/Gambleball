@@ -56,7 +56,7 @@ public class StatsManager : MonoBehaviour
 
     private void CheckScoredFromDowntown()
     {
-        fromDowntown = Vector2.Distance(BallSpawner.instance.currentChosenPos, Basket.instance.transform.position) > 3.2 && !onFire;
+        fromDowntown = Vector2.Distance(BallSpawner.instance.currentChosenPos, Basket.instance.transform.position) > 3.5;
     }
 
     private void CheckOnFire()
