@@ -3,8 +3,9 @@ using UnityEngine;
 public class BasketMaterial : MaterialManager
 {
     private float lerpTime = 0.5f;
-    public static Color scoreColor {  get; set; } = Color.white;
-    private static readonly int scoreColorID = Shader.PropertyToID("_ScoreColor");
+    public Color startColor;
+    public Color scoreColor {  get; set; } = Color.white;
+    private readonly int scoreColorID = Shader.PropertyToID("_ScoreColor");
     public override void Start()
     {
         base.Start();
@@ -12,7 +13,7 @@ public class BasketMaterial : MaterialManager
 
     private void OnEnable()
     {
-        scoreColor = Color.white;
+        scoreColor = startColor;
         UpdateMaterial();
     }
     private void Update()
@@ -43,7 +44,7 @@ public class BasketMaterial : MaterialManager
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / lerpTime;
             t = Mathf.Pow(t, 2);
-            scoreColor = Color.Lerp(cachedScoreColor, Color.white, t);
+            scoreColor = Color.Lerp(cachedScoreColor, startColor, t);
             yield return null;
         }
     }

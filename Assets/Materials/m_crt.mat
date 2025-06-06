@@ -58,13 +58,17 @@ Material:
     - _EnableExternalAlpha: 0
     - _Float: -48.98
     - _ZWrite: 0
+    - _bias: 0.621
     - _bloom: 0.93
-    - _brightness: 0.1
+    - _brightness: 0.15
     - _chromaticAberationIntensity: 0.00128
-    - _cyanToRed: -0.1
+    - _cyanToRed: -0.14
+    - _freq: 96.1
     - _greenToMagenta: 0
-    - _magentaToGreen: 0
+    - _mag: 1
+    - _magentaToGreen: 0.02
     - _motionBlurAmount: 0.996
+    - _range: 27
     - _redToCyan: -0.03
     - _scale: 0.88
     - _scanLineFallOff: 2.37
@@ -73,6 +77,7 @@ Material:
     - _vidnetteWidth: 141.09
     - _vignetteWidth: 68.01
     - _warpOffset: 6.22
+    - _xAxis: 0.25
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

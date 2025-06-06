@@ -11,12 +11,11 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
+        instance = this;
     }
 
     private void OnEnable()
     {
-        BallSpawner.onPlayerScored += IncreaseLevelIndex;
         BallSpawner.onPlayerNotScored += SetToLastCheckpoint;
     }
 

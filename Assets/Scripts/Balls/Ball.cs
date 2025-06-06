@@ -71,7 +71,10 @@ public class Ball : MonoBehaviour
         {
             if (transform.position.y < basket.scoreTrigger.worldPoints[3].y && transform.position.x > basket.scoreTrigger.worldPoints[2].x)
             {
-                BasketMaterial.scoreColor = Color.green;
+                foreach(BasketMaterial materialController in Basket.instance.materialControllers)
+                {
+                    materialController.scoreColor = Color.green;
+                }
 
                 basket.plusScoreMaterial.alpha = 1;
 

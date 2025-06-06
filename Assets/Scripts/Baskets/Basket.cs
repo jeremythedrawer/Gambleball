@@ -13,17 +13,23 @@ public class Basket : MonoBehaviour
     public Rigidbody2D backboardRB;
     public PlusScoreMaterial plusScoreMaterial;
     public ScoreTrigger scoreTrigger;
+    public BasketMaterial[] materialControllers;
 
     [Header("Bounds")]
     public Transform topRight;
     public Transform bottomLeft;
 
-
+    public static Basket instance { get; private set; }
     public Vector2 backboardStartPos { get; private set; }
 
     private float elepsedTime;
     private float minMovingHeight;
     private float maxMovingHeight;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     public void Start()
     {
         if (backboardStartPos == Vector2.zero)

@@ -18,6 +18,7 @@ public class BallSpawner : Spawner
 
     public static event Action onInBasket;
 
+    public Vector2 currentChosenPos;
     public void Awake()
     {
         if (instance == null) instance = this;
@@ -70,7 +71,8 @@ public class BallSpawner : Spawner
     }
     private void ResetActiveBallPos()
     {
-        activeBall.transform.position = NewPos(bottomLeft.position, topRight.position);
+        currentChosenPos = NewPos(bottomLeft.position, topRight.position);
+        activeBall.transform.position = currentChosenPos;
         activeBall.transform.eulerAngles = Vector2.zero;
         activeBall.body.constraints = RigidbodyConstraints2D.FreezeAll;
     }

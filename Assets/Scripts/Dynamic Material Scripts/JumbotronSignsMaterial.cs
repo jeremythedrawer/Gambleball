@@ -1,13 +1,22 @@
 using System.Collections;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class JumbotronSignsMaterial : MaterialManager
 {
-    public float flashingTime = 1;
-    public int flashingReps = 3;
+    public enum AnimationType
+    { 
+        Repeat,
+        PingPong
+    }
 
-    private bool on;
-    private int currentFlashingReps;
+    [SerializeField] private AnimationType animationType;
+
+    public float animationCycleTime = 1;
+    public int animationCycles = 3;
+
+    public bool onOff {  get; set; }
+
     private float time;
     private readonly int timeID = Shader.PropertyToID("_time");
     public override void Start()
@@ -19,19 +28,30 @@ public class JumbotronSignsMaterial : MaterialManager
     {
         UpdateMaterial();
 
-        if (!on)
+        if (onOff)
         {
-            if (currentFlashingReps <= flashingReps)
-            {
-                StartCoroutine(Flashing());
-            }
-            else
-            {
-                currentFlashingReps = 0;
-            }
+            PlayAnimation();
         }
     }
 
+
+    private void PlayAnimation()
+    {
+        switch (animationType)
+        {
+            case AnimationType.Repeat:
+            {
+                StartCoroutine(Repeating());
+            }
+            break;
+
+            case AnimationType.PingPong:
+            {
+                StartCoroutine(PingPonging());
+            }
+            break;
+        }
+    }
     public override void UpdateMaterial()
     {
         if (material != null)
@@ -42,19 +62,49 @@ public class JumbotronSignsMaterial : MaterialManager
         }
     }
 
-    private IEnumerator Flashing()
+    private IEnumerator Repeating()
     {
-        on = true;
-        float currentTime = 0;
-        while (currentTime < flashingTime)
+        onOff = false;
+        int currentCycle = 0;
+
+        while (currentCycle < animationCycles)
         {
-            currentTime += Time.deltaTime;
-            time = currentTime / flashingTime;
+            float elapsedTime = 0;
+            while (elapsedTime < animationCycleTime)
+            {
+                elapsedTime += Time.deltaTime;
+
+                time = elapsedTime / animationCycleTime;
+
+                yield return null;
+            }
+
+            time = 0;
+            currentCycle++;
             yield return null;
         }
+    }
 
-        currentFlashingReps++;
-        on = false;
-        time = 0;
+    private IEnumerator PingPonging()
+    {
+        onOff = false;
+        int currentCycle = 0;
+
+        while (currentCycle < animationCycles)
+        {
+            float elapsedTime = 0;
+            while(elapsedTime < animationCycleTime)
+            {
+                elapsedTime += Time.deltaTime;
+
+                time = Mathf.Sin((elapsedTime /  animationCycleTime) * Mathf.PI);
+                yield return null;
+
+            }
+
+            time = 0;
+            currentCycle++;
+            yield return null;
+        }
     }
 }
