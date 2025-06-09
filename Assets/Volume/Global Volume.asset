@@ -98,7 +98,7 @@ MonoBehaviour:
     m_Value: 3
   warpOffset:
     m_OverrideState: 1
-    m_Value: 5
+    m_Value: 3.85
   vignetteWidth:
     m_OverrideState: 1
     m_Value: 71.07

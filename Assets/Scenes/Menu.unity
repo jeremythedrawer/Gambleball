@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameModeData: {fileID: 11400000, guid: 21637c51d855a504baff1aec107644c2, type: 2}
-  lerpSpeed: 2
+  menuSpeed: 0.1
+  livesModeSpeed: 2
 --- !u!114 &615364063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbee70dc195184ab815fd3d4f4b691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScore: 20
+  daysUnlocked: 2
 --- !u!114 &615364064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +336,7 @@ GameObject:
   - component: {fileID: 870880133}
   - component: {fileID: 870880132}
   - component: {fileID: 870880131}
+  - component: {fileID: 870880136}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -436,6 +438,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &870880136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870880130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6ab4ab368129b40b1894597aa2fb7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 870880134}
 --- !u!1 &1393869725
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1419954498}
-  unlocked: 1
   loadSceneIndex: 1
 --- !u!1 &1682397350
 GameObject:
@@ -691,7 +705,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1682397352}
-  unlocked: 0
   loadSceneIndex: 3
 --- !u!1 &1774632610
 GameObject:
@@ -956,7 +969,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2034473611}
-  unlocked: 0
   loadSceneIndex: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

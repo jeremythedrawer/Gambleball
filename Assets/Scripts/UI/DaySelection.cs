@@ -8,13 +8,12 @@ using System.Collections;
 public class DaySelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     public Image image;
-    public bool unlocked;
     public int loadSceneIndex;
+
+    public bool unlocked => loadSceneIndex <= StatsManager.instance.daysUnlocked;
 
     private bool isPressed = false;
     private bool isHovered = false;
-
-    private AsyncOperation sceneLoadOperation;
 
     private void Update()
     {
@@ -58,6 +57,7 @@ public class DaySelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         isPressed = false;
         image.color = isHovered ? Color.green : Color.white;
+        GameModeManager.instance.currentDayIndex = loadSceneIndex;
         GlobalVolumeController.instance.ToggleCRT(loadSceneIndex);
     }
 }

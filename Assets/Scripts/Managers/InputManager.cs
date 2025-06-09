@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
+    public static InputManager instance { get; private set; }
     public bool leftMouseButtonDown => Input.GetMouseButtonDown(0);
 
     public bool resetInput => Input.GetKeyDown(KeyCode.R);
@@ -11,7 +11,13 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
     }
 
     private void Update()

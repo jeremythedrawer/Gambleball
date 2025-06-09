@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modes:
   - Mode: 0
-    targetScore: 30
+    targetScore: 10
     bird: 0
     modeData:
       rid: 2217455628989759606
@@ -42,4 +42,4 @@ MonoBehaviour:
     - rid: 2217455628989759607
       type: {class: TimerData, ns: , asm: Assembly-CSharp}
       data:
-        time: 30
+        time: 60

@@ -20,7 +20,13 @@ public class BallSpawner : Spawner
     public Vector2 currentChosenPos;
     public void Awake()
     {
-        if (instance == null) instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
     }
 
     private void Start()

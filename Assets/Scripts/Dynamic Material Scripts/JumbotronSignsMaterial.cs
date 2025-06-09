@@ -21,6 +21,7 @@ public class JumbotronSignsMaterial : MaterialManager
     public override void OnEnable()
     {
         base.OnEnable();
+        UpdateMaterial();
     }
 
     private void Update()

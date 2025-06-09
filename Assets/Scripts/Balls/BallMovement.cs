@@ -21,7 +21,7 @@ public class BallMovement : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (InputManager.Instance.leftMouseButtonDown && ball.body.constraints == RigidbodyConstraints2D.FreezeAll)
+        if (InputManager.instance.leftMouseButtonDown && ball.body.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mouseWorldPos.y > transform.position.y)
