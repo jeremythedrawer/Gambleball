@@ -66,7 +66,24 @@ public class BallSpawner : Spawner
 
     public void PickBall()
     {
+        switch (activeBall.type)
+        {
+            case Ball.BallType.Normal:
+            {
 
+            }
+            break;
+            case Ball.BallType.Moneyball:
+            {
+
+            }
+            break;
+            case Ball.BallType.AttemptBoost:
+            {
+
+            }
+            break;
+        }
     }
 
     private void OnDrawGizmos()
