@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GlobalVolumeController : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class GlobalVolumeController : MonoBehaviour
     private void Start()
     {
         globalVolume.TryGet<CRTVolumeComponent>(out crtVolume);
-        StartCoroutine(TurningOnCRT());
+        TurnOnCRT();
     }
 
     private void Update()
@@ -30,6 +31,27 @@ public class GlobalVolumeController : MonoBehaviour
         crtVolume.tint.value = skyGradientOverTime.Evaluate(time);
     }
 
+    public Coroutine ToggleCRT(int sceneIndex)
+    {
+        return StartCoroutine(TogglingCRT(sceneIndex));
+    }
+
+    private IEnumerator TogglingCRT(int sceneIndex)
+    {
+        yield return TurningOffCRT();
+        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
+        yield return new WaitUntil(() => sceneLoad.isDone);
+        yield return TurningOnCRT();
+    }
+    public Coroutine TurnOffCRT()
+    {
+        return StartCoroutine(TurningOffCRT());
+    }
+
+    public Coroutine TurnOnCRT()
+    {
+        return StartCoroutine(TurningOnCRT());
+    }
     private IEnumerator TurningOnCRT()
     {
         yield return new WaitUntil(()=> crtVolume != null);
@@ -44,5 +66,21 @@ public class GlobalVolumeController : MonoBehaviour
         }
         crtVolume.warpOffset.value = 5;
     }
+
+    private IEnumerator TurningOffCRT()
+    {
+        yield return new WaitUntil(() => crtVolume != null);
+        float elapsedTime = 0;
+        crtVolume.tint.value = skyGradientOverTime.Evaluate(0f);
+        while (elapsedTime < turnOnTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / turnOnTime;
+            crtVolume.warpOffset.value = Mathf.Lerp(5, 0, t);
+            yield return null;
+        }
+        crtVolume.warpOffset.value = 0;
+    }
+
 
 }

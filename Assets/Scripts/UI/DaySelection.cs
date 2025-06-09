@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DaySelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -12,6 +13,8 @@ public class DaySelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private bool isPressed = false;
     private bool isHovered = false;
+
+    private AsyncOperation sceneLoadOperation;
 
     private void Update()
     {
@@ -55,6 +58,6 @@ public class DaySelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         isPressed = false;
         image.color = isHovered ? Color.green : Color.white;
-        SceneManager.LoadSceneAsync(loadSceneIndex);
+        GlobalVolumeController.instance.ToggleCRT(loadSceneIndex);
     }
 }
