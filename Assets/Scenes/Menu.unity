@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbee70dc195184ab815fd3d4f4b691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daysUnlocked: 1
+  daysUnlocked: 3
 --- !u!114 &615364064
 MonoBehaviour:
   m_ObjectHideFlags: 0

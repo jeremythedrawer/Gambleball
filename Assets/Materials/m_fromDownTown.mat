@@ -67,13 +67,13 @@ Material:
     - _QueueOffset: 0
     - _ZWrite: 0
     - _offset: 0.015
-    - _time: 0.5
+    - _time: -0.12
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _color1: {r: 0, g: 0.509434, b: 0.33283025, a: 0}
-    - _color2: {r: 0, g: 0.6792453, b: 0.33839253, a: 0}
-    - _color3: {r: 1, g: 0.97321427, b: 0, a: 0}
+    - _color1: {r: 0, g: 0.3062471, b: 0.48235294, a: 0}
+    - _color2: {r: 0.28678277, g: 0, b: 0.5566038, a: 0}
+    - _color3: {r: 0.9056604, g: 0, b: 0.49901295, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5647101948435423513

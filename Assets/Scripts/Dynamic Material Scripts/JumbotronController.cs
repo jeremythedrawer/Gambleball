@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class JumbotronController : MonoBehaviour
 {
-    [Header("From Downtown")]
     public JumbotronSignsMaterial fromDowntown;
-
-    [Header("On Fire")]
     public JumbotronSignsMaterial onFire;
+    public JumbotronSignsMaterial moneyBall;
+    public JumbotronSignsMaterial attemptBoost;
 
     private void OnEnable()
     {

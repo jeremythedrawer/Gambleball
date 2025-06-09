@@ -14,7 +14,6 @@ public class BallSpawner : Spawner
     public static event Action onOutOfBounds;
     public static event Action onPlayerScored;
     public static event Action onPlayerNotScored;
-
     public static event Action onInBasket;
 
     public Vector2 currentChosenPos;
@@ -63,6 +62,11 @@ public class BallSpawner : Spawner
         activeBall.transform.position = currentChosenPos;
         activeBall.transform.eulerAngles = Vector2.zero;
         activeBall.body.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void PickBall()
+    {
+
     }
 
     private void OnDrawGizmos()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CanvasCameraFixer : MonoBehaviour
+public class CanvasController : MonoBehaviour
 {
     public Canvas canvas;
 

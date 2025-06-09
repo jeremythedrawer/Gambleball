@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public enum BallType
+    { 
+        Normal,
+        Moneyball,
+        AttemptBoost
+    }
+
+    public BallType type;
+
     [Header("Parameters")]
     public float weight;
     public float bounciness = 0.5f;
@@ -17,10 +26,10 @@ public class Ball : MonoBehaviour
     public Rigidbody2D body;
     public CircleCollider2D circleColliderBall;
     public Basket basket;
+    public MeshRenderer meshRenderer;
 
     [Header("Out Of Bounds")]
     public Transform outOfBoundsTransform;
-
 
     private LayerMask scoreTriggerLayer;
     private bool enteredFromTop;
@@ -53,8 +62,6 @@ public class Ball : MonoBehaviour
         body.gravityScale = weight;
         circleColliderBall.sharedMaterial.bounciness = bounciness;
     }
-
-
     private void DetectIfScored()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, scoreDetectionRadius, scoreTriggerLayer);
@@ -85,7 +92,6 @@ public class Ball : MonoBehaviour
             inBasket = false;
         }
     }
-
     public virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
