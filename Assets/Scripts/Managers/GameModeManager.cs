@@ -15,6 +15,7 @@ public class GameModeManager : MonoBehaviour
     public float livesModeSpeed = 2f;
 
 
+
     private float lerpedTime = 0f;
     private bool completedDayFlag;
     private bool startDayFlag;
@@ -71,11 +72,13 @@ public class GameModeManager : MonoBehaviour
                 else
                 {
                     StatsManager.instance.CountDownTime();
-                    bool playerLooses = false;
                     if (currentGameMode.modeData is TimerData timerData)
                     {
-                        playerLooses = StatsManager.instance.currentTime <= 0;
+                        float target =  1 - Mathf.Clamp01(StatsManager.instance.currentTime / timerData.time);
+                        lerpedTime = Mathf.Lerp(lerpedTime, target, Time.deltaTime);
+                        GlobalVolumeController.instance.time = lerpedTime;
                     }
+                    bool playerLooses = StatsManager.instance.currentTime <= 0;
                     CheckToEndDay(playerLooses);
                 }
             }

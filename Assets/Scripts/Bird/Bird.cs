@@ -21,7 +21,6 @@ public class Bird : MonoBehaviour
 
     private Transform chosenTransform;
 
-    private AnimatorStateInfo currentAnimStateInfo;
 
     private Vector2 moveDirection;
 
@@ -31,19 +30,22 @@ public class Bird : MonoBehaviour
     private bool inView;
 
     private float prevRandomYPos;
+
+    public static bool isDead { get; private set; }
     private void Start()
     {
-        SetBirdPos();
+        ResetBird();
     }
 
     private void Update()
     {
-        currentAnimStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         UpdatePos();
 
-        inView =    transform.position.x > bottomLeftTransform.position.x &&
-                    transform.position.x < topRightTransform.position.x &&
-                    transform.position.y > bottomLeftTransform.position.y;
+        inView = transform.position.x >= bottomLeftTransform.position.x &&
+                    transform.position.x <= topRightTransform.position.x &&
+                    transform.position.y >= bottomLeftTransform.position.y;
+
+        if (transform.position.y < bottomLeftTransform.position.y) isDead = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -51,22 +53,19 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             Dead();
-        }  
+        }
     }
 
     private void UpdatePos()
     {
-        //if ((levelsToSpawn.Any(level => level == LevelManager.instance.currentLevelIndex + 1) || inView) && !isDead)
-        //{
-        //    transform.position += (Vector3)moveDirection * speed * Time.deltaTime;
-        //    hasResetFlag = false;
-        //}
-        //else if (((Mathf.Abs(transform.position.y - prevRandomYPos) < 0.01f && !isDead) || (isDead && !inView)) && !hasResetFlag)
-        //{
-        //    ResetBird();
-        //}
-
-        //TODO: move bird at desired level
+        if (inView && !isDead)
+        {
+            transform.position += (Vector3)moveDirection * speed * Time.deltaTime;
+        }
+        else if (isDead)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Dead()
@@ -74,7 +73,6 @@ public class Bird : MonoBehaviour
         animator.Play(deadAnimState, 0, 0);
         StartCoroutine(Dying());
     }
-
     private IEnumerator Dying()
     {
         yield return new WaitForSeconds(0.2f);
