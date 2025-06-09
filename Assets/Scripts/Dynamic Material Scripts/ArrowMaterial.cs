@@ -5,9 +5,9 @@ public class ArrowMaterial : MaterialManager
     public static bool onOff { get; set; }
     private static readonly int onOffID = Shader.PropertyToID("_onOff");
 
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
     }
 
     private void Update()

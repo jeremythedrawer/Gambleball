@@ -30,17 +30,19 @@ public class Basket : MonoBehaviour
     {
         instance = this;
     }
-    public void Start()
+
+    private void OnEnable()
     {
         if (backboardStartPos == Vector2.zero)
         {
             backboardStartPos = backboardRB.transform.localPosition;
         }
+        BallSpawner.onOutOfBounds += ResetBasketPos;
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
-        BallSpawner.onOutOfBounds += ResetBasketPos;
+        BallSpawner.onOutOfBounds -= ResetBasketPos;
     }
     public void MoveBasket(Vector2 middlePos)
     {

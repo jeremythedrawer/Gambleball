@@ -20,8 +20,8 @@ public class DayGameModeDrawer : PropertyDrawer
         SerializedProperty modeDataProp = property.FindPropertyRelative("modeData");
         float modeDataHeight = EditorGUI.GetPropertyHeight(modeDataProp, true);
 
-        // 3 lines: Mode, targetScore, bird + modeData
-        return (lineHeight + spacing) * 3 + modeDataHeight + spacing;
+        int drawerCount = 3;
+        return (lineHeight + spacing) * drawerCount + modeDataHeight + spacing;
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

@@ -6,13 +6,10 @@ public class BasketMaterial : MaterialManager
     public Color startColor;
     public Color scoreColor {  get; set; } = Color.white;
     private readonly int scoreColorID = Shader.PropertyToID("_ScoreColor");
-    public override void Start()
-    {
-        base.Start();
-    }
 
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         scoreColor = startColor;
         UpdateMaterial();
     }

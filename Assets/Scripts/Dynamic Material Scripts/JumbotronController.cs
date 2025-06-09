@@ -13,6 +13,10 @@ public class JumbotronController : MonoBehaviour
     {
         BallSpawner.onPlayerScored += ChooseSign; 
     }
+    private void OnDisable()
+    {
+        BallSpawner.onPlayerNotScored -= ChooseSign;
+    }
 
     private void ChooseSign()
     {

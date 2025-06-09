@@ -18,9 +18,9 @@ public class JumbotronSignsMaterial : MaterialManager
 
     private float time;
     private readonly int timeID = Shader.PropertyToID("_time");
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
     }
 
     private void Update()

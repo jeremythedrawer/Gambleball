@@ -11,9 +11,9 @@ public class HeartsMaterial : MaterialManager
 
     private float appearTime = 3f;
     private float currentTime;
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
     }
     private void Update()
     {

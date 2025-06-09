@@ -5,7 +5,7 @@ public abstract class MaterialManager : MonoBehaviour
     protected Material material;
     protected Renderer objectRenderer;
     protected MaterialPropertyBlock mpb;
-    public virtual void Start()
+    public virtual void OnEnable()
     {
         objectRenderer = GetComponent<Renderer>();
         material = objectRenderer.material;

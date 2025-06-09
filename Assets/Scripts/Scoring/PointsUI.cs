@@ -10,6 +10,9 @@ public class PointsUI : MonoBehaviour
     private void Awake()
     {
         if (Instance == null) Instance = this;
+    }
+    private void OnEnable()
+    {
         pointsUIText = GetComponent<TextMeshPro>();
     }
     private void Update()

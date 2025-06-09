@@ -14,13 +14,10 @@ public class PlusScoreMaterial : MaterialManager
 
     private float lerpTime = 0.5f;
 
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
-    }
+        base.OnEnable();
 
-    private void OnEnable()
-    {
         UpdateMaterial();
         alpha = 0;
     }

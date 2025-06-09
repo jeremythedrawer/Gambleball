@@ -12,13 +12,10 @@ public class HeartsUI : MonoBehaviour
     {
         if (Instance == null) Instance = this;
     }
-    private void Start()
-    {
-        hearts = GetComponentsInChildren<HeartsMaterial>();
-    }
 
     private void OnEnable()
     {
+        hearts = GetComponentsInChildren<HeartsMaterial>();
         BallSpawner.onPlayerNotScored += PlayerDidntScore;
         BallSpawner.onPlayerScored += ReplenishCurrentHeart;
     }

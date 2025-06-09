@@ -13,7 +13,14 @@ public class GameModeManager : MonoBehaviour
     private float lerpedTime = 0f;
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()

@@ -2,23 +2,15 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 { 
-    private Ball ball;
+    public Ball ball;
 
     private float gravity = 9.8f;
     private Vector2 mouseWorldPos;
     private float timeToPeak;
 
-    private void Awake()
-    {
-        ball = GetComponent<Ball>();
-    }
-
     private void OnEnable()
     {
         ball.body.constraints = RigidbodyConstraints2D.FreezeAll;
-    }
-    private void Start()
-    {
         gravity *= ball.weight;
     }
 

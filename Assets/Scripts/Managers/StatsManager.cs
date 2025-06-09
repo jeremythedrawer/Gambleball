@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StatsManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class StatsManager : MonoBehaviour
     public bool onFire { get; private set; }
     public bool fromDowntown { get; private set; }
 
+
+
     private void Awake()
     {
         instance = this;
@@ -21,13 +24,32 @@ public class StatsManager : MonoBehaviour
     {
         BallSpawner.onPlayerNotScored += UpdateAttempts;
         BallSpawner.onInBasket += PlayerScored;
+        SceneManager.activeSceneChanged += Run;
     }
-
+    private void OnDisable()
+    {
+        BallSpawner.onPlayerNotScored -= UpdateAttempts;
+        BallSpawner.onInBasket -= PlayerScored;
+        SceneManager.activeSceneChanged -= Run;
+    }
     private void Update()
     {
         CheckScoredFromDowntown();
         CheckOnFire();
     }
+
+    private void Run(Scene oldScene, Scene newScene)
+    {
+        if (newScene.name == "Menu")
+        {
+            enabled = false;
+        }
+        else
+        {
+            enabled = true;
+        }
+    }
+
     private void UpdateAttempts()
     {
         if (attemptsLeft > 0)
