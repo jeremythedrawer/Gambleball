@@ -14,6 +14,6 @@ public class PointsUI : MonoBehaviour
     }
     private void Update()
     {
-        pointsUIText.text = "Score: " + StatsManager.instance.totalScore.ToString();
+        pointsUIText.text = "Score: " + StatsManager.instance.currentScore.ToString() + " / " + StatsManager.instance.targetScore.ToString();
     }
 }

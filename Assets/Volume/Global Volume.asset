@@ -1,20 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume
-  m_EditorClassIdentifier: 
-  components:
-  - {fileID: 5652149729433736722}
---- !u!114 &5652149729433736722
+--- !u!114 &-5281733524176635392
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,13 +18,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.14
   intensity:
     m_OverrideState: 1
-    m_Value: 4.52
+    m_Value: 6.68
   scatter:
     m_OverrideState: 1
-    m_Value: 0.08
+    m_Value: 0.321
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -61,3 +47,73 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -5281733524176635392}
+  - {fileID: 232016222358440985}
+--- !u!114 &232016222358440985
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72acaa803ff680c4b8ad85dbbc23a8a1, type: 3}
+  m_Name: CRTVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  tint:
+    m_OverrideState: 1
+    m_Value: {r: 0.039215688, g: 0.2784314, b: 0.33333334, a: 1}
+  brightness:
+    m_OverrideState: 1
+    m_Value: 0.1
+  cyanToRed:
+    m_OverrideState: 1
+    m_Value: -0.16
+  magentaToGreen:
+    m_OverrideState: 1
+    m_Value: -0.04
+  bloom:
+    m_OverrideState: 1
+    m_Value: 0.82
+  chromaticAberationIntensity:
+    m_OverrideState: 1
+    m_Value: 0.00125
+  scanLineScale:
+    m_OverrideState: 1
+    m_Value: 3
+  warpOffset:
+    m_OverrideState: 1
+    m_Value: 5
+  vignetteWidth:
+    m_OverrideState: 1
+    m_Value: 71.07
+  scanLineFallOff:
+    m_OverrideState: 1
+    m_Value: 2.37
+  signalRange:
+    m_OverrideState: 1
+    m_Value: 27
+  signalMagnitude:
+    m_OverrideState: 1
+    m_Value: 1
+  signalFrequency:
+    m_OverrideState: 1
+    m_Value: 96.1
+  flickerBias:
+    m_OverrideState: 1
+    m_Value: 0.621

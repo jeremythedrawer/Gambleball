@@ -176,7 +176,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 7
+  m_Constraints: 0
 --- !u!114 &148756232553011513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,8 +190,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.4
+  levelsToSpawn: 0400000007000000
   spriteRenderer: {fileID: 2235222572715419744}
   body: {fileID: 629632953429601903}
+  col: {fileID: 8991626221764836281}
   animator: {fileID: 3598594640063943585}
+  basket: {fileID: 0}
   bottomLeftTransform: {fileID: 0}
   topRightTransform: {fileID: 0}

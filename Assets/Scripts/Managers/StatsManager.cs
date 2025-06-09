@@ -3,14 +3,14 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager instance;
-    public int totalScore;
-    public int attemptsLeft = 9;
 
-    public int successfulAttempts;
+    public int targetScore = 50;
+    public int currentScore {  get; private set; }
+    public int attemptsLeft { get; private set; } = 9;
 
-    public int scoresInRow;
-    public bool onFire;
-    public bool fromDowntown;
+    private int scoresInRow;
+    public bool onFire { get; private set; }
+    public bool fromDowntown { get; private set; }
 
     private void Awake()
     {
@@ -38,20 +38,18 @@ public class StatsManager : MonoBehaviour
         else
         {
             attemptsLeft = 9;
-            successfulAttempts = 0;
         }
     }
 
     private void PlayerScored()
     {
         TallyPoints();
-        successfulAttempts++;
         scoresInRow++;
     }
     private void TallyPoints()
     {
         //TODO: if active ball is special tally three instead
-        totalScore += 2;
+        currentScore += 2;
     }
 
     private void CheckScoredFromDowntown()

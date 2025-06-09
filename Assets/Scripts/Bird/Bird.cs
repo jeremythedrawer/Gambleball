@@ -28,11 +28,9 @@ public class Bird : MonoBehaviour
     private string deadAnimState = "dead";
     private string flyingAnimState = "flying";
 
-    private bool isDead;
     private bool inView;
 
     private float prevRandomYPos;
-    private bool hasResetFlag; 
     private void Start()
     {
         SetBirdPos();
@@ -58,22 +56,23 @@ public class Bird : MonoBehaviour
 
     private void UpdatePos()
     {
-        if ((levelsToSpawn.Any(level => level == LevelManager.instance.currentLevelIndex + 1) || inView) && !isDead)
-        {
-            transform.position += (Vector3)moveDirection * speed * Time.deltaTime;
-            hasResetFlag = false;
-        }
-        else if (((Mathf.Abs(transform.position.y - prevRandomYPos) < 0.01f && !isDead) || (isDead && !inView)) && !hasResetFlag)
-        {
-            ResetBird();
-        }
+        //if ((levelsToSpawn.Any(level => level == LevelManager.instance.currentLevelIndex + 1) || inView) && !isDead)
+        //{
+        //    transform.position += (Vector3)moveDirection * speed * Time.deltaTime;
+        //    hasResetFlag = false;
+        //}
+        //else if (((Mathf.Abs(transform.position.y - prevRandomYPos) < 0.01f && !isDead) || (isDead && !inView)) && !hasResetFlag)
+        //{
+        //    ResetBird();
+        //}
+
+        //TODO: move bird at desired level
     }
 
     private void Dead()
     {
         animator.Play(deadAnimState, 0, 0);
         StartCoroutine(Dying());
-        isDead = true;
     }
 
     private IEnumerator Dying()
@@ -84,7 +83,6 @@ public class Bird : MonoBehaviour
     }
     private void ResetBird()
     {
-        hasResetFlag = true;
         SetBirdPos();
         animator.Play(flyingAnimState, 0, 0);
         body.constraints = RigidbodyConstraints2D.FreezeAll;

@@ -59,14 +59,14 @@ Material:
     - _Float: -48.98
     - _ZWrite: 0
     - _bias: 0.621
-    - _bloom: 0.93
-    - _brightness: 0.15
+    - _bloom: 0.82
+    - _brightness: 0.1
     - _chromaticAberationIntensity: 0.00128
-    - _cyanToRed: -0.14
+    - _cyanToRed: -0.16
     - _freq: 96.1
     - _greenToMagenta: 0
     - _mag: 1
-    - _magentaToGreen: 0.02
+    - _magentaToGreen: -0.04
     - _motionBlurAmount: 0.996
     - _range: 27
     - _redToCyan: -0.03

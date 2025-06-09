@@ -9,7 +9,6 @@ public class BallSpawner : Spawner
     public Transform bottomLeft;
     public Transform topRight;
 
-    public List<Ball> allBalls = new List<Ball>();
     public Ball activeBall;
 
     public static event Action onOutOfBounds;
@@ -26,7 +25,7 @@ public class BallSpawner : Spawner
 
     private void Start()
     {
-        SetActiveBall();
+        ResetActiveBallPos();
     }
 
     private void Update()
@@ -34,7 +33,7 @@ public class BallSpawner : Spawner
         if (activeBall.outOfBounds)
         {
             onOutOfBounds?.Invoke();
-            SetActiveBall();
+            ResetActiveBallPos();
 
             if (activeBall.playerScored)
             {
@@ -50,23 +49,6 @@ public class BallSpawner : Spawner
         if (activeBall.inBasket)
         {
             onInBasket?.Invoke();
-        }
-    }
-
-    private void SetActiveBall()
-    {
-        foreach (Ball ball in allBalls)
-        {
-            if (LevelManager.instance.levelData.levels[LevelManager.instance.currentLevelIndex].ball.GetType() == ball.GetType())
-            {
-                activeBall = ball;
-                activeBall.gameObject.SetActive(true);
-                ResetActiveBallPos();
-            }
-            else
-            {
-                ball.gameObject.SetActive(false);
-            }
         }
     }
     private void ResetActiveBallPos()

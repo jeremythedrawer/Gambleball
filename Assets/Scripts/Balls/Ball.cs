@@ -4,7 +4,6 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [Header("Parameters")]
-    public Sprite spriteBall;
     public float weight;
     public float bounciness = 0.5f;
     public float spin = 5;
@@ -17,7 +16,6 @@ public class Ball : MonoBehaviour
     [Header("References")]
     public Rigidbody2D body;
     public CircleCollider2D circleColliderBall;
-    public SpriteRenderer spriteRendererBall;
     public Basket basket;
 
     [Header("Out Of Bounds")]
@@ -53,7 +51,6 @@ public class Ball : MonoBehaviour
     private void SetUpBall()
     {
         body.gravityScale = weight;
-        spriteRendererBall.sprite = spriteBall;
         circleColliderBall.sharedMaterial.bounciness = bounciness;
     }
 
