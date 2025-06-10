@@ -23,11 +23,11 @@ public class HeartsUI : MonoBehaviour
     {
         TrackHeartsLeft();
 
-        if (StatsManager.instance.attemptsLeft > 0 && !BallSpawner.instance.activeBall.playerScored)
+        if (StatsManager.instance.currentHeartAttempts > 0 && !BallSpawner.instance.activeBall.playerScored)
         {
             hearts[currentHeartIndex - 1].attemptsLeft--; // Loose attempt on current heart
         }
-        else if (StatsManager.instance.attemptsLeft == 0 || !BallSpawner.instance.activeBall.playerScored) //Replenish Hearts
+        else if (StatsManager.instance.currentHeartAttempts == 0 || !BallSpawner.instance.activeBall.playerScored) //Replenish Hearts
         {
             for (int i = 0; i < hearts.Length; i++)
             {
@@ -37,7 +37,7 @@ public class HeartsUI : MonoBehaviour
                 }
             }
         }
-        else if (StatsManager.instance.attemptsLeft == 0 && currentHeartIndex > 1) // loose heart
+        else if (StatsManager.instance.currentHeartAttempts == 0 && currentHeartIndex > 1) // loose heart
         {
             currentHeartIndex--;
             hearts[currentHeartIndex].attemptsLeft = 0;
@@ -100,7 +100,7 @@ public class HeartsUI : MonoBehaviour
     }
     private void TrackHeartsLeft()
     {
-        if (StatsManager.instance.attemptsLeft % 3 == 0)
+        if (StatsManager.instance.currentHeartAttempts % 3 == 0)
         {
             currentHeartIndex--;
         }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -17,6 +16,8 @@ public class BallSpawner : Spawner
     public static event Action onInBasket;
 
     public Vector2 currentChosenPos;
+
+    public BallType type = BallType.Normal;
     public void Awake()
     {
         if (instance != null && instance != this)
@@ -63,29 +64,6 @@ public class BallSpawner : Spawner
         activeBall.transform.eulerAngles = Vector2.zero;
         activeBall.body.constraints = RigidbodyConstraints2D.FreezeAll;
     }
-
-    public void PickBall()
-    {
-        switch (activeBall.type)
-        {
-            case Ball.BallType.Normal:
-            {
-
-            }
-            break;
-            case Ball.BallType.Moneyball:
-            {
-
-            }
-            break;
-            case Ball.BallType.AttemptBoost:
-            {
-
-            }
-            break;
-        }
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;

@@ -22,6 +22,8 @@ public class GameModeManager : MonoBehaviour
 
     public static event Action onPlayerBeatDay;
     public static event Action onPlayerLost;
+
+    private int lowestAttemptScore;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -54,38 +56,67 @@ public class GameModeManager : MonoBehaviour
             break;
             case 1:
             {
-                float target = Mathf.Clamp01(StatsManager.instance.currentScore / currentGameMode.targetScore);
-                lerpedTime = Mathf.Lerp(lerpedTime, target, Time.deltaTime * livesModeSpeed);
-                GlobalVolumeController.instance.time = lerpedTime;
+                if (currentGameMode.modeData is LivesData livesData)
+                {
+                    if (!startDayFlag)
+                    {
+                        StatsManager.instance.SetHeartAttempts(livesData);
+                        startDayFlag = true;
+                    }
+                    else
+                    {
+                        float target = Mathf.Clamp01(StatsManager.instance.currentScore / currentGameMode.targetScore);
+                        lerpedTime = Mathf.Lerp(lerpedTime, target, Time.deltaTime * livesModeSpeed);
+                        GlobalVolumeController.instance.time = lerpedTime;
 
-                bool playerLooses = StatsManager.instance.attemptsLeft <= 0;
-                CheckToEndDay(playerLooses);
+                        bool playerLooses = StatsManager.instance.currentHeartAttempts <= 0;
+                        CheckToEndDay(playerLooses);
+                    }
+                }
             }
             break;
             case 2:
             {
-                if (!startDayFlag)
+                if (currentGameMode.modeData is TimerData timerData)
                 {
-                    StatsManager.instance.SetCountDownTime();
-                    startDayFlag = true;
-                }
-                else
-                {
-                    StatsManager.instance.CountDownTime();
-                    if (currentGameMode.modeData is TimerData timerData)
+                    if (!startDayFlag)
                     {
+                        StatsManager.instance.SetCountDownTime(timerData);
+                        startDayFlag = true;
+                    }
+                    else
+                    {
+                        StatsManager.instance.CountDownTime();
+
                         float target =  1 - Mathf.Clamp01(StatsManager.instance.currentTime / timerData.time);
                         lerpedTime = Mathf.Lerp(lerpedTime, target, Time.deltaTime);
                         GlobalVolumeController.instance.time = lerpedTime;
+                        bool playerLooses = StatsManager.instance.currentTime <= 0;
+                        CheckToEndDay(playerLooses);
                     }
-                    bool playerLooses = StatsManager.instance.currentTime <= 0;
-                    CheckToEndDay(playerLooses);
                 }
             }
             break;
             case 3:
             {
-                //CheckToEndDay();
+                if (currentGameMode.modeData is MoneyBallData moneyballData)
+                {
+                    if (!startDayFlag)
+                    {
+                        StatsManager.instance.SetMoneyBallAttempts(moneyballData);
+                        lowestAttemptScore = moneyballData.startingAttempts;
+                        startDayFlag = true;
+                    }
+                    else
+                    {
+                        lowestAttemptScore = Mathf.Min(lowestAttemptScore, StatsManager.instance.currentMoneyBallAttempts);
+                        float target = 1 - Mathf.Clamp01((float)lowestAttemptScore / moneyballData.startingAttempts);
+                        lerpedTime = Mathf.Lerp(lerpedTime, target, Time.deltaTime * livesModeSpeed);
+                        GlobalVolumeController.instance.time = target;
+                        bool playerLooses = StatsManager.instance.currentMoneyBallAttempts <= 0;
+                        CheckToEndDay(playerLooses);
+                    }
+                }
             }
             break;
         }

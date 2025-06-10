@@ -63,7 +63,7 @@ Material:
     - _QueueOffset: 0
     - _ZWrite: 0
     - _characters: 7
-    - _time: 1.1
+    - _time: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

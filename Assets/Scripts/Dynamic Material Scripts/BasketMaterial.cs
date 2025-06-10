@@ -17,7 +17,7 @@ public class BasketMaterial : MaterialManager
     {
         UpdateMaterial();
 
-        if (scoreColor == Color.green || scoreColor == Color.yellow)
+        if (scoreColor == Color.green || scoreColor == Basket.instance.plusThreeColor)
         {
             StartCoroutine(ChangingColorToWhite());
         }

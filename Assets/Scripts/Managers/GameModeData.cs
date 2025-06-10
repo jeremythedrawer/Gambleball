@@ -22,7 +22,7 @@ public struct TimerData : IGameModeSpecificData
 }
 
 [Serializable]
-public struct MoneyballData : IGameModeSpecificData
+public struct MoneyBallData : IGameModeSpecificData
 {
     public int startingAttempts;
 }

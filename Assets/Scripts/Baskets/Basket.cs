@@ -7,6 +7,7 @@ public class Basket : MonoBehaviour
     public bool isMoving;
     [Range(0f, 1f)]
     public float moveScale;
+    public Color plusThreeColor;
 
     [Header("References")]
     public Collider2D[] colliders;
@@ -37,12 +38,17 @@ public class Basket : MonoBehaviour
         {
             backboardStartPos = backboardRB.transform.localPosition;
         }
-        BallSpawner.onOutOfBounds += ResetBasketPos;
+        BallSpawner.onOutOfBounds += BallOutOfBounds;
     }
 
     private void OnDisable()
     {
-        BallSpawner.onOutOfBounds -= ResetBasketPos;
+        BallSpawner.onOutOfBounds -= BallOutOfBounds;
+    }
+
+    private void Update()
+    {
+        UpdatePlusScoreUI();
     }
     public void MoveBasket(Vector2 middlePos)
     {
@@ -63,16 +69,18 @@ public class Basket : MonoBehaviour
         }
     }
 
-    private void ResetBackboard()
+    private void BallOutOfBounds()
     {
-        backboardRB.gameObject.transform.localPosition = backboardStartPos;
-        backboardRB.gameObject.transform.eulerAngles = Vector2.zero;
-        backboardRB.constraints = RigidbodyConstraints2D.FreezeAll;
+        ResetBasketPos();
     }
-
     private void ResetBasketPos()
     {
         transform.position = NewPos(bottomLeft.position, topRight.position);
+    }
+
+    private void UpdatePlusScoreUI()
+    {
+        plusScoreMaterial.usePlusTwo = BallSpawner.instance.type != BallType.Moneyball;
     }
     protected Vector2 NewPos(Vector2 minPos, Vector2 maxPos)
     {

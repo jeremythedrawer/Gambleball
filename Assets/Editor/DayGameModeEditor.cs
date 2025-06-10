@@ -9,7 +9,7 @@ public class DayGameModeDrawer : PropertyDrawer
     {
         typeof(LivesData),
         typeof(TimerData),
-        typeof(MoneyballData)
+        typeof(MoneyBallData)
     };
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

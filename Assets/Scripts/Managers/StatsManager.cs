@@ -8,7 +8,8 @@ public class StatsManager : MonoBehaviour
     public int daysUnlocked = 1;
     public int currentScore {  get; private set; }
     public float currentTime {  get; private set; }
-    public int attemptsLeft { get; private set; } = 9;
+    public int currentMoneyBallAttempts { get; private set; }
+    public int currentHeartAttempts { get; private set; } = 9;
 
     public bool onFire { get; private set; }
     public bool fromDowntown { get; private set; }
@@ -27,14 +28,17 @@ public class StatsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        BallSpawner.onPlayerNotScored += UpdateAttempts;
+        BallSpawner.onPlayerNotScored += UpdateHeartAttempts;
+        BallSpawner.onOutOfBounds += UpdateMoneyBallStats;
         BallSpawner.onInBasket += PlayerScored;
         GameModeManager.onPlayerBeatDay += PrepareForNextDay;
         GameModeManager.onPlayerLost += ResetDay;
     }
     private void OnDisable()
     {
-        BallSpawner.onPlayerNotScored -= UpdateAttempts;
+        
+        BallSpawner.onPlayerNotScored -= UpdateHeartAttempts;
+        BallSpawner.onOutOfBounds -= UpdateMoneyBallStats;
         BallSpawner.onInBasket -= PlayerScored;
         GameModeManager.onPlayerBeatDay -= PrepareForNextDay;
         GameModeManager.onPlayerLost -= ResetDay;
@@ -46,24 +50,55 @@ public class StatsManager : MonoBehaviour
         CheckOnFire();
     }
 
-    private void UpdateAttempts()
+    private void UpdateHeartAttempts()
     {
-        if (attemptsLeft > 0)
+        if (GameModeManager.instance.currentGameMode.modeData is LivesData)
         {
-            attemptsLeft--;
-            scoresInRow = 0;
+            if (currentHeartAttempts > 0)
+            {
+                currentHeartAttempts--;
+            }
         }
+        scoresInRow = 0;
     }
 
+    private void UpdateMoneyBallStats()
+    {
+        if (GameModeManager.instance.currentGameMode.modeData is MoneyBallData)
+        {
+            if (currentMoneyBallAttempts > 0)
+            {
+                currentMoneyBallAttempts--;
+            }
+        }
+    }
     private void PlayerScored()
     {
-        TallyPoints();
+        if (GameModeManager.instance.currentGameMode.modeData is MoneyBallData)
+        {
+            if (BallSpawner.instance.type == BallType.Moneyball)
+            {
+                TallyPoints(scoreAmount: 3);
+            }
+            else
+            {
+                TallyPoints(scoreAmount: 2);
+            }
+
+            if(BallSpawner.instance.type == BallType.AttemptBoost)
+            {
+                currentMoneyBallAttempts += 2;
+            }
+        }
+        else
+        {
+            TallyPoints(scoreAmount: 2);
+        }
         scoresInRow++;
     }
-    private void TallyPoints()
+    private void TallyPoints(int scoreAmount)
     {
-        //TODO: if active ball is special tally three instead
-        currentScore += 2;
+        currentScore += scoreAmount;
     }
 
     public void CountDownTime()
@@ -77,14 +112,20 @@ public class StatsManager : MonoBehaviour
         }
     }
 
-    public void SetCountDownTime()
+    public void SetHeartAttempts(LivesData livesData)
     {
-        Debug.Log(GameModeManager.instance.currentGameMode.modeData.ToString());
-        if (GameModeManager.instance.currentGameMode.modeData is TimerData timeData)
-        {
-            currentTime = timeData.time;
-        }
+        currentHeartAttempts = livesData.lives * 3;
     }
+    public void SetCountDownTime(TimerData timerData)
+    {
+        currentTime = timerData.time;
+    }
+
+    public void SetMoneyBallAttempts(MoneyBallData moneyBallData)
+    {
+        currentMoneyBallAttempts = moneyBallData.startingAttempts;
+    }
+
     public void PrepareForNextDay()
     {
         currentScore = 0;
@@ -94,7 +135,6 @@ public class StatsManager : MonoBehaviour
     private void ResetDay()
     {
         currentScore = 0;
-        attemptsLeft = 9;
     }
     private void CheckScoredFromDowntown()
     {

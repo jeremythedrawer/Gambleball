@@ -3,14 +3,6 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public enum BallType
-    { 
-        Normal,
-        Moneyball,
-        AttemptBoost
-    }
-
-    public BallType type;
 
     [Header("Parameters")]
     public float weight;
@@ -77,7 +69,14 @@ public class Ball : MonoBehaviour
             {
                 foreach(BasketMaterial materialController in Basket.instance.materialControllers)
                 {
-                    materialController.scoreColor = Color.green;
+                    if (BallSpawner.instance.type == BallType.Moneyball)
+                    {
+                        materialController.scoreColor = Basket.instance.plusThreeColor;
+                    }
+                    else
+                    {
+                        materialController.scoreColor = Color.green;
+                    }
                 }
 
                 basket.plusScoreMaterial.alpha = 1;

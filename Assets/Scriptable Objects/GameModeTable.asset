@@ -14,27 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modes:
   - Mode: 0
-    targetScore: 10
+    targetScore: 20
     bird: 0
     modeData:
       rid: 2217455628989759606
   - Mode: 1
-    targetScore: 15
+    targetScore: 25
     bird: 1
     modeData:
       rid: 2217455628989759607
   - Mode: 2
-    targetScore: 15
+    targetScore: 50
     bird: 1
     modeData:
-      rid: 2217455628989759605
+      rid: 2217455694895382596
   references:
     version: 2
     RefIds:
-    - rid: 2217455628989759605
-      type: {class: MoneyballData, ns: , asm: Assembly-CSharp}
-      data:
-        startingAttempts: 10
     - rid: 2217455628989759606
       type: {class: LivesData, ns: , asm: Assembly-CSharp}
       data:
@@ -43,3 +39,7 @@ MonoBehaviour:
       type: {class: TimerData, ns: , asm: Assembly-CSharp}
       data:
         time: 60
+    - rid: 2217455694895382596
+      type: {class: MoneyBallData, ns: , asm: Assembly-CSharp}
+      data:
+        startingAttempts: 25
