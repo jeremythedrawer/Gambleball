@@ -1,19 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor;
-using UnityEngine.SceneManagement;
-using System.Collections;
 
-public class DaySelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     public Image image;
     public int loadSceneIndex;
 
     public bool unlocked => loadSceneIndex <= StatsManager.instance.daysUnlocked;
 
-    private bool isPressed = false;
-    private bool isHovered = false;
+    protected bool isPressed = false;
+    protected bool isHovered = false;
 
     private void Update()
     {

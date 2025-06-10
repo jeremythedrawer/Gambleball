@@ -10,16 +10,24 @@ public class JumbotronController : MonoBehaviour
 
     private void OnEnable()
     {
-        BallSpawner.onPlayerScored += ChooseSign; 
+        BallSpawner.onInBasket += ChooseSign; 
     }
     private void OnDisable()
     {
-        BallSpawner.onPlayerNotScored -= ChooseSign;
+        BallSpawner.onInBasket -= ChooseSign;
     }
 
     private void ChooseSign()
     {
-        if (StatsManager.instance.onFire)
+        if (BallSpawner.instance.type == BallType.Moneyball)
+        {
+            moneyBall.onOff = true;
+        }
+        else if (BallSpawner.instance.type == BallType.AttemptBoost)
+        {
+            attemptBoost.onOff = true;
+        }
+        else if (StatsManager.instance.onFire)
         {
             onFire.onOff = true;
         }

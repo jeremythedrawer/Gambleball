@@ -119,7 +119,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _characterCount: 9
-    - _randomRange: 1
+    - _randomRange: 1.37
     - _time: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

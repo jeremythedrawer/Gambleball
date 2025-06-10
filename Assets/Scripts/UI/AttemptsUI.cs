@@ -3,14 +3,29 @@ using UnityEngine;
 
 public class AttemptsUI : MonoBehaviour
 {
-    private TextMeshPro timeUIText;
-
+    private TextMeshPro AttemptUIText;
+    public PlusScoreMaterial plusAttemptsUI;
     private void OnEnable()
     {
-        timeUIText = GetComponent<TextMeshPro>();
+        AttemptUIText = GetComponent<TextMeshPro>();
+        BallSpawner.onInBasket += EnactPlusAttemptsUI;
+    }
+
+    private void OnDisable()
+    {
+        BallSpawner.onInBasket -= EnactPlusAttemptsUI;
+        
     }
     private void Update()
     {
-        timeUIText.text = "ATTEMPTS: " + StatsManager.instance.currentMoneyBallAttempts.ToString();
+        AttemptUIText.text = "ATTEMPTS: " + StatsManager.instance.currentMoneyBallAttempts.ToString();
+    }
+
+    public void EnactPlusAttemptsUI()
+    {
+        if (BallSpawner.instance.type == BallType.AttemptBoost)
+        {
+            plusAttemptsUI.alpha = 1;
+        }
     }
 }

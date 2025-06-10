@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_plusOne
+  m_Name: m_scorePlus
   m_Shader: {fileID: -6465566751694194690, guid: 9885bfc8e2578d14a888fbdb3003e617, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -94,9 +94,12 @@ Material:
     - _ZWrite: 0
     - _alpha: 0
     - _usePlusOne: 1
+    - _usePlusTwo: 1
     - _vertexOffset: 0
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _bonusColor: {r: 1, g: 0.8117647, b: 0, a: 0}
+    - _normalColor: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

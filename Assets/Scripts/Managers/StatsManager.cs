@@ -6,8 +6,8 @@ public class StatsManager : MonoBehaviour
     public static StatsManager instance;
 
     public int daysUnlocked = 1;
-    public int currentScore {  get; private set; }
-    public float currentTime {  get; private set; }
+    public int currentScore { get; private set; }
+    public float currentTime { get; private set; }
     public int currentMoneyBallAttempts { get; private set; }
     public int currentHeartAttempts { get; private set; } = 9;
 
@@ -36,7 +36,7 @@ public class StatsManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+
         BallSpawner.onPlayerNotScored -= UpdateHeartAttempts;
         BallSpawner.onOutOfBounds -= UpdateMoneyBallStats;
         BallSpawner.onInBasket -= PlayerScored;
@@ -45,7 +45,7 @@ public class StatsManager : MonoBehaviour
     }
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Menu") return;
+        if (SceneManager.GetActiveScene().name == "Menu" || SceneManager.GetActiveScene().name == "End") return;
         CheckScoredFromDowntown();
         CheckOnFire();
     }

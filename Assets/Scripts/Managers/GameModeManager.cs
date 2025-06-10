@@ -6,15 +6,13 @@ public class GameModeManager : MonoBehaviour
     public GameModeData gameModeData;
 
     public int currentDayIndex { get; set; } = 0;
-    public DayGameMode currentGameMode => gameModeData.modes[Mathf.Max(currentDayIndex - 1, 0)];
+    public DayGameMode currentGameMode => gameModeData.modes[Mathf.Clamp(currentDayIndex - 1, 0, gameModeData.modes.Count - 1)];
 
     [Header("Menu Parameters")]
     public float menuSpeed = 0.1f;
 
     [Header("Lives Mode Parameters")]
     public float livesModeSpeed = 2f;
-
-
 
     private float lerpedTime = 0f;
     private bool completedDayFlag;
@@ -119,6 +117,11 @@ public class GameModeManager : MonoBehaviour
                 }
             }
             break;
+            case 4:
+            {
+                GlobalVolumeController.instance.time = 0;
+            }
+            break;
         }
     }
 
@@ -129,6 +132,13 @@ public class GameModeManager : MonoBehaviour
         if (StatsManager.instance.currentScore >= currentGameMode.targetScore)
         {
             onPlayerBeatDay?.Invoke();
+            if (currentDayIndex == 3)
+            {
+                GlobalVolumeController.instance.ToggleCRT(4);
+                currentDayIndex = 4;
+                completedDayFlag = true;
+                return;
+            }
         }
         else if (playerLooses)
         {
@@ -140,7 +150,6 @@ public class GameModeManager : MonoBehaviour
         }
 
         currentDayIndex = 0;
-
         GlobalVolumeController.instance.ToggleCRT(0);
         completedDayFlag = true;
     }

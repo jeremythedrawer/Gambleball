@@ -89,7 +89,8 @@ public class Bird : MonoBehaviour
 
     private void SetBirdPos()
     {
-        float randomY = Random.Range(basket.transform.position.y, topRightTransform.position.y);
+        float randYMin = basket != null ? basket.transform.position.y : bottomLeftTransform.position.y + ((topRightTransform.position.y - bottomLeftTransform.position.y) * 0.5f);
+        float randomY = Random.Range(randYMin, topRightTransform.position.y);
         prevRandomYPos = randomY;
         chosenTransform = Random.value < 0.5f ? bottomLeftTransform : topRightTransform;
 

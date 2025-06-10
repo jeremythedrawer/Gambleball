@@ -24,7 +24,7 @@ MonoBehaviour:
     modeData:
       rid: 2217455628989759607
   - Mode: 2
-    targetScore: 50
+    targetScore: 40
     bird: 1
     modeData:
       rid: 2217455694895382596
