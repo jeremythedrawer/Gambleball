@@ -46,6 +46,7 @@ public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         isPressed = true;
         image.color = Color.red;
+        AudioManager.instance.PlaySFX("button");
     }
 
     public void OnPointerUp(PointerEventData eventData)

@@ -49,6 +49,7 @@ public class BallSpawner : Spawner
             else
             {
                 onPlayerNotScored?.Invoke();
+                AudioManager.instance.PlaySFX("miss");
             }
         }
 

@@ -61,7 +61,11 @@ public class Ball : MonoBehaviour
         if (hit != null && !enteredFromTop)
         {
             enteredFromTop = transform.position.y > basket.scoreTrigger.worldPoints[0].y;
-            inBasket = false;
+            if (inBasket)
+            {
+                AudioManager.instance.PlaySFX("score");
+                inBasket = false;
+            }
         }
         else if (enteredFromTop)
         {
