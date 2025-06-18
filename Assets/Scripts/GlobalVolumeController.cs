@@ -29,7 +29,7 @@ public class GlobalVolumeController : MonoBehaviour
     private void Start()
     {
         globalVolume.TryGet<CRTVolumeComponent>(out crtVolume);
-        TurnOnCRT();
+        StartCoroutine(TurningOnCRT());
     }
 
     private void Update()
@@ -37,28 +37,20 @@ public class GlobalVolumeController : MonoBehaviour
         crtVolume.tint.value = skyGradientOverTime.Evaluate(time);
     }
 
-    public Coroutine ToggleCRT(int sceneIndex)
+    public Coroutine ToggleCRT(int sceneIndex, bool turnMusicOff)
     {
-        return StartCoroutine(TogglingCRT(sceneIndex));
+        return StartCoroutine(TogglingCRT(sceneIndex, turnMusicOff));
     }
 
-    private IEnumerator TogglingCRT(int sceneIndex)
+    private IEnumerator TogglingCRT(int sceneIndex, bool turnMusicOff)
     {
-        yield return TurningOffCRT();
+        yield return TurningOffCRT(turnMusicOff);
         AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
         yield return new WaitUntil(() => sceneLoad.isDone);
-        yield return TurningOnCRT();
-    }
-    public Coroutine TurnOffCRT()
-    {
-        return StartCoroutine(TurningOffCRT());
+        yield return TurningOnCRT(turnMusicOff);
     }
 
-    public Coroutine TurnOnCRT()
-    {
-        return StartCoroutine(TurningOnCRT());
-    }
-    private IEnumerator TurningOnCRT()
+    private IEnumerator TurningOnCRT(bool turnMusicOff = true)
     {
         yield return new WaitUntil(()=> crtVolume != null);
         float elapsedTime = 0;
@@ -68,12 +60,16 @@ public class GlobalVolumeController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / turnOnTime;
             crtVolume.warpOffset.value = Mathf.Lerp(0, 5, t);
+            if (!turnMusicOff)
+            {
+                AudioManager.instance.musicAudioSource.volume = t;
+            }
             yield return null;
         }
         crtVolume.warpOffset.value = 5;
     }
 
-    private IEnumerator TurningOffCRT()
+    private IEnumerator TurningOffCRT(bool turnMusicOff = true)
     {
         yield return new WaitUntil(() => crtVolume != null);
         float elapsedTime = 0;
@@ -83,6 +79,11 @@ public class GlobalVolumeController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / turnOnTime;
             crtVolume.warpOffset.value = Mathf.Lerp(5, 0, t);
+            if (turnMusicOff)
+            {
+                float volume = 1 - t;
+                AudioManager.instance.musicAudioSource.volume = volume;
+            }
             yield return null;
         }
         crtVolume.warpOffset.value = 0;

@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         StaticLoop();
+        PlayMusic("theme");
     }
 
     private Coroutine StaticLoop()

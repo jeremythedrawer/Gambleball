@@ -165,7 +165,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -370,6 +370,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8104c375912948e44b9d7850baa9c4a7, type: 3}
   - name: static
     clip: {fileID: 8300000, guid: b0e319aa390bcb744a1d649124215430, type: 3}
+  - name: theme
+    clip: {fileID: 8300000, guid: 713a53c42cf5a6c4f9e32855777d69ce, type: 3}
 --- !u!1 &615364061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1233,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2034473611}
   loadSceneIndex: 2
+--- !u!1 &2081575879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081575881}
+  m_Layer: 0
+  m_Name: Theme Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2081575881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081575879}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.19889098, y: 0.77091795, z: -1.1453443}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1238,3 +1271,4 @@ SceneRoots:
   - {fileID: 615364065}
   - {fileID: 870880135}
   - {fileID: 1783770245}
+  - {fileID: 2081575881}

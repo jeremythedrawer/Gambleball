@@ -134,7 +134,7 @@ public class GameModeManager : MonoBehaviour
             onPlayerBeatDay?.Invoke();
             if (currentDayIndex == 3)
             {
-                GlobalVolumeController.instance.ToggleCRT(4);
+                GlobalVolumeController.instance.ToggleCRT(4, turnMusicOff: false);
                 currentDayIndex = 4;
                 completedDayFlag = true;
                 return;
@@ -150,7 +150,7 @@ public class GameModeManager : MonoBehaviour
         }
 
         currentDayIndex = 0;
-        GlobalVolumeController.instance.ToggleCRT(0);
+        GlobalVolumeController.instance.ToggleCRT(0, turnMusicOff: false);
         completedDayFlag = true;
     }
 }
