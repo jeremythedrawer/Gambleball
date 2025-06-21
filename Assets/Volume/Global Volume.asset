@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Value: 8.12
   scatter:
     m_OverrideState: 1
-    m_Value: 0.23
+    m_Value: 0.145
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -77,7 +77,7 @@ MonoBehaviour:
   active: 1
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.08262028, g: 0.25747746, b: 0.26972318, a: 1}
   brightness:
     m_OverrideState: 1
     m_Value: 0.1

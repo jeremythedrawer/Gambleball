@@ -37,20 +37,29 @@ public class GlobalVolumeController : MonoBehaviour
         crtVolume.tint.value = skyGradientOverTime.Evaluate(time);
     }
 
-    public Coroutine ToggleCRT(int sceneIndex, bool turnMusicOff)
+    public Coroutine ToggleCRT(int sceneIndex)
     {
-        return StartCoroutine(TogglingCRT(sceneIndex, turnMusicOff));
+        return StartCoroutine(TogglingCRT(sceneIndex));
     }
 
-    private IEnumerator TogglingCRT(int sceneIndex, bool turnMusicOff)
+    private IEnumerator TogglingCRT(int sceneIndex)
     {
-        yield return TurningOffCRT(turnMusicOff);
+        yield return TurningOffCRT();
         AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
         yield return new WaitUntil(() => sceneLoad.isDone);
-        yield return TurningOnCRT(turnMusicOff);
+        if (sceneIndex > 0)
+        {
+            AudioManager.instance.PlayMusic("playTheme");
+            Debug.Log("playing play theme");
+        }
+        else
+        {
+            AudioManager.instance.PlayMusic("menuTheme");
+        }
+        yield return TurningOnCRT();
     }
 
-    private IEnumerator TurningOnCRT(bool turnMusicOff = true)
+    private IEnumerator TurningOnCRT()
     {
         yield return new WaitUntil(()=> crtVolume != null);
         float elapsedTime = 0;
@@ -60,16 +69,13 @@ public class GlobalVolumeController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / turnOnTime;
             crtVolume.warpOffset.value = Mathf.Lerp(0, 5, t);
-            if (!turnMusicOff)
-            {
-                AudioManager.instance.musicAudioSource.volume = t;
-            }
+            AudioManager.instance.musicAudioSource.volume = t;
             yield return null;
         }
         crtVolume.warpOffset.value = 5;
     }
 
-    private IEnumerator TurningOffCRT(bool turnMusicOff = true)
+    private IEnumerator TurningOffCRT()
     {
         yield return new WaitUntil(() => crtVolume != null);
         float elapsedTime = 0;
@@ -79,11 +85,8 @@ public class GlobalVolumeController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / turnOnTime;
             crtVolume.warpOffset.value = Mathf.Lerp(5, 0, t);
-            if (turnMusicOff)
-            {
-                float volume = 1 - t;
-                AudioManager.instance.musicAudioSource.volume = volume;
-            }
+            float volume = 1 - t;
+            AudioManager.instance.musicAudioSource.volume = volume;
             yield return null;
         }
         crtVolume.warpOffset.value = 0;

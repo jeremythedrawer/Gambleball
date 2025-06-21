@@ -30,10 +30,12 @@ public class JumbotronController : MonoBehaviour
         else if (StatsManager.instance.onFire)
         {
             onFire.onOff = true;
+            AudioManager.instance.PlaySFX("onFire");
         }
         else if (StatsManager.instance.fromDowntown)
         {
             fromDowntown.onOff = true;
+            AudioManager.instance.PlaySFX("fromDowntown");
         }
     }
 }

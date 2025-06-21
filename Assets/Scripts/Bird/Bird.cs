@@ -13,6 +13,7 @@ public class Bird : MonoBehaviour
     public Rigidbody2D body;
     public Collider2D col;
     public Animator animator;
+    public AudioSource audioSource;
     public Basket basket;
 
     [Header("Start and End Points")]
@@ -71,6 +72,7 @@ public class Bird : MonoBehaviour
     private void Dead()
     {
         animator.Play(deadAnimState, 0, 0);
+        audioSource.PlayOneShot(audioSource.clip);
         StartCoroutine(Dying());
     }
     private IEnumerator Dying()

@@ -56,7 +56,6 @@ public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         isPressed = false;
         image.color = isHovered ? Color.green : Color.white;
         GameModeManager.instance.currentDayIndex = loadSceneIndex;
-        GlobalVolumeController.instance.ToggleCRT(loadSceneIndex, turnMusicOff: true);
-
+        GlobalVolumeController.instance.ToggleCRT(loadSceneIndex);
     }
 }
