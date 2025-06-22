@@ -365,9 +365,9 @@ MonoBehaviour:
   - name: static
     clip: {fileID: 8300000, guid: b0e319aa390bcb744a1d649124215430, type: 3}
   - name: menuTheme
-    clip: {fileID: 8300000, guid: 6ca55f1b0a1b36c4997f14e9716d2b7e, type: 3}
+    clip: {fileID: 8300000, guid: f22aedc1042f7a64f848968074ba4c4d, type: 3}
   - name: playTheme
-    clip: {fileID: 8300000, guid: df37c43e85961644795fcdfffa06ebfd, type: 3}
+    clip: {fileID: 8300000, guid: fb34d1970103f9d4d841c0c65e6d38d4, type: 3}
 --- !u!1 &615364061
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +402,7 @@ MonoBehaviour:
   gameModeData: {fileID: 11400000, guid: 21637c51d855a504baff1aec107644c2, type: 2}
   menuSpeed: 0.1
   livesModeSpeed: 2
+  cursorSprite: {fileID: 2800000, guid: bf0ea44c859113f4eb42d23c5359e047, type: 3}
 --- !u!114 &615364063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbee70dc195184ab815fd3d4f4b691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daysUnlocked: 1
+  daysUnlocked: 3
 --- !u!114 &615364064
 MonoBehaviour:
   m_ObjectHideFlags: 0

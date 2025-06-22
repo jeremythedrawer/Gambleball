@@ -143,6 +143,6 @@ public class StatsManager : MonoBehaviour
 
     private void CheckOnFire()
     {
-        onFire = scoresInRow >= 3;
+        onFire = scoresInRow != 0 && scoresInRow % 3 == 0;
     }
 }

@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 6223668658205279556}
   score: {fileID: 8300000, guid: c0a28ff096ab85046a4703dd6541acc9, type: 3}
-  miss: {fileID: 8300000, guid: c8ae8a0f257aa72439dbd961ced69406, type: 3}
+  miss: {fileID: 8300000, guid: ff5cc42fed2708a4ebfab5c049634b1c, type: 3}
 --- !u!114 &1656042239338376425
 MonoBehaviour:
   m_ObjectHideFlags: 0
