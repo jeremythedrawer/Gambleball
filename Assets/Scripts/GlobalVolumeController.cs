@@ -47,14 +47,17 @@ public class GlobalVolumeController : MonoBehaviour
         yield return TurningOffCRT();
         AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
         yield return new WaitUntil(() => sceneLoad.isDone);
-        if (sceneIndex > 0)
+
+        if (!Bird.isDead)
         {
-            AudioManager.instance.PlayMusic("playTheme");
-            Debug.Log("playing play theme");
-        }
-        else
-        {
-            AudioManager.instance.PlayMusic("menuTheme");
+            if (sceneIndex > 0)
+            {
+                AudioManager.instance.PlayMusic("playTheme");
+            }
+            else
+            {
+                AudioManager.instance.PlayMusic("menuTheme");
+            }
         }
         yield return TurningOnCRT();
     }

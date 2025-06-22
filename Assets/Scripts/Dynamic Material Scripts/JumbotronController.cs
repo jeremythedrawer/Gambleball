@@ -22,10 +22,12 @@ public class JumbotronController : MonoBehaviour
         if (BallSpawner.instance.type == BallType.Moneyball)
         {
             moneyBall.onOff = true;
+            AudioManager.instance.PlaySFX("moneyball");
         }
         else if (BallSpawner.instance.type == BallType.AttemptBoost)
         {
             attemptBoost.onOff = true;
+            AudioManager.instance.PlaySFX("attemptBoost");
         }
         else if (StatsManager.instance.onFire)
         {

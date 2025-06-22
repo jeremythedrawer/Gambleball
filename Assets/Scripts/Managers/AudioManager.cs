@@ -45,7 +45,6 @@ public class AudioManager : MonoBehaviour
         StaticLoop();
         PlayMusic("menuTheme");
     }
-
     private Coroutine StaticLoop()
     {
         return StartCoroutine(StaticLooping());
@@ -91,5 +90,10 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log($"SFX `{name}` not found!");
         }
+    }
+
+    public void StopMusic()
+    {
+        musicAudioSource.Stop();
     }
 }

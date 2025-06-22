@@ -347,7 +347,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_moneyBallSign_0: -7811350720262882897
+      spr_moneyBallSign_1: -423294989745187921
+      spr_moneyBallSign_2: -4624342113099845091
+      spr_moneyBallSign_3: -485284652228773826
+      spr_moneyBallSign_4: 7495977862569285820
+      spr_moneyBallSign_5: 3834204853917949984
+      spr_moneyBallSign_6: -6096826504990858998
+      spr_moneyBallSign_7: 7232972064353863853
+      spr_moneyBallSign_8: 5574903054997085397
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

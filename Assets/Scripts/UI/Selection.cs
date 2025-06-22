@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     public Image image;
+    public AudioSource audioSource;
     public int loadSceneIndex;
 
     public bool unlocked => loadSceneIndex <= StatsManager.instance.daysUnlocked;
@@ -52,9 +53,10 @@ public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!unlocked) return;
-
+  
         isPressed = false;
         image.color = isHovered ? Color.green : Color.white;
+        audioSource.Play();
         GameModeManager.instance.currentDayIndex = loadSceneIndex;
         GlobalVolumeController.instance.ToggleCRT(loadSceneIndex);
     }

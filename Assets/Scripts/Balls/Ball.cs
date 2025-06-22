@@ -61,11 +61,7 @@ public class Ball : MonoBehaviour
         if (hit != null && !enteredFromTop)
         {
             enteredFromTop = transform.position.y > basket.scoreTrigger.worldPoints[0].y;
-            if (inBasket)
-            {
-                AudioManager.instance.PlaySFX("score");
-                inBasket = false;
-            }
+            inBasket = false;
         }
         else if (enteredFromTop)
         {
@@ -84,7 +80,6 @@ public class Ball : MonoBehaviour
                 }
 
                 basket.plusScoreMaterial.alpha = 1;
-
                 inBasket = true;
                 playerScored = true;
                 enteredFromTop = false;

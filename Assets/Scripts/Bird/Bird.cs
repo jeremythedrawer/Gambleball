@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class Bird : MonoBehaviour
     private float prevRandomYPos;
 
     public static bool isDead { get; private set; }
+
+    public static event Action onDead;
     private void Start()
     {
         ResetBird();
@@ -71,6 +74,7 @@ public class Bird : MonoBehaviour
 
     private void Dead()
     {
+        onDead?.Invoke();
         animator.Play(deadAnimState, 0, 0);
         audioSource.PlayOneShot(audioSource.clip);
         StartCoroutine(Dying());
@@ -92,9 +96,9 @@ public class Bird : MonoBehaviour
     private void SetBirdPos()
     {
         float randYMin = basket != null ? basket.transform.position.y : bottomLeftTransform.position.y + ((topRightTransform.position.y - bottomLeftTransform.position.y) * 0.5f);
-        float randomY = Random.Range(randYMin, topRightTransform.position.y);
+        float randomY = UnityEngine.Random.Range(randYMin, topRightTransform.position.y);
         prevRandomYPos = randomY;
-        chosenTransform = Random.value < 0.5f ? bottomLeftTransform : topRightTransform;
+        chosenTransform = UnityEngine.Random.value < 0.5f ? bottomLeftTransform : topRightTransform;
 
         transform.position = new Vector3(chosenTransform.position.x, prevRandomYPos, 0);
         spriteRenderer.flipX = chosenTransform == bottomLeftTransform;

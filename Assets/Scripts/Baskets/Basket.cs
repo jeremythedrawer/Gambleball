@@ -15,6 +15,7 @@ public class Basket : MonoBehaviour
     public PlusScoreMaterial plusScoreMaterial;
     public ScoreTrigger scoreTrigger;
     public BasketMaterial[] materialControllers;
+    public AudioSource audioSource;
 
     [Header("Bounds")]
     public Transform topRight;
@@ -39,11 +40,13 @@ public class Basket : MonoBehaviour
             backboardStartPos = backboardRB.transform.localPosition;
         }
         BallSpawner.onOutOfBounds += BallOutOfBounds;
+        BallSpawner.onInBasket += PlaySwishSound;
     }
 
     private void OnDisable()
     {
         BallSpawner.onOutOfBounds -= BallOutOfBounds;
+        BallSpawner.onInBasket -= PlaySwishSound;
     }
 
     private void Update()
@@ -87,6 +90,11 @@ public class Basket : MonoBehaviour
         float randomX = Random.Range(minPos.x, maxPos.x);
         float randomY = Random.Range(minPos.y, maxPos.y);
         return new Vector2(randomX, randomY);
+    }
+
+    private void PlaySwishSound()
+    {
+        audioSource.Play();
     }
 
     private void OnDrawGizmos()
