@@ -79,7 +79,14 @@ public class BallSelection : MonoBehaviour
     }
     private Material PickLastBall()
     {
-        nextBallIndexes[2] = UnityEngine.Random.Range(0, 3);
+        int rand = UnityEngine.Random.Range(0, 100);
+        if (rand < 50)
+            nextBallIndexes[2] = 0;
+        else if (rand < 75)
+            nextBallIndexes[2] = 1;
+        else
+            nextBallIndexes[2] = 2;
+
         return ballsData[nextBallIndexes[2]].material;
     }
 }

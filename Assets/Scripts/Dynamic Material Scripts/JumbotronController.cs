@@ -57,15 +57,15 @@ public class JumbotronController : MonoBehaviour
             attemptBoost.onOff = true;
             PlaySFX("attemptBoost");
         }
-        else if (StatsManager.instance.fromDowntown)
-        {
-            fromDowntown.onOff = true;
-            PlaySFX("fromDowntown");
-        }
         else if (StatsManager.instance.onFire)
         {
             onFire.onOff = true;
             PlaySFX("onFire");
+        }
+        else if (StatsManager.instance.fromDowntown)
+        {
+            fromDowntown.onOff = true;
+            PlaySFX("fromDowntown");
         }
     }
 

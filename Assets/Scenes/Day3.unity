@@ -1045,7 +1045,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f3ceea7daec9b114a832e4b0e5ddf4da, type: 3}
   - name: moneyball
     clip: {fileID: 8300000, guid: f58ca60cc118aca48b6799c4e49002c4, type: 3}
-  - name: attempBoost
+  - name: attemptBoost
     clip: {fileID: 8300000, guid: 6e37775acfc0ec24e875a7f6ab87adb7, type: 3}
 --- !u!4 &786066637
 Transform:

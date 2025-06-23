@@ -22,8 +22,6 @@ public class GameModeManager : MonoBehaviour
     public static event Action onPlayerLost;
 
     private int lowestAttemptScore;
-
-    public Texture2D cursorSprite;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -34,7 +32,6 @@ public class GameModeManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
-        Cursor.SetCursor(cursorSprite, Vector2.zero, CursorMode.Auto);
     }
 
     private void Update()
@@ -53,7 +50,6 @@ public class GameModeManager : MonoBehaviour
                 lerpedTime += Time.deltaTime * menuSpeed;
                 float t = Mathf.Sin(lerpedTime) * 0.5f + 0.5f;
                 GlobalVolumeController.instance.time = t;
-                Cursor.visible = true;
             }
             break;
             case 1:
@@ -74,8 +70,6 @@ public class GameModeManager : MonoBehaviour
                         bool playerLooses = StatsManager.instance.currentHeartAttempts <= 0;
                         CheckToEndDay(playerLooses);
                     }
-
-                    Cursor.visible = false;
                 }
             }
             break;
@@ -99,7 +93,6 @@ public class GameModeManager : MonoBehaviour
                         CheckToEndDay(playerLooses);
                     }
                 }
-                Cursor.visible = false;
             }
             break;
             case 3:
@@ -122,13 +115,11 @@ public class GameModeManager : MonoBehaviour
                         CheckToEndDay(playerLooses);
                     }
                 }
-                Cursor.visible = false;
             }
             break;
             case 4:
             {
                 GlobalVolumeController.instance.time = 0;
-                Cursor.visible = true;
             }
             break;
         }
