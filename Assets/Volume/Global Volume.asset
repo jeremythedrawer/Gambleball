@@ -77,7 +77,7 @@ MonoBehaviour:
   active: 1
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.08262028, g: 0.25747746, b: 0.26972318, a: 1}
+    m_Value: {r: 0.039215688, g: 0.2784314, b: 0.33333334, a: 1}
   brightness:
     m_OverrideState: 1
     m_Value: 0.1
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_Value: 0.00125
   scanLineScale:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 2
   warpOffset:
     m_OverrideState: 1
     m_Value: 5

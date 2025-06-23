@@ -28,7 +28,7 @@ public class StatsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        BallSpawner.onPlayerNotScored += UpdateHeartAttempts;
+        BallSpawner.onPlayerNotScored += LooseAttempt;
         BallSpawner.onOutOfBounds += UpdateMoneyBallStats;
         BallSpawner.onInBasket += PlayerScored;
         GameModeManager.onPlayerBeatDay += PrepareForNextDay;
@@ -37,7 +37,7 @@ public class StatsManager : MonoBehaviour
     private void OnDisable()
     {
 
-        BallSpawner.onPlayerNotScored -= UpdateHeartAttempts;
+        BallSpawner.onPlayerNotScored -= LooseAttempt;
         BallSpawner.onOutOfBounds -= UpdateMoneyBallStats;
         BallSpawner.onInBasket -= PlayerScored;
         GameModeManager.onPlayerBeatDay -= PrepareForNextDay;
@@ -50,7 +50,7 @@ public class StatsManager : MonoBehaviour
         CheckOnFire();
     }
 
-    private void UpdateHeartAttempts()
+    private void LooseAttempt()
     {
         if (GameModeManager.instance.currentGameMode.modeData is LivesData)
         {
@@ -95,6 +95,10 @@ public class StatsManager : MonoBehaviour
             TallyPoints(scoreAmount: 2);
         }
         scoresInRow++;
+        if (currentHeartAttempts % 3 != 0)
+        {
+            currentHeartAttempts = ((currentHeartAttempts / 3) + 1) * 3;
+        }
     }
     private void TallyPoints(int scoreAmount)
     {

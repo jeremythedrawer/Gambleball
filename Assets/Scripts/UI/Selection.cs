@@ -12,6 +12,7 @@ public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     protected bool isPressed = false;
     protected bool isHovered = false;
+    private bool hasBeenClicked;
 
     private void Update()
     {
@@ -43,7 +44,7 @@ public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!unlocked) return;
+        if (!unlocked || hasBeenClicked) return;
 
         isPressed = true;
         image.color = Color.red;
@@ -52,8 +53,9 @@ public class Selection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!unlocked) return;
+        if (!unlocked || hasBeenClicked) return;
   
+        hasBeenClicked = true;
         isPressed = false;
         image.color = isHovered ? Color.green : Color.white;
         audioSource.Play();
